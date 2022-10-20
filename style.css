@@ -150,6 +150,11 @@
     
 }
 
+#videowrap-header {
+    min-height: 7%;
+    overflow-y: auto;
+}
+
 #userlist {
     float: initial;
     height: 100px !important;
@@ -180,9 +185,9 @@
 }
 
 #chatline::placeholder {
-    font-weight: bold;
+    font-style: italic;
     opacity: .5;
-    color: red;
+    color: grey;
 }
 
 .server-msg-reconnect {
@@ -227,7 +232,7 @@
 }
 
 .container .credit {
-    margin: 20px 0;
+    margin: 10px 0;
     text-align: center;
 }
 
