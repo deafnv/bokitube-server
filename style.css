@@ -1,0 +1,54 @@
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+#mainpage {
+    padding-top: 60px;
+    overflow: hidden;
+}
+
+.leftcontent {
+    width: 83%
+    float: left;
+}
+
+.rightcontent {
+    width: 17%;
+}
+
+#messagebuffer {
+    height: 611px !important;
+}
+
+#userlist {
+    float: initial;
+    height: 150px !important;
+    width: initial;
+}
+
+.col-lg-5 {
+    width: 23.666667%;
+    padding-left: initial;
+    padding-right: initial;
+}
+
+.col-lg-7 {
+    width: 76.333333%;
+    padding-left: initial;
+    padding-right: initial;
+}
