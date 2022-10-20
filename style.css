@@ -151,7 +151,7 @@
 }
 
 #videowrap-header {
-    min-height: 7%;
+    max-height: 7%;
     overflow-y: auto;
 }
 
