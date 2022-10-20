@@ -1,54 +1,351 @@
+:root {
+    --leftcontentvw:  78.4vw;;
+    --rightcontentvw: 21.6vw;
+    --dialogbgimageurl: url("https://dl.dropboxusercontent.com/s/v59wycx9g8p05e5/astolfo_render__1__by_mrsterben_dbzfx5u.png");
+    --bgimageurl: url("https://wallpapercave.com/wp/wp2225973.jpg");
+}
+
 ::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
+    width: 8px;
+    height: 10px;
+    border: 0px solid hsl(0,0%,27%);
+    border-top: 0;
+    border-bottom: 0;
+    display: none;
+}
+
+::-webkit-scrollbar-corner {
+    background-color: rgba(26,26,26,1);
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    border-radius: 4px;
     background: #f1f1f1; 
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
     background: #888; 
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
     background: #555; 
-  }
+}
+
+* {
+    font-size: 100%;
+    font-family: "Futura", Verdana, Geneva, Tahoma, sans-serif;
+    src: url("https://www.dropbox.com/s/st36e58m5l1s1hj/futura%20medium%20condensed%20bt.ttf") format("truetype");
+}
 
 #mainpage {
-    padding-top: 60px;
+    display: grid;
+    padding-top: 50px;
     overflow: hidden;
 }
 
-.leftcontent {
-    width: 83%
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    background: #07080af7;
+}
+
+.navbar-inverse .navbar-brand {
+    letter-spacing: 4px;
+}
+
+.navbar-inverse .navbar-brand:focus, .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand{
+    color: #cee8ff;
+}
+
+.navbar-brand {
     float: left;
+    padding: 15px;
+    font-size: 18px;
+    line-height: 20px;
+    height: 50px;
+}
+
+.nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
+    background-color: rgb(59, 192, 236) !important;
+}
+
+.navbar-nav>li:hover {
+    background-image: rgb(59, 192, 236) !important;
+}
+
+.nav > li > a:focus, .nav > li > a:hover {
+    background-color: rgb(59, 192, 236) !important;
+}
+
+.leftcontent {
+    height: calc(100% - 50px);
+    width: var(--leftcontentvw);
+    background-image: var(--bgimageurl);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#video-container {
+    overflow: auto;
+    background-color: black;
+}
+
+#videowrap {
+    width: 100%;
+    padding-top: 16px;
+    padding-bottom: 17px;
+}
+
+#motdrow {
+    padding-top: 15px;
+}
+
+.row {
+    margin-left: 60px;
+    margin-right: 50px;
+}
+
+.nano-content {
+    width: var(--leftcontentvw);
+}
+
+#controlsrow {
+    margin-left: 75px;
+}
+
+#rightcontrols {
+    width: 99% !important;
+}
+
+#playlistrow {
+    margin-left: initial;
+}
+
+#playlistrow ::before {
+    display: initial;
+}
+
+#rightpane {
+    width: var(--leftcontentvw);
+}
+
+#wrap {
+    padding: initial;
 }
 
 .rightcontent {
-    width: 17%;
+    width: var(--rightcontentvw);
+    position:fixed;
+    left: var(--leftcontentvw);
+    z-index: 1030;
 }
 
-#messagebuffer {
-    height: 611px !important;
+#chatwrap {
+    margin-bottom: 0px;
+    height: 879px;
+    width: 99.8%;
+    background: #0e1015f7;
+    
 }
 
 #userlist {
     float: initial;
-    height: 150px !important;
+    height: 100px !important;
     width: initial;
+    overflow: auto;
+}
+
+#userlist, #messagebuffer, #chatheader, #videowrap-header{
+    border: initial;
+}
+
+.userlist_item {
+    padding-left: 15px;
+    padding-top: 15px;
+}
+
+#messagebuffer {
+    height: 611px !important;
+    overflow: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #2e2e2e;
+}
+
+.timestamp {
+    color: rgb(143, 143, 143);
+    float: right;
+}
+
+#chatline::placeholder {
+    font-weight: bold;
+    opacity: .5;
+    color: red;
+}
+
+.server-msg-reconnect {
+    border-radius: 6px;
+}
+
+.nick-highlight {
+    border-radius: 8px;
+}
+
+.form-control {
+    border: initial;
+    border-radius: 8px;
+}
+
+#leftcontrols {
+    display: flex;
+    padding-top: 8px;
+    padding-left: 8px;
+}
+
+#newpollbtn, #emotes-btn, #afk-btn, #clear-btn {
+    background-image: none;
+    background-color: rgb(55, 173, 212);
+}
+
+#newpollbtn:hover, #emotes-btn:hover, #afk-btn:hover, #clear-btn:hover {
+    background-image: none;
+    background-color: rgb(34, 116, 143);
 }
 
 .col-lg-5 {
-    width: 23.666667%;
+    width: 21.666667%;
     padding-left: initial;
     padding-right: initial;
 }
 
 .col-lg-7 {
-    width: 76.333333%;
+    width: 78.333333%;
     padding-left: initial;
     padding-right: initial;
+}
+
+.container .credit {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.text-muted {
+    color: #7a8288;
+}
+
+#footer {
+    font-size: 11px;
+}
+
+/* Imported from older code */
+
+.modal-body::before {
+    content: "";
+    background-image: var(--dialogbgimageurl);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-y: bottom;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.5;
+}
+	
+.modal-backdrop.in {
+    opacity: .3
+}
+
+.tab-content > .tab-pane,
+.form-group,
+.pm-history-content {
+    position: relative;
+}
+
+textarea.form-control {
+    height: 500px;
+}
+
+/* Queue decoration */
+/* .queue_active {
+    background-image: linear-gradient(#eba48cab, #c67148a8, #683424ad);
+    background-repeat: no-repeat
+}
+.queue_entry {
+    border-color: #053851b0;
+    background-color: #6b313d8a;
+    font-size: 75%;
+}
+.videolist {
+    background-image: url(https://dl.dropboxusercontent.com/s/o0c936xljzu8nsr/thecouncil.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+} */
+
+.nick-hover {
+    background-color: rgba(0, 0, 0, 0)
+}
+	
+#emotespanel {
+    text-align: center;
+    max-width: 680px;
+    margin: 10px 20px 0 30px;
+    border: solid 2px #ccb71f;
+    border-radius: 6px;
+    background-color: #0b113e;
+    opacity: 1
+}
+#emotespanel img {
+    margin: 5px;
+    max-height: 50px;
+    cursor: pointer
+}
+#emotesbtnwrap {
+    text-align: center;
+    margin: 5px
+}
+#emotespanel .alert {
+    text-align: left;
+    margin: 5px -10px
+}
+
+#cs-csspreview {
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 10px
+}
+
+.banner-slideshow {
+    height: 215px;
+    max-width: 100%;
+    margin: 0 auto;
+    border-style: solid;
+    position: relative;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+    border-color: #916907
+}
+.banner-slideshow > div {
+    height: 400px;
+    width: 5066px;
+    background: url(https://dl.dropboxusercontent.com/s/eyzfkmihwol6b69/banner%20%280-00-00-00%29.png);
+    background-size: 50%;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform: translate3d(0, 0, 0)
+}
+.banner-slideshow .mover-1 {
+    animation: moveSlideshow 20s linear infinite
+}
+@keyframes moveSlideshow {
+    100% {
+        transform: translateX(-50%)
+    }
 }
