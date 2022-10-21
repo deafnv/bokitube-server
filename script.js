@@ -1,8 +1,10 @@
 const resizes = document.getElementById("resize-video-smaller");
 const resizel = document.getElementById("resize-video-larger");
+const userlisttoggle = document.getElementById("userlisttoggle");
 
 resizes.remove();
 resizel.remove();
+userlisttoggle.remove();
 
 $("#motdwrap").prepend($('<div class="banner-slideshow"><div class="mover-1"></div></div>'));
 $(".credit").append($('<p class="text-muted credit">Theme by TomoLover, available on <a href="https://github.com/deafnv/bokigang-server" target="_blank" rel="noreferrer noopener">Github</a></p><p class="text-muted credit">Breast milk (sometimes spelled as breastmilk) or mother\'s milk is milk produced by mammary glands, located in the breast of a human female. Breast milk is the primary source of nutrition for newborns, containing fat, protein, carbohydrates (lactose and human milk oligosaccharides) and variable minerals and vitamins. Breast milk also contains substances that help protect an infant against infection and inflammation, whilst also contributing to healthy development of the immune system and gut microbiome.</p>'));
@@ -63,11 +65,14 @@ setInterval(function() {
 }, 500);
 
 $(document).ready(function() {
-    $('<link id="chanfavicon" href="https://dl.dropboxusercontent.com/s/8a079qbl5cr3zgu/youbdayfavi.png" type="image/x-icon" rel="shortcut icon" />')
-        .appendTo("head");
+    $('<link id="chanfavicon" href="https://dl.dropboxusercontent.com/s/8a079qbl5cr3zgu/youbdayfavi.png" type="image/x-icon" rel="shortcut icon" />').appendTo("head");
+
+    $('<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">').appendTo("head");
+    
+    $('<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">').appendTo("head");
 });
 
-$(".navbar-brand").html("Bokigang");
+$(".navbar-brand").html("BOKIGANG");
 
 $('<button class="btn btn-primary" id="cs-csspreview">Preview CSS</button>')
     .appendTo("#cs-csseditor")
@@ -164,6 +169,10 @@ emotesbtn = $('<button id="emotes-btn" class="btn btn-sm btn-default" title="Dis
         toggleDiv(emotespanel);
         (UI_ChannelCache != "1" && !EMOTES) ? showEmotes(): '';
     });
+
+$('<button id="spacer-btn" class="btn btn-default btn-sm">Spacer button</button>')
+    .appendTo("#leftcontrols")
+    .on("click", function() {});
 
 $('<button id="afk-btn" class="btn btn-default btn-sm">AFK</button>')
     .appendTo("#leftcontrols")

@@ -5,6 +5,13 @@
     --bgimageurl: url("https://wallpapercave.com/wp/wp2225973.jpg");
 }
 
+@font-face {
+    font-family: 'Futura';
+    font-style: normal;
+    src: url(https://dl.dropboxusercontent.com/s/a0tn9ohoferrayg/FuturaLT-CondensedLight.woff) format('woff');
+    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+
 ::-webkit-scrollbar {
     width: 8px;
     height: 10px;
@@ -36,9 +43,8 @@
 }
 
 * {
-    font-size: 100%;
-    font-family: "Futura", Verdana, Geneva, Tahoma, sans-serif;
-    src: url("https://www.dropbox.com/s/st36e58m5l1s1hj/futura%20medium%20condensed%20bt.ttf") format("truetype");
+    font-size: 102%;
+    font-family: "Futura", "Quicksand", "Ubuntu", Verdana, Tahoma, sans-serif;
 }
 
 #mainpage {
@@ -96,6 +102,16 @@
     width: 100%;
     padding-top: 16px;
     padding-bottom: 17px;
+}
+
+#motdwrap {
+    /* From https://css.glass */
+    background: rgba(28, 30, 34, 0.75);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.8px);
+    -webkit-backdrop-filter: blur(4.8px);
+    border: 1px solid rgba(28, 30, 34, 0.34);
 }
 
 #motdrow {
@@ -158,7 +174,12 @@
     padding: 9px 15px 15px 15px;
 }
 
-#usercount, #userlisttoggle {
+#chatheader {
+    background-color: #0e1015f7;
+}
+
+#usercount {
+    padding-left: 20px;
     pointer-events: none;
 }
 
@@ -167,6 +188,7 @@
     height: 100px !important;
     width: initial;
     overflow: auto;
+    background-color: #0e1015f7;
 }
 
 #userlist, #messagebuffer, #chatheader, #videowrap-header{
@@ -179,16 +201,30 @@
 }
 
 #messagebuffer {
-    height: 66vh !important;
+    height: 65vh !important;
     overflow: auto;
     padding-left: 10px;
     padding-right: 10px;
     background-color: #2e2e2e;
 }
 
+#messagebuffer > div {
+    padding-bottom: 10px;
+}
+
+.server-whisper {
+    padding-left: 100px;
+}
+
 .timestamp {
     color: rgb(143, 143, 143);
     float: right;
+    position: sticky;
+}
+
+#chatline {
+    border-radius: 50px;
+    margin-top: 10px;
 }
 
 #chatline::placeholder {
@@ -214,6 +250,7 @@
     display: flex;
     padding-top: 8px;
     padding-left: 8px;
+    width: inherit;
 }
 
 #newpollbtn, #emotes-btn, #afk-btn, #clear-btn {
@@ -224,6 +261,12 @@
 #newpollbtn:hover, #emotes-btn:hover, #afk-btn:hover, #clear-btn:hover {
     background-image: none;
     background-color: rgb(34, 116, 143);
+}
+
+#spacer-btn {
+    visibility: hidden;
+    width: inherit;
+    pointer-events: none;
 }
 
 .col-lg-5 {
@@ -313,7 +356,7 @@ textarea.form-control {
     margin: 10px 20px 0 30px;
     opacity: 1;
     /* From https://css.glass */
-    background: rgba(0, 0, 0, 0.17);
+    background: rgba(0, 0, 0, 0.27);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(3.8px);
