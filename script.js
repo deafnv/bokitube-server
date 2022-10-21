@@ -28,7 +28,8 @@ $("#footer").appendTo($(".nano-content"));
 
 const chatline = document.getElementById("chatline");
 chatline.removeAttribute("placeholder");
-chatline.setAttribute("placeholder", "Send a message")
+chatline.setAttribute("placeholder", "Send a message");
+chatline.setAttribute("spellcheck", "false");
 
 
 

@@ -47,6 +47,10 @@
     font-family: "Futura", "Quicksand", "Ubuntu", Verdana, Tahoma, sans-serif;
 }
 
+.profile-box {
+    overflow: visible;
+}
+
 #mainpage {
     display: grid;
     padding-top: 50px;
@@ -185,9 +189,11 @@
 
 #userlist {
     float: initial;
-    height: 100px !important;
+    height: 30px !important;
     width: initial;
-    overflow: auto;
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
     background-color: #0e1015f7;
 }
 
@@ -196,12 +202,17 @@
 }
 
 .userlist_item {
+    display: flex;
     padding-left: 15px;
-    padding-top: 15px;
+    padding-top: 3px;
+}
+
+.userlist_owner {
+    font-size: small;
 }
 
 #messagebuffer {
-    height: 65vh !important;
+    height: 72vh !important;
     overflow: auto;
     padding-left: 10px;
     padding-right: 10px;
@@ -214,12 +225,22 @@
 
 .server-whisper {
     padding-left: 100px;
+    padding-bottom: 0px;
+}
+
+.server-msg-disconnect, .server-msg-reconnect{
+    padding-bottom: 0px !important;
 }
 
 .timestamp {
     color: rgb(143, 143, 143);
     float: right;
     position: sticky;
+}
+
+.channel-emote {
+    max-width: 80px;
+    max-height: 80px;
 }
 
 #chatline {
@@ -350,7 +371,7 @@ textarea.form-control {
     z-index: 1020;
     height: 28% !important;
     overflow: scroll;
-    top: 24%;
+    top: 17%;
     text-align: center;
     max-width: 680px;
     margin: 10px 20px 0 30px;
