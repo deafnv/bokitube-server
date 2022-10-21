@@ -154,6 +154,8 @@ function showEmotes() {
     EMOTES = true;
 }
 
+$("#emotespanel").appendTo($(".rightcontent"));
+
 $("#emotelistbtn").remove();
 
 emotesbtn = $('<button id="emotes-btn" class="btn btn-sm btn-default" title="Display emotes panel">Emote List</button>')

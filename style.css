@@ -144,7 +144,7 @@
 
 #chatwrap {
     margin-bottom: 0px;
-    height: 879px;
+    height: 95vh;
     width: 99.8%;
     background: #0e1015f7;
     
@@ -154,6 +154,12 @@
     height: 6.8%;
     overflow-wrap: break-word;
     overflow-y: auto;
+    background-color: #2e2e2e;
+    padding: 9px 15px 15px 15px;
+}
+
+#usercount, #userlisttoggle {
+    pointer-events: none;
 }
 
 #userlist {
@@ -173,7 +179,7 @@
 }
 
 #messagebuffer {
-    height: 611px !important;
+    height: 66vh !important;
     overflow: auto;
     padding-left: 10px;
     padding-right: 10px;
@@ -297,13 +303,21 @@ textarea.form-control {
 }
 	
 #emotespanel {
+    position: fixed;
+    z-index: 1020;
+    height: 28% !important;
+    overflow: scroll;
+    top: 24%;
     text-align: center;
     max-width: 680px;
     margin: 10px 20px 0 30px;
-    border: solid 2px #ccb71f;
-    border-radius: 6px;
-    background-color: #0b113e;
-    opacity: 1
+    opacity: 1;
+    /* From https://css.glass */
+    background: rgba(0, 0, 0, 0.17);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.8px);
+    -webkit-backdrop-filter: blur(3.8px);
 }
 #emotespanel img {
     margin: 5px;
