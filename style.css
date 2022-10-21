@@ -14,7 +14,7 @@
 
 ::-webkit-scrollbar {
     width: 8px;
-    height: 10px;
+    height: 3px;
     border: 0px solid hsl(0,0%,27%);
     border-top: 0;
     border-bottom: 0;
@@ -28,13 +28,13 @@
 /* Track */
 ::-webkit-scrollbar-track {
     border-radius: 4px;
-    background: #f1f1f1; 
+    background: #000000;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background: #888; 
+    background: #686868;
 }
 
 /* Handle on hover */
@@ -95,6 +95,25 @@
     background-image: var(--bgimageurl);
     background-repeat: no-repeat;
     background-attachment: fixed;
+}
+
+#pollwrap {
+    position: absolute;
+    cursor: move;
+}
+
+.poll-menu {
+    position: absolute;
+    z-index: 1020;
+    max-width: 30%;
+    background: rgba(0, 0, 0, 0.27);
+    border: #bbbbbb;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.8px);
+    -webkit-backdrop-filter: blur(3.8px);
 }
 
 #video-container {
@@ -195,6 +214,10 @@
     overflow-x: scroll;
     overflow-y: hidden;
     background-color: #0e1015f7;
+}
+
+#userlist::-webkit-scrollbar {
+    display: block;
 }
 
 #userlist, #messagebuffer, #chatheader, #videowrap-header{
@@ -365,20 +388,28 @@ textarea.form-control {
 .nick-hover {
     background-color: rgba(0, 0, 0, 0)
 }
+
+.emotewrap {
+    position: absolute;
+    cursor: move;
+    top: 17%;
+}
 	
 #emotespanel {
     position: fixed;
     z-index: 1020;
     height: 28% !important;
     overflow: scroll;
-    top: 17%;
     text-align: center;
-    max-width: 680px;
+    width: 380px;
     margin: 10px 20px 0 30px;
     opacity: 1;
     /* From https://css.glass */
     background: rgba(0, 0, 0, 0.27);
     border-radius: 16px;
+    border: #bbbbbb;
+    border-style: solid;
+    border-width: thin;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(3.8px);
     -webkit-backdrop-filter: blur(3.8px);
