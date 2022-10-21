@@ -1,5 +1,7 @@
 # Bokigang Cytube Server Theme
 
+![Preview](https://github.com/deafnv/bokigang-server/blob/38758b35b50b61df3dd72bc32fd3d0cd1d134643/images/ss.png)
+
 ## Description
 
 JS and CSS for a cytube server theme.
