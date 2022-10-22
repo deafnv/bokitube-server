@@ -1,4 +1,4 @@
-
+/* Change these variables to adjust values accordingly */
 :root {
     --leftcontentvw:  78.4vw;;
     --rightcontentvw: 21.6vw;
@@ -6,6 +6,7 @@
     --bgimageurl: url("https://wallpapercave.com/wp/wp2225973.jpg");
 }
 
+/* Hosted external fonts goes here - currently doesn't work */
 @font-face {
     font-family: 'Futura';
     font-style: normal;
@@ -13,6 +14,7 @@
     unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
 
+/* Global scrollbar styling */
 ::-webkit-scrollbar {
     width: 8px;
     height: 3px;
@@ -43,21 +45,25 @@
     background: #555; 
 }
 
+/* Font Settings for all text */
 * {
     font-size: 102%;
     font-family: "Futura", "Quicksand", "Ubuntu", Verdana, Tahoma, sans-serif;
 }
 
+/* TODO: what the fuck is this */
 .profile-box {
     overflow: visible;
 }
 
+/* Sets padding for top navbar */
 #mainpage {
     display: grid;
     padding-top: 50px;
     overflow: hidden;
 }
 
+/* Top navbar styling */
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
     background: #07080af7;
 }
@@ -90,6 +96,7 @@
     background-color: rgb(59, 192, 236) !important;
 }
 
+/* Styling for the content on the left with video and playlist */
 .leftcontent {
     height: calc(100% - 50px);
     width: var(--leftcontentvw);
@@ -98,6 +105,7 @@
     background-attachment: fixed;
 }
 
+/* Shows poll modal on top of video */
 #pollwrap {
     position: absolute;
     cursor: move;
@@ -117,6 +125,7 @@
     -webkit-backdrop-filter: blur(3.8px);
 }
 
+/* 16:9 aspect ratio videos dont show full height, this container sets background to black */
 #video-container {
     overflow: auto;
     background-color: black;
@@ -128,6 +137,7 @@
     padding-bottom: 17px;
 }
 
+/* MOTD glass styling */
 #motdwrap {
     /* From https://css.glass */
     background: rgba(28, 30, 34, 0.75);
@@ -151,6 +161,7 @@
     width: var(--leftcontentvw);
 }
 
+/* PLaylist and controls positioning */
 #controlsrow {
     margin-left: 75px;
 }
@@ -175,6 +186,7 @@
     padding: initial;
 }
 
+/* Styling for the content on the right with video title, user list, and chat */
 .rightcontent {
     width: var(--rightcontentvw);
     position:fixed;
@@ -182,6 +194,10 @@
     z-index: 1030;
 }
 
+/* Size and styling for entire chat wrap */
+/*
+FIXME: Wrap children do not respect their parent's height (ie. Set height to <95vh, bottom buttons won't move)
+*/
 #chatwrap {
     margin-bottom: 0px;
     height: 95vh;
@@ -190,6 +206,7 @@
     
 }
 
+/* Video title styling */
 .currenttitlewrap {
     overflow: hidden;
 }
@@ -209,9 +226,11 @@
     white-space: nowrap;
 }
 
+/* TODO: Fix or remove this scrolling effect in JS */
 @keyframes scrollText {
     from   { transform: translateX(0%); }
-    to { transform: translateX(-50%); }}
+    to { transform: translateX(-50%); }
+}
 
 #chatheader {
     background-color: #0e1015f7;
@@ -222,6 +241,7 @@
     pointer-events: none;
 }
 
+/* Show users horizontally and show scrollbar only for this element if overflowing */
 #userlist {
     float: initial;
     height: 30px !important;
@@ -250,6 +270,7 @@
     font-size: small;
 }
 
+/* Chat display size and styling */
 #messagebuffer {
     height: 72vh !important;
     overflow: auto;
@@ -262,6 +283,7 @@
     padding-bottom: 10px;
 }
 
+/* Chat messages styling */
 .server-whisper {
     padding-left: 100px;
     padding-bottom: 0px;
@@ -269,6 +291,7 @@
 
 .server-msg-disconnect, .server-msg-reconnect{
     padding-bottom: 0px !important;
+    border-radius: 6px;
 }
 
 .timestamp {
@@ -282,6 +305,11 @@
     max-height: 80px;
 }
 
+.nick-highlight {
+    border-radius: 8px;
+}
+
+/* Chat enter message box styling */
 #chatline {
     border-radius: 50px;
     margin-top: 10px;
@@ -293,19 +321,12 @@
     color: grey;
 }
 
-.server-msg-reconnect {
-    border-radius: 6px;
-}
-
-.nick-highlight {
-    border-radius: 8px;
-}
-
 .form-control {
     border: initial;
     border-radius: 8px;
 }
 
+/* Buttons styling */
 #leftcontrols {
     display: flex;
     padding-top: 8px;
@@ -323,12 +344,17 @@
     background-color: rgb(34, 116, 143);
 }
 
+/*
+There's probably a better way to space the buttons apart
+Remove if necessary
+*/
 #spacer-btn {
     visibility: hidden;
     width: inherit;
     pointer-events: none;
 }
 
+/* Sets the width for left and right content */
 .col-lg-5 {
     width: 21.666667%;
     padding-left: initial;
@@ -341,6 +367,7 @@
     padding-right: initial;
 }
 
+/* Footer  styling */
 .container .credit {
     margin: 10px 0;
     text-align: center;
@@ -354,8 +381,9 @@
     font-size: 11px;
 }
 
-/* Imported from older code */
+/* The following is imported from older code with minor changes */
 
+/* Modal styling */
 .modal-body::before {
     content: "";
     background-image: var(--dialogbgimageurl);
@@ -405,12 +433,14 @@ textarea.form-control {
     background-color: rgba(0, 0, 0, 0)
 }
 
+/* Styling for custom emotes panel */
+
 .emotewrap {
     position: absolute;
     cursor: move;
     top: 17%;
 }
-	
+
 #emotespanel {
     position: fixed;
     z-index: 1020;
@@ -450,6 +480,7 @@ textarea.form-control {
     margin-top: 10px
 }
 
+/* Custom scrolling banner */
 .banner-slideshow {
     height: 215px;
     max-width: 100%;
