@@ -2,6 +2,7 @@
 :root {
     --leftcontentvw:  78.4vw;;
     --rightcontentvw: 21.6vw;
+    --bannerimg: url("https://dl.dropboxusercontent.com/s/eyzfkmihwol6b69/banner%20%280-00-00-00%29.png");
     --dialogbgimageurl: url("https://dl.dropboxusercontent.com/s/v59wycx9g8p05e5/astolfo_render__1__by_mrsterben_dbzfx5u.png");
     --bgimageurl: url("https://wallpapercave.com/wp/wp2225973.jpg");
 }
@@ -495,7 +496,7 @@ textarea.form-control {
 .banner-slideshow > div {
     height: 400px;
     width: 5066px;
-    background: url(https://dl.dropboxusercontent.com/s/eyzfkmihwol6b69/banner%20%280-00-00-00%29.png);
+    background: var(--bannerimg);
     background-size: 50%;
     background-position: center;
     position: absolute;
