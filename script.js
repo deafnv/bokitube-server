@@ -16,7 +16,6 @@ $("#mainpage").prepend($('<div class="leftcontent">'))
 $("<div id='video-container'>").prependTo($(".leftcontent"));
 $("#videowrap").prependTo($("#video-container"));
 $("#chatwrap").appendTo($(".rightcontent"));
-$("#videowrap-header").prependTo($("#chatwrap"));
 $("#leftcontrols").appendTo($("#chatwrap"));
 
 $('<div class="nano-content">').appendTo($(".leftcontent"));
@@ -28,6 +27,15 @@ $("#footer").appendTo($(".nano-content"));
 $(".leftcontent").prepend($("#pollwrap"));
 
 $('<div class="emotewrap" id="emotewrap">').appendTo($(".rightcontent"));
+
+$("#chatwrap").prepend($("<div class='currenttitlewrap'>"));
+$("#videowrap-header").prependTo($(".currenttitlewrap"));
+
+const node = document.getElementById("currenttitle");
+const clone = node.cloneNode(true);
+$("#videowrap-header").append($("<span> </span>"));
+document.getElementById("videowrap-header").appendChild(clone);
+
 
 const chatline = document.getElementById("chatline");
 chatline.removeAttribute("placeholder");

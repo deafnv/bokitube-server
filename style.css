@@ -1,3 +1,4 @@
+
 :root {
     --leftcontentvw:  78.4vw;;
     --rightcontentvw: 21.6vw;
@@ -189,13 +190,28 @@
     
 }
 
+.currenttitlewrap {
+    overflow: hidden;
+}
+
 #videowrap-header {
-    height: 6.8%;
+    display: inline-flex;
+    height: 6%;
     overflow-wrap: break-word;
     overflow-y: auto;
     background-color: #2e2e2e;
     padding: 9px 15px 15px 15px;
+    animation: scrollText 10s linear infinite;
 }
+
+#currenttitle {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+@keyframes scrollText {
+    from   { transform: translateX(0%); }
+    to { transform: translateX(-50%); }}
 
 #chatheader {
     background-color: #0e1015f7;
