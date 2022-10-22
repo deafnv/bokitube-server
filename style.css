@@ -296,6 +296,10 @@ FIXME: Wrap children do not respect their parent's height (ie. Set height to <95
     border-radius: 6px;
 }
 
+.username {
+    display: flex;
+}
+
 .timestamp {
     color: rgb(143, 143, 143);
     float: right;

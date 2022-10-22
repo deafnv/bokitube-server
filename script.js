@@ -36,8 +36,8 @@ $('<div class="emotewrap" id="emotewrap">').appendTo($(".rightcontent"));
 $("#chatwrap").prepend($("<div class='currenttitlewrap'>"));
 $("#videowrap-header").prependTo($(".currenttitlewrap"));
 
-const node = document.getElementById("currenttitle");
-const clone = node.cloneNode(true);
+const nodecurrenttitle = document.getElementById("currenttitle");
+const clonecurrenttitle = nodecurrenttitle.cloneNode(true);
 /* $("#videowrap-header").append($("<span> </span>"));
 document.getElementById("videowrap-header").appendChild(clone); */
 
