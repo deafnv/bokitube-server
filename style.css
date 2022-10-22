@@ -212,18 +212,19 @@ FIXME: Wrap children do not respect their parent's height (ie. Set height to <95
 }
 
 #videowrap-header {
-    display: inline-flex;
-    height: 6%;
+    display: flex;
+    height: 7%;
     overflow-wrap: break-word;
     overflow-y: auto;
     background-color: #2e2e2e;
     padding: 9px 15px 15px 15px;
-    animation: scrollText 10s linear infinite;
+    /* animation: scrollText 10s linear infinite; */
 }
 
 #currenttitle {
-    overflow: hidden;
-    white-space: nowrap;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 40px;
 }
 
 /* TODO: Fix or remove this scrolling effect in JS */

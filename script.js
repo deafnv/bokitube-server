@@ -38,8 +38,8 @@ $("#videowrap-header").prependTo($(".currenttitlewrap"));
 
 const node = document.getElementById("currenttitle");
 const clone = node.cloneNode(true);
-$("#videowrap-header").append($("<span> </span>"));
-document.getElementById("videowrap-header").appendChild(clone);
+/* $("#videowrap-header").append($("<span> </span>"));
+document.getElementById("videowrap-header").appendChild(clone); */
 
 /* Add hint text for chatline and disables spellcheck */
 const chatline = document.getElementById("chatline");
