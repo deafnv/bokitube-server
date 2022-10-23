@@ -92,7 +92,10 @@ $(document).ready(function() {
 });
 
 /* Navbar title */
-$(".navbar-brand").html("BOKIGANG");
+if (window.location.href == 'https://cytu.be/r/bokigang') {
+    $(".navbar-brand").html("BOKIGANG");
+}
+
 
 /* Adds CSS preview button to built-in CSS editor */
 $('<button class="btn btn-primary" id="cs-csspreview">Preview CSS</button>')
