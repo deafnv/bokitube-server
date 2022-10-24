@@ -1,5 +1,5 @@
 /* 
-This script is intended to be placed in the external JS section of the channel
+This script is intended to be placed in the external JS section of the channel if self-hosting
 The script below will fail to run if it is placed within script_internal.js
 */
 
