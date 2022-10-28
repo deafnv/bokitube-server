@@ -24,6 +24,8 @@ Host the JS files in [/channel](https://github.com/deafnv/bokigang-server/tree/m
 
 If self-hosting and inserting external scripts directly into the pug template, use separated files for correct emote panel functionality.
 
+(Use the ```hosted_style.css``` alongside style.css, adding the stylesheets to ```head.pug``` if self-hosting.)
+
 &nbsp;
 
 ## Credits
