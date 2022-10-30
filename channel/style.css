@@ -113,7 +113,6 @@ This file is intended for either the original cytu.be site or a self-hosted serv
 /* Shows poll modal on top of video */
 #pollwrap {
     position: absolute;
-    cursor: move;
 }
 
 .poll-menu {
@@ -128,6 +127,11 @@ This file is intended for either the original cytu.be site or a self-hosted serv
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(3.8px);
     -webkit-backdrop-filter: blur(3.8px);
+}
+
+.well.active {
+    position: absolute;
+    z-index: 1020;
 }
 
 /* 16:9 aspect ratio videos dont show full height, this container sets background to black */
@@ -164,6 +168,11 @@ This file is intended for either the original cytu.be site or a self-hosted serv
 
 .nano-content {
     width: var(--leftcontentvw);
+}
+
+#announcements {
+    height: 0;
+    margin-top: 15px;
 }
 
 /* PLaylist and controls positioning */

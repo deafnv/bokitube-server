@@ -25,6 +25,8 @@ $("#mainpage").prepend($('<div class="leftcontent">'))
 $("<div id='video-container'>").prependTo($(".leftcontent"));
 $("#videowrap").prependTo($("#video-container"));
 $('<div class="nano-content">').appendTo($(".leftcontent"));
+$("#announcements").appendTo($(".nano-content"));
+$("#drinkbar").appendTo($(".nano-content"));
 $("#motdrow").appendTo($(".nano-content"));
 $("#controlsrow").appendTo($(".nano-content"));
 $("#playlistrow").appendTo($(".nano-content"));
