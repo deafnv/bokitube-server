@@ -2,6 +2,8 @@
 
 ![Preview](https://github.com/deafnv/bokigang-server/blob/38758b35b50b61df3dd72bc32fd3d0cd1d134643/images/ss.png)
 
+#### [Visit for live demo](https://cytubegce.ddns.net/)
+
 ## Description
 
 JS and CSS for a cytube server theme, as well as similar resources for a self-hosted Cytube server.
