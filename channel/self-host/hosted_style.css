@@ -10,7 +10,7 @@ h1, h2, h3, h4, h5, h6 {
     align-items: flex-start;
     display: flex;
     justify-content: center;
-    padding: 64px 24px;
+    padding: 135px 24px;
 }
 
 #select-cards {
