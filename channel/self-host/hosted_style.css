@@ -8,9 +8,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-section{
     align-items: flex-start;
-    background-image: linear-gradient(15deg, #0f4667 0%, #2a6973 150%);
     display: flex;
-    min-height: 100%;
+    height: 100%;
     justify-content: center;
     padding: 64px 24px;
 }
@@ -20,8 +19,8 @@ h1, h2, h3, h4, h5, h6 {
     grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 24px;
     grid-row-gap: 24px;
-    max-width: 600px;
     width: 100%;
+    height: 100%;
 }
 
 .card{
@@ -39,7 +38,7 @@ h1, h2, h3, h4, h5, h6 {
 .card__background{
     background-size: cover;
     background-position: center;
-    border-radius: 24px;
+    border-radius: 10px;
     bottom: 0;
     filter: brightness(0.75) saturate(1.2) contrast(0.85);
     left: 0;
@@ -58,7 +57,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #select-cards:hover > .card:not(:hover) .card__background{
-    filter: brightness(0.5) saturate(0) contrast(1.2) blur(20px);
+    filter: brightness(0.6) saturate(0) contrast(1.2) blur(4px);
 }
 
 .card__content{
