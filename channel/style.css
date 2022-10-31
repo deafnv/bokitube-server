@@ -68,6 +68,10 @@ This file is intended for either the original cytu.be site or a self-hosted serv
 }
 
 /* Top navbar styling */
+.navbar {
+    border: none;
+}
+
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form, .navbar-header {
     background: #07080af7;
 }
@@ -399,6 +403,26 @@ Remove if necessary
 @media only screen and (max-width: 768px) {
     .leftcontent {
         width: 100%;
+    }
+
+    #videowrap {
+        padding-top: 0px;
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+    }
+
+    .currenttitlewrap {
+        display: none;
+    }
+
+    /* FIXME: The chat and MOTD merges if you press the chat box (this is mobile mode) */
+    #chatwrap {
+        height: 62vh !important;
+        width: 100%;
+    }
+
+    #messagebuffer {
+        height: 40vh !important;
     }
 
     .rightcontent {

@@ -54,6 +54,19 @@ chatline.removeAttribute("placeholder");
 chatline.setAttribute("placeholder", "Send a message");
 chatline.setAttribute("spellcheck", "false");
 
+/* Positions the chat depending on media query */
+function chatPosition(x) {
+    if (x.matches) { // If media query matches
+        $("#chatwrap").prependTo($(".nano-content"));
+    } else {
+        $("#chatwrap").prependTo($(".rightcontent"));
+    }
+}
+  
+var mediaQuery = window.matchMedia("(max-width: 768px)");
+chatPosition(mediaQuery); // Call listener function at run time
+mediaQuery.addEventListener('change', chatPosition); // Attach listener function on state changes
+
 
 
 //OLDER CODE: DON'T TOUCH
