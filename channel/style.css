@@ -52,7 +52,7 @@ This file is intended for either the original cytu.be site or a self-hosted serv
 /* Font Settings for all text */
 * {
     font-size: 102%;
-    font-family: "Futura", "Quicksand", "Ubuntu", Verdana, Tahoma, sans-serif;
+    font-family: "Quicksand", "Ubuntu", Verdana, Tahoma, sans-serif;
 }
 
 /* TODO: what the fuck is this */
