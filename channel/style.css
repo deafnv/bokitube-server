@@ -68,7 +68,7 @@ This file is intended for either the original cytu.be site or a self-hosted serv
 }
 
 /* Top navbar styling */
-.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form, .navbar-header {
     background: #07080af7;
 }
 
@@ -163,10 +163,6 @@ This file is intended for either the original cytu.be site or a self-hosted serv
 .row {
     margin-left: 60px;
     margin-right: 50px;
-}
-
-.nano-content {
-    width: var(--leftcontentvw);
 }
 
 #announcements {
@@ -397,6 +393,40 @@ Remove if necessary
 
 #footer {
     font-size: 11px;
+}
+
+/* Add media query for smaller screens */
+@media only screen and (max-width: 768px) {
+    .leftcontent {
+        width: 100%;
+    }
+
+    .rightcontent {
+        position: initial;
+        width: 100%;
+    }
+
+    #announcements {
+        display: contents;
+    }
+
+    .row {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    #controlsrow {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    #playlistrow {
+        margin-right: 50px;
+    }
+
+    #rightpane {
+        width: 108%;
+    }
 }
 
 /* The following is imported from older code with minor changes */
