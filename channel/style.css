@@ -11,12 +11,11 @@ This file is intended for either the original cytu.be site or a self-hosted serv
     --bgimageurl: url("https://wallpapercave.com/wp/wp2225973.jpg");
 }
 
-/* Hosted external fonts goes here - currently doesn't work */
+/* Hosted custom fonts, currently being hosted on the server itself */
 @font-face {
     font-family: 'Futura';
     font-style: normal;
-    src: url(https://dl.dropboxusercontent.com/s/a0tn9ohoferrayg/FuturaLT-CondensedLight.woff) format('woff');
-    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+    src: url(https://cytubegce.ddns.net/css/font/Futura%20Light.ttf) format('truetype');
 }
 
 /* Global scrollbar styling */
@@ -205,7 +204,7 @@ This file is intended for either the original cytu.be site or a self-hosted serv
     width: var(--rightcontentvw);
     position:fixed;
     left: var(--leftcontentvw);
-    z-index: 1030;
+    z-index: 1020;
 }
 
 /* Size and styling for entire chat wrap */
