@@ -6,6 +6,10 @@ h1, h2, h3, h4, h5, h6 {
     margin: 9px 0 !important;
 }
 
+#wrap {
+    padding-bottom: 60px;
+}
+
 .hero-section{
     align-items: flex-start;
     display: flex;
@@ -16,9 +20,11 @@ h1, h2, h3, h4, h5, h6 {
 #select-cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 1fr);
     grid-column-gap: 24px;
     grid-row-gap: 24px;
     width: 100%;
+    min-height: 520px;
 }
 
 .card{
@@ -44,6 +50,7 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     right: 0;
     top: 0;
+    min-height: 100px;
     transform-origin: center;
     transform: scale(1) translateZ(0);
     transition: 
