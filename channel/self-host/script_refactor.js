@@ -15,7 +15,7 @@ $("#chatwrap").prepend($("<div class='currenttitlewrap'>"));
 $("#videowrap-header").prependTo($(".currenttitlewrap"));
 
 /* Append footer to left content */
-/* TODO: Figure out how to do this shit in the pug file */
+/* TODO: Figure out how to do this in the pug file */
 $("#footer").appendTo($(".nano-content"));
 
 const nodecurrenttitle = document.getElementById("currenttitle");
