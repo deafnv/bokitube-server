@@ -20,6 +20,10 @@ const clonecurrenttitle = nodecurrenttitle.cloneNode(true);
 /* $("#videowrap-header").append($("<span> </span>"));
 document.getElementById("videowrap-header").appendChild(clone); */
 
+/* Remove padding on wrap */
+const pagewrap = document.getElementById("wrap");
+pagewrap.setAttribute("style", "padding-bottom: 0px;")
+
 /* Add hint text for chatline */
 const chatline = document.getElementById("chatline");
 chatline.removeAttribute("placeholder");
