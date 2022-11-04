@@ -12,21 +12,41 @@ JS and CSS for a cytube server theme, as well as similar resources for a self-ho
 
 ## Usage
 
-If possible, inserting the CSS and JS code as HTML tags directly into the header and footer of the pug template directly may result in faster loading of the site.
+### For channel owners on cytu.be
 
-### Channel CSS
+Copy and paste the links below to the external javascript and CSS fields in your channel options.
+
+#### Channel CSS
+
+```
+https://cdn.jsdelivr.net/gh/deafnv/bokigang-server@master/channel/style.css
+```
+
+#### Channel Javascript
+
+```
+https://cdn.jsdelivr.net/gh/deafnv/bokigang-server@master/channel/script.js
+```
+
+### For site administrators hosting cytube
+
+Coming soon
+
+<!---
+#### Channel CSS
 
 Host the CSS files in [/channel](https://github.com/deafnv/bokigang-server/tree/master/channel) on an external site like Dropbox for highest functionality, or copy and paste the code into the built in CSS editor.
 
 Use the appropriate files and code according to the header comments depending on original or self-hosting.
 
-### Channel Javascript
+#### Channel Javascript
 
 Host the JS files in [/channel](https://github.com/deafnv/bokigang-server/tree/master/channel) on an external site like Dropbox for highest functionality, or copy and paste the code into the built in JS editor.
 
 If self-hosting and inserting external scripts directly into the pug template, use separated files for correct emote panel functionality.
 
 (Use the ```hosted_style.css``` alongside style.css, adding the stylesheets to ```head.pug``` if self-hosting.)
+-->
 
 &nbsp;
 
