@@ -2,8 +2,6 @@
 
 ![Preview](https://raw.githubusercontent.com/deafnv/bokitube-server/master/images/ss.png)
 
-#### [Visit for live demo](https://cytubegce.ddns.net/)
-
 ## Description
 
 JS and CSS for a cytube server theme, as well as similar resources for a self-hosted Cytube server.
