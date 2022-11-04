@@ -133,8 +133,10 @@ $('<button id="clear-btn" class="btn btn-default btn-sm">Clear</button>')
     });
 
 /* Custom emotes panel */
-/* Basic implementation: Full credits to https://github.com/zimny-lech/CyTube-Plus */
 /* FIXME: This is a really sketchy fix to a bug with the emotes loading, more details below */
+
+/* The following code is obtained from https://github.com/zimny-lech/CyTube-Plus and thus is licensed under the MIT License */
+/* https://github.com/zimny-lech/CyTube-Plus/blob/master/LICENSE */
 setTimeout(function() {
     var EMOTES = false;
     GroupEmotes_Number = 100;
@@ -218,6 +220,8 @@ setTimeout(function() {
             toggleDiv(emotespanel);
             (UI_ChannelCache != "1" && !EMOTES) ? showEmotes(): '';
         });
+/* END OF MIT LICENSED CODE */
+
 
     $('#newpollbtn').prependTo($("#leftcontrols"));
 
