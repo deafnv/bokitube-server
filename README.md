@@ -1,6 +1,6 @@
-# Bokigang Cytube Server Theme
+# Bokitube Cytube Server Theme
 
-![Preview](https://github.com/deafnv/bokigang-server/blob/38758b35b50b61df3dd72bc32fd3d0cd1d134643/images/ss.png)
+![Preview](https://raw.githubusercontent.com/deafnv/bokitube-server/master/images/ss.png)
 
 #### [Visit for live demo](https://cytubegce.ddns.net/)
 
@@ -19,13 +19,13 @@ Copy and paste the links below to the external javascript and CSS fields in your
 #### Channel CSS
 
 ```
-https://cdn.jsdelivr.net/gh/deafnv/bokigang-server@master/channel/style.css
+https://cdn.jsdelivr.net/gh/deafnv/bokitube-server@master/channel/style.css
 ```
 
 #### Channel Javascript
 
 ```
-https://cdn.jsdelivr.net/gh/deafnv/bokigang-server@master/channel/script.js
+https://cdn.jsdelivr.net/gh/deafnv/bokitube-server@master/channel/script.js
 ```
 
 ### For site administrators hosting cytube
@@ -35,13 +35,13 @@ Coming soon
 <!---
 #### Channel CSS
 
-Host the CSS files in [/channel](https://github.com/deafnv/bokigang-server/tree/master/channel) on an external site like Dropbox for highest functionality, or copy and paste the code into the built in CSS editor.
+Host the CSS files in [/channel](https://github.com/deafnv/bokitube-server/tree/master/channel) on an external site like Dropbox for highest functionality, or copy and paste the code into the built in CSS editor.
 
 Use the appropriate files and code according to the header comments depending on original or self-hosting.
 
 #### Channel Javascript
 
-Host the JS files in [/channel](https://github.com/deafnv/bokigang-server/tree/master/channel) on an external site like Dropbox for highest functionality, or copy and paste the code into the built in JS editor.
+Host the JS files in [/channel](https://github.com/deafnv/bokitube-server/tree/master/channel) on an external site like Dropbox for highest functionality, or copy and paste the code into the built in JS editor.
 
 If self-hosting and inserting external scripts directly into the pug template, use separated files for correct emote panel functionality.
 
