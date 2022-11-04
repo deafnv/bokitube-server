@@ -398,7 +398,7 @@ Remove if necessary
 /* Add media query for smaller screens */
 @media only screen and (max-width: 768px) {
     .leftcontent {
-        width: 100%;
+        width: 100vw;
     }
 
     #videowrap {
@@ -413,12 +413,12 @@ Remove if necessary
 
     /* FIXME: The chat and MOTD merges if you press the chat box (this is mobile mode) */
     #chatwrap {
-        height: 62vh !important;
+        height: 485px !important;
         width: 100%;
     }
 
     #messagebuffer {
-        height: 40vh !important;
+        height: 336px !important;
     }
 
     .rightcontent {
