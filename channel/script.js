@@ -1,6 +1,6 @@
 /* 
-This file in intended to be used in the original cytu.be server as external JS.
-Use this if not self-hosting
+This script is intended to be placed in the footer of the channel pug template with a defer tag, if self-hosting.
+This file is identical to the original
 */
 
 /* Removes the buttons for resizing video and user list size toggle */
@@ -25,6 +25,8 @@ $("#mainpage").prepend($('<div class="leftcontent">'))
 $("<div id='video-container'>").prependTo($(".leftcontent"));
 $("#videowrap").prependTo($("#video-container"));
 $('<div class="nano-content">').appendTo($(".leftcontent"));
+$("#announcements").appendTo($(".nano-content"));
+$("#drinkbar").appendTo($(".nano-content"));
 $("#motdrow").appendTo($(".nano-content"));
 $("#controlsrow").appendTo($(".nano-content"));
 $("#playlistrow").appendTo($(".nano-content"));
@@ -55,6 +57,19 @@ const chatline = document.getElementById("chatline");
 chatline.removeAttribute("placeholder");
 chatline.setAttribute("placeholder", "Send a message");
 chatline.setAttribute("spellcheck", "false");
+
+/* Positions the chat depending on media query */
+function chatPosition(x) {
+    if (x.matches) { // If media query matches
+        $("#chatwrap").prependTo($(".nano-content"));
+    } else {
+        $("#chatwrap").prependTo($(".rightcontent"));
+    }
+}
+  
+var mediaQuery = window.matchMedia("(max-width: 768px)");
+chatPosition(mediaQuery); // Call listener function at run time
+mediaQuery.addEventListener('change', chatPosition); // Attach listener function on state changes
 
 
 
@@ -105,7 +120,6 @@ if (window.location.href == 'https://cytu.be/r/bokigang') {
     $(".navbar-brand").html("BOKIGANG");
 }
 
-
 /* Adds CSS preview button to built-in CSS editor */
 $('<button class="btn btn-primary" id="cs-csspreview">Preview CSS</button>')
     .appendTo("#cs-csseditor")
@@ -123,22 +137,47 @@ $('<button class="btn btn-primary" id="cs-csspreview">Preview CSS</button>')
         document.getElementById("cs-csseditor").style.visibility = "visible";
     });
 
+/* Create space to align AFK and Clear buttons to the right - remove if necessary with better implementation */
+$('<button id="spacer-btn" class="btn btn-default btn-sm">Spacer button</button>')
+    .appendTo("#leftcontrols")
+    .on("click", function() {});
+
+/* Add custom AFK button for manual AFK */
+$('<button id="afk-btn" class="btn btn-default btn-sm">AFK</button>')
+    .appendTo("#leftcontrols")
+    .on("click", function() {
+        socket.emit("chatMsg", {
+            msg: '/afk'
+        });
+        VOL_AFK = !VOL_AFK;
+    });
+
+/* Add button to clear chat */
+$('<button id="clear-btn" class="btn btn-default btn-sm">Clear</button>')
+    .appendTo("#leftcontrols")
+    .on("click", function() {
+        socket.emit("chatMsg", {
+            msg: '/clear'
+        });
+    });
+
 /* Custom emotes panel */
-/* Basic implementation: Full credits to https://github.com/zimny-lech/CyTube-Plus */
-var EMOTES = false;
+
+/* The following code is obtained from https://github.com/zimny-lech/CyTube-Plus with slight modification and thus is licensed under the MIT License */
+/* https://github.com/zimny-lech/CyTube-Plus/blob/master/LICENSE */
 GroupEmotes_Number = 100;
-UI_ChannelCache = 1;
 UI_GroupEmotes = 1;
 chatpanel = $('<div id="chatpanel" class="row" />').insertBefore("#playlistmanagerwrap");
 emotespanel = $('<div id="emotespanel" style="display:none" />').appendTo(chatpanel);
-UI_ChannelCache == "1" ? showEmotes() : '';
 function toggleDiv(div) {
     $(div).css('display') == "none" ? $(div).show() : $(div).hide();
 }
 function insertText(str) {
     $("#chatline").val($("#chatline").val() + str).focus();
 }
-function showEmotes() {
+
+/* FIXME: This is a really sketchy fix to a bug with the emotes loading, more details below */
+setTimeout(function() {
     if (typeof GroupEmotes_Number !== "number" || GroupEmotes_Number < 1) {
         GroupEmotes_Number = 100;
     }
@@ -191,8 +230,7 @@ function showEmotes() {
         $("#emotes-0").show();
         $("#emotescontrols button:nth-child(1)").addClass('active');
     }
-    EMOTES = true;
-}
+}, 1800)
 
 /* PLace emotes panel in a wrap */
 $("#emotespanel").appendTo($(".emotewrap"));
@@ -202,35 +240,14 @@ $("#emotelistbtn").remove();
 
 /* Add custom emotes panel button */
 emotesbtn = $('<button id="emotes-btn" class="btn btn-sm btn-default" title="Display emotes panel">Emote List</button>')
-    .appendTo("#leftcontrols")
+    .prependTo("#leftcontrols")
     .on("click", function() {
         toggleDiv(emotespanel);
-        (UI_ChannelCache != "1" && !EMOTES) ? showEmotes(): '';
     });
+/* END OF MIT LICENSED CODE */
 
-/* Create space to align AFK and Clear buttons to the right - remove if necessary with better implementation */
-$('<button id="spacer-btn" class="btn btn-default btn-sm">Spacer button</button>')
-    .appendTo("#leftcontrols")
-    .on("click", function() {});
 
-/* Add custom AFK button for manual AFK */
-$('<button id="afk-btn" class="btn btn-default btn-sm">AFK</button>')
-    .appendTo("#leftcontrols")
-    .on("click", function() {
-        socket.emit("chatMsg", {
-            msg: '/afk'
-        });
-        VOL_AFK = !VOL_AFK;
-    });
-
-/* Add button to clear chat */
-$('<button id="clear-btn" class="btn btn-default btn-sm">Clear</button>')
-    .appendTo("#leftcontrols")
-    .on("click", function() {
-        socket.emit("chatMsg", {
-            msg: '/clear'
-        });
-    });
+$('#newpollbtn').prependTo($("#leftcontrols"));
 
 /* Makes the custom emotes panel draggable */
 dragElement(document.getElementById("emotewrap"));
@@ -275,3 +292,11 @@ function dragElement(elmnt) {
     document.onmousemove = null;
     }
 }
+console.log('Emotes panel loaded');
+
+
+/* The emotes on a channel are loaded pretty slow in comparison to the page itself, so tricks like the HTML defer tag or jQuery document.ready aren't
+sufficient for this specific use case. As a temporary workaround, I've put a 1.8s delay on the emotes panel script. An actual fix to this issue could be 
+to either change the emotes panel functionality itself on the cytube source code, or to imitate what the site does with emote loading, which is to 
+continuously check for the emotes list, which would allow the list to also update dynamically without having the user to refresh to see the changes 
+reflected in the custom emotes panel. From some light testing, setInterval doesnt seem to work for some reason */
