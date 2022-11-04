@@ -14,9 +14,6 @@ userlisttoggle.remove();
 /* Adds scrolling banner to MOTD wrap */
 $("#motdwrap").prepend($('<div class="banner-slideshow"><div class="mover-1"></div></div>'));
 
-/* Theme credits */
-$(".credit:last").append($('<p class="text-muted credit">Breast milk (sometimes spelled as breastmilk) or mother\'s milk is milk produced by mammary glands, located in the breast of a human female. Breast milk is the primary source of nutrition for newborns, containing fat, protein, carbohydrates (lactose and human milk oligosaccharides) and variable minerals and vitamins. Breast milk also contains substances that help protect an infant against infection and inflammation, whilst also contributing to healthy development of the immune system and gut microbiome.</p>'));
-
 /* Create basic two column layout */
 $("#mainpage").prepend($('<div class="rightcontent">'))
 $("#mainpage").prepend($('<div class="leftcontent">'))
