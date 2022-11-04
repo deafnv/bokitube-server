@@ -1,6 +1,6 @@
 /* 
 This script is intended to be placed in the footer of the channel pug template with a defer tag, if self-hosting.
-This file is identical to the original, but with the emotes feature omitted. (see script_external.js for reference)
+This file is identical to the original, but with the emotes feature omitted. (see script_emotespanel.js for reference)
 */
 
 /* Removes the buttons for resizing video and user list size toggle */

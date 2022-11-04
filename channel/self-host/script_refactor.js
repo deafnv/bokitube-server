@@ -1,5 +1,5 @@
 /* 
-This script is intended to be used only by administrators adventurous enough to refactor the channel.pug code.
+This script is intended to be used only by administrators willing to refactor the channel pug template.
 This script lacks the extra append prepend things.
 Doing it this way results in faster loading time.
 */
