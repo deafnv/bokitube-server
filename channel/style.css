@@ -55,7 +55,11 @@ This file is intended for either the original cytu.be site or a self-hosted serv
     font-family: "Quicksand", "Ubuntu", Verdana, Tahoma, sans-serif;
 }
 
-/* TODO: what the fuck is this */
+.container-fluid {
+    display: none;
+}
+
+/* TODO: I don't know what this does, but just keep it */
 .profile-box {
     overflow: visible;
 }
