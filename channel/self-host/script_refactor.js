@@ -7,18 +7,11 @@ Doing it this way results in faster loading time.
 /* Adds scrolling banner to MOTD wrap */
 $("#motdwrap").prepend($('<div class="banner-slideshow"><div class="mover-1"></div></div>'));
 
-/* Meant for implementation of scrolling title - remove if unused */
-$("#chatwrap").prepend($("<div class='currenttitlewrap'>"));
-$("#videowrap-header").prependTo($(".currenttitlewrap"));
+/* Adding this in the template file doesn't work as expected */
+$("#videowrap-header").prependTo($("#currenttitlewrap"));
 
-/* Append footer to left content */
-/* TODO: Figure out how to do this in the pug file */
-$("#footer").appendTo($(".nano-content"));
-
-const nodecurrenttitle = document.getElementById("currenttitle");
-const clonecurrenttitle = nodecurrenttitle.cloneNode(true);
-/* $("#videowrap-header").append($("<span> </span>"));
-document.getElementById("videowrap-header").appendChild(clone); */
+/* Adds footer to left content */
+$("#footer").appendTo($("#leftcontent"));
 
 /* Remove padding on wrap */
 const pagewrap = document.getElementById("wrap");
@@ -29,7 +22,9 @@ const chatline = document.getElementById("chatline");
 chatline.removeAttribute("placeholder");
 chatline.setAttribute("placeholder", "Send a message");
 
+/* TODO: FIGURE OUT HOW TO DO THIS */
 /* Positions the chat depending on media query */
+/*
 function chatPosition(x) {
     if (x.matches) { // If media query matches
         $("#chatwrap").prependTo($(".nano-content"));
@@ -37,12 +32,11 @@ function chatPosition(x) {
         $("#chatwrap").prependTo($(".rightcontent"));
     }
 }
-  
+
 var mediaQuery = window.matchMedia("(max-width: 768px)");
 chatPosition(mediaQuery); // Call listener function at run time
 mediaQuery.addEventListener('change', chatPosition); // Attach listener function on state changes
-
-
+*/
 
 //OLDER CODE: DON'T TOUCH
 /* AFK on unfocus function */
@@ -204,6 +198,7 @@ setTimeout(function() {
 }, 1800)
 
 /* PLace emotes panel in a wrap */
+$('<div class="emotewrap" id="emotewrap">').appendTo($("#rightcontent"));
 $("#emotespanel").appendTo($(".emotewrap"));
 
 /* Remove original emote button */

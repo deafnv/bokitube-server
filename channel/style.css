@@ -2,13 +2,16 @@
 This file is intended for either the original cytu.be site or a self-hosted server
 */
 
-/* Change these variables to adjust values accordingly */
+/* Modify these variables as you wish */
 :root {
     --leftcontentvw:  78.4vw;;
     --rightcontentvw: 21.6vw;
     --bannerimg: url("https://dl.dropboxusercontent.com/s/eyzfkmihwol6b69/banner%20%280-00-00-00%29.png");
     --dialogbgimageurl: url("https://dl.dropboxusercontent.com/s/v59wycx9g8p05e5/astolfo_render__1__by_mrsterben_dbzfx5u.png");
     --bgimageurl: url("https://wallpapercave.com/wp/wp2225973.jpg");
+    --primarycolor: #000000;
+    --secondarycolor: #2e2e2e;
+    --tertiarycolor: #3bc0ec;
 }
 
 /* Hosted custom fonts, currently being hosted on the server itself */
@@ -35,7 +38,7 @@ This file is intended for either the original cytu.be site or a self-hosted serv
 /* Track */
 ::-webkit-scrollbar-track {
     border-radius: 4px;
-    background: #000000;
+    background: var(--primarycolor);
 }
 
 /* Handle */
@@ -55,6 +58,10 @@ This file is intended for either the original cytu.be site or a self-hosted serv
     font-family: "Quicksand", "Ubuntu", Verdana, Tahoma, sans-serif;
 }
 
+#wrap {
+    padding: 0;
+}
+
 .container-fluid {
     display: none;
 }
@@ -64,11 +71,8 @@ This file is intended for either the original cytu.be site or a self-hosted serv
     overflow: visible;
 }
 
-/* Sets padding for top navbar */
 #mainpage {
-    display: grid;
     padding-top: 50px;
-    overflow: hidden;
 }
 
 /* Top navbar styling */
@@ -77,7 +81,7 @@ This file is intended for either the original cytu.be site or a self-hosted serv
 }
 
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form, .navbar-header {
-    background: #07080af7;
+    background: var(--primarycolor);
 }
 
 .navbar-inverse .navbar-brand {
@@ -97,20 +101,23 @@ This file is intended for either the original cytu.be site or a self-hosted serv
 }
 
 .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
-    background-color: rgb(59, 192, 236) !important;
+    background-color: var(--tertiarycolor) !important;
 }
 
 .navbar-nav>li:hover {
-    background-image: rgb(59, 192, 236) !important;
+    background-image: var(--tertiarycolor) !important;
 }
 
 .nav > li > a:focus, .nav > li > a:hover {
-    background-color: rgb(59, 192, 236) !important;
+    background-color: var(--tertiarycolor) !important;
 }
 
-/* Styling for the content on the left with video and playlist */
-.leftcontent {
-    height: calc(100% - 50px);
+#content-wrap {
+    display: grid;
+}
+
+/* Note: I think the scrollbar is included in viewport width setting, so the left content overflows if scrollbar styling is enabled */
+#leftcontent {
     width: var(--leftcontentvw);
     background-image: var(--bgimageurl);
     background-repeat: no-repeat;
@@ -141,16 +148,19 @@ This file is intended for either the original cytu.be site or a self-hosted serv
     z-index: 1020;
 }
 
-/* 16:9 aspect ratio videos dont show full height, this container sets background to black */
 #video-container {
-    overflow: auto;
+    position: relative;
+    height: calc(100vh - 50px);
     background-color: black;
 }
 
 #videowrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
     width: 100%;
-    padding-top: 16px;
-    padding-bottom: 17px;
+    padding: 0;
 }
 
 /* MOTD glass styling */
@@ -199,24 +209,23 @@ This file is intended for either the original cytu.be site or a self-hosted serv
     width: var(--leftcontentvw);
 }
 
-/* Styling for the content on the right with video title, user list, and chat */
-.rightcontent {
+#rightcontent {
+    display: flex;
+    flex-direction: column;
+    background-color: red;
+    height: calc(100vh - 50px);
     width: var(--rightcontentvw);
-    position:fixed;
-    left: var(--leftcontentvw);
-    z-index: 1020;
+    position: fixed;
+    right: 0;
 }
 
-/* Size and styling for entire chat wrap */
-/*
-FIXME: Wrap children do not respect their parent's height (ie. Set height to <95vh, bottom buttons won't move)
-*/
-#chatwrap {
-    margin-bottom: 0px;
-    height: 95vh;
-    width: 99.8%;
-    background: #0e1015f7;
-    
+#chatheader {
+    background-color: var(--primarycolor);
+    border-radius: unset;
+}
+
+#chatheader .label {
+    height: unset;
 }
 
 /* Video title styling */
@@ -226,28 +235,17 @@ FIXME: Wrap children do not respect their parent's height (ie. Set height to <95
 
 #videowrap-header {
     display: flex;
-    height: 7%;
     overflow-wrap: break-word;
     overflow-y: auto;
-    background-color: #2e2e2e;
+    background-color: var(--secondarycolor);
     padding: 9px 15px 15px 15px;
-    /* animation: scrollText 10s linear infinite; */
+    border-radius: 0;
 }
 
 #currenttitle {
     overflow-x: hidden;
     overflow-y: scroll;
-    height: 40px;
-}
-
-/* TODO: Fix or remove this scrolling effect in JS */
-@keyframes scrollText {
-    from   { transform: translateX(0%); }
-    to { transform: translateX(-50%); }
-}
-
-#chatheader {
-    background-color: #0e1015f7;
+    max-height: 40px;
 }
 
 #usercount {
@@ -257,13 +255,14 @@ FIXME: Wrap children do not respect their parent's height (ie. Set height to <95
 
 /* Show users horizontally and show scrollbar only for this element if overflowing */
 #userlist {
-    float: initial;
     height: 30px !important;
-    width: initial;
+    min-height: 30px;
+    width: inherit;
+    float: unset;
     display: flex;
     overflow-x: scroll;
     overflow-y: hidden;
-    background-color: #0e1015f7;
+    background-color: var(--primarycolor);
 }
 
 #userlist::-webkit-scrollbar {
@@ -286,11 +285,11 @@ FIXME: Wrap children do not respect their parent's height (ie. Set height to <95
 
 /* Chat display size and styling */
 #messagebuffer {
-    height: 72vh !important;
-    overflow: auto;
+    height: unset !important;
+    flex-grow: 1;
     padding-left: 10px;
     padding-right: 10px;
-    background-color: #2e2e2e;
+    background-color: var(--secondarycolor);
 }
 
 #messagebuffer > div {
@@ -328,9 +327,13 @@ FIXME: Wrap children do not respect their parent's height (ie. Set height to <95
 }
 
 /* Chat enter message box styling */
+#rightcontent > form {
+    background-color: var(--primarycolor);
+}
+
 #chatline {
     border-radius: 50px;
-    margin-top: 10px;
+    margin: 10px 0;
 }
 
 #chatline::placeholder {
@@ -346,20 +349,26 @@ FIXME: Wrap children do not respect their parent's height (ie. Set height to <95
 
 /* Buttons styling */
 #leftcontrols {
+    background-color: var(--primarycolor);
     display: flex;
-    padding-top: 8px;
-    padding-left: 8px;
+    padding: 6px;
+    min-height: 42px;
     width: inherit;
 }
 
 #newpollbtn, #emotes-btn, #afk-btn, #clear-btn {
     background-image: none;
-    background-color: rgb(55, 173, 212);
+    background-color: var(--tertiarycolor);
 }
 
 #newpollbtn:hover, #emotes-btn:hover, #afk-btn:hover, #clear-btn:hover {
     background-image: none;
-    background-color: rgb(34, 116, 143);
+    background-color: var(--tertiarycolor);
+    filter: opacity(0.5);
+    /* Theres a better way to apply the opacity filter with this, but it cant work for now
+    -webkit-backdrop-filter: opacity(0.5);
+    backdrop-filter: opacity(0.5);
+    */
 }
 
 /*
@@ -370,19 +379,6 @@ Remove if necessary
     visibility: hidden;
     width: inherit;
     pointer-events: none;
-}
-
-/* Sets the width for left and right content */
-.col-lg-5 {
-    width: 21.666667%;
-    padding-left: initial;
-    padding-right: initial;
-}
-
-.col-lg-7 {
-    width: 78.333333%;
-    padding-left: initial;
-    padding-right: initial;
 }
 
 /* Footer  styling */
@@ -399,6 +395,7 @@ Remove if necessary
     font-size: 11px;
 }
 
+/* FIXME: fix this code brought from older code */
 /* Add media query for smaller screens */
 @media only screen and (max-width: 768px) {
     .leftcontent {

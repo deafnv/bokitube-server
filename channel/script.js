@@ -18,29 +18,35 @@ $("#motdwrap").prepend($('<div class="banner-slideshow"><div class="mover-1"></d
 $(".credit").append($('<p class="text-muted credit">Theme by TomoLover, available on <a href="https://github.com/deafnv/bokigang-server" target="_blank" rel="noreferrer noopener">Github</a></p>'));
 
 /* Create basic two column layout */
-$("#mainpage").prepend($('<div class="rightcontent">'))
-$("#mainpage").prepend($('<div class="leftcontent">'))
+$("#mainpage").prepend($('<div id="content-wrap">'))
+$("#content-wrap").prepend($('<div id="rightcontent">'))
+$("#content-wrap").prepend($('<div id="leftcontent">'))
 
 /* Place video and the rest of the page into the left column */
-$("<div id='video-container'>").prependTo($(".leftcontent"));
+$("<div id='video-container'>").prependTo($("#leftcontent"));
 $("#videowrap").prependTo($("#video-container"));
-$('<div class="nano-content">').appendTo($(".leftcontent"));
-$("#announcements").appendTo($(".nano-content"));
-$("#drinkbar").appendTo($(".nano-content"));
-$("#motdrow").appendTo($(".nano-content"));
-$("#controlsrow").appendTo($(".nano-content"));
-$("#playlistrow").appendTo($(".nano-content"));
-$("#sitefooter").appendTo($(".nano-content"));
-$("#footer").appendTo($(".nano-content"));
-$(".leftcontent").prepend($("#pollwrap"));
+$('<div id="channel-content">').appendTo($("#leftcontent"));
+$("#announcements").appendTo($("#channel-content"));
+$("#drinkbar").appendTo($("#channel-content"));
+$("#motdrow").appendTo($("#channel-content"));
+$("#controlsrow").appendTo($("#channel-content"));
+$("#playlistrow").appendTo($("#channel-content"));
+$("#sitefooter").appendTo($("#channel-content"));
+$("#footer").appendTo($("#channel-content"));
+$("#leftcontent").prepend($("#pollwrap"));
 
 /* Place chat and buttons into the right column */
-$("#chatwrap").appendTo($(".rightcontent"));
-$("#leftcontrols").appendTo($("#chatwrap"));
-$('<div class="emotewrap" id="emotewrap">').appendTo($(".rightcontent"));
+$("#chatheader").appendTo($("#rightcontent"));
+$("#userlist").appendTo($("#rightcontent"));
+$("#messagebuffer").appendTo($("#rightcontent"));
+const formLine = document.querySelector("div#chatwrap > form");
+formLine.setAttribute("id", "formline");
+$("#formline").appendTo($("#rightcontent"));
+$("#leftcontrols").appendTo($("#rightcontent"));
+$('<div class="emotewrap" id="emotewrap">').appendTo($("#rightcontent"));
 
 /* Meant for implementation of scrolling title - remove if unused */
-$("#chatwrap").prepend($("<div class='currenttitlewrap'>"));
+$("#rightcontent").prepend($("<div class='currenttitlewrap'>"));
 $("#videowrap-header").prependTo($(".currenttitlewrap"));
 
 const nodecurrenttitle = document.getElementById("currenttitle");
@@ -61,9 +67,9 @@ chatline.setAttribute("spellcheck", "false");
 /* Positions the chat depending on media query */
 function chatPosition(x) {
     if (x.matches) { // If media query matches
-        $("#chatwrap").prependTo($(".nano-content"));
+        $("#rightcontent").prependTo($("#channel-content"));
     } else {
-        $("#chatwrap").prependTo($(".rightcontent"));
+        $("#rightcontent").prependTo($("#rightcontent"));
     }
 }
   
