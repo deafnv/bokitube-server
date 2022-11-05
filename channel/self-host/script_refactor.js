@@ -4,6 +4,9 @@ This script lacks the extra append prepend things.
 Doing it this way results in faster loading time.
 */
 
+/* Sets the variable used for mobile chat sizing every 20 milliseconds - there is probably a better implementation of this */
+setInterval(function () {document.documentElement.style.setProperty('--vh', `${window.innerHeight/100}px`);}, 20);
+
 /* Adds scrolling banner to MOTD wrap */
 $("#motdwrap").prepend($('<div class="banner-slideshow"><div class="mover-1"></div></div>'));
 
@@ -22,21 +25,22 @@ const chatline = document.getElementById("chatline");
 chatline.removeAttribute("placeholder");
 chatline.setAttribute("placeholder", "Send a message");
 
-/* TODO: FIGURE OUT HOW TO DO THIS */
 /* Positions the chat depending on media query */
-/*
 function chatPosition(x) {
     if (x.matches) { // If media query matches
-        $("#chatwrap").prependTo($(".nano-content"));
+        $("#rightcontent").appendTo($("#leftcontent"));
+        $("#channel-content").appendTo($("#leftcontent"));
+        $("#footer").appendTo($("#leftcontent"));
     } else {
-        $("#chatwrap").prependTo($(".rightcontent"));
+        $("#rightcontent").appendTo($("#content-wrap"));
     }
 }
 
 var mediaQuery = window.matchMedia("(max-width: 768px)");
 chatPosition(mediaQuery); // Call listener function at run time
 mediaQuery.addEventListener('change', chatPosition); // Attach listener function on state changes
-*/
+
+
 
 //OLDER CODE: DON'T TOUCH
 /* AFK on unfocus function */
@@ -103,7 +107,7 @@ $('<button class="btn btn-primary" id="cs-csspreview">Preview CSS</button>')
     });
 
 /* Create space to align AFK and Clear buttons to the right - remove if necessary with better implementation */
-$('<button id="spacer-btn" class="btn btn-default btn-sm">Spacer button</button>')
+$('<div id="spacer-btn"></div>')
     .appendTo("#leftcontrols")
     .on("click", function() {});
 

@@ -215,6 +215,7 @@ This file is intended for either the original cytu.be site or a self-hosted serv
     background-color: red;
     height: calc(100vh - 50px);
     width: var(--rightcontentvw);
+    min-width: 273px;
     position: fixed;
     right: 0;
 }
@@ -258,6 +259,7 @@ This file is intended for either the original cytu.be site or a self-hosted serv
     height: 30px !important;
     min-height: 30px;
     width: inherit;
+    min-width: inherit;
     float: unset;
     display: flex;
     overflow-x: scroll;
@@ -354,6 +356,7 @@ This file is intended for either the original cytu.be site or a self-hosted serv
     padding: 6px;
     min-height: 42px;
     width: inherit;
+    min-width: inherit;
 }
 
 #newpollbtn, #emotes-btn, #afk-btn, #clear-btn {
@@ -377,7 +380,7 @@ Remove if necessary
 */
 #spacer-btn {
     visibility: hidden;
-    width: inherit;
+    flex-grow: 1;
     pointer-events: none;
 }
 
@@ -395,10 +398,10 @@ Remove if necessary
     font-size: 11px;
 }
 
-/* FIXME: fix this code brought from older code */
+/* Not sure if theres a better way of calculating screen size to give to video and chat, but this works */
 /* Add media query for smaller screens */
 @media only screen and (max-width: 768px) {
-    .leftcontent {
+    #leftcontent {
         width: 100vw;
     }
 
@@ -407,8 +410,12 @@ Remove if necessary
         padding-bottom: 0px;
         margin-bottom: 0px;
     }
+    
+    #video-container {
+        height: calc(100vw / 16 * 9);
+    }
 
-    .currenttitlewrap {
+    #currenttitlewrap {
         display: none;
     }
 
@@ -422,8 +429,9 @@ Remove if necessary
         height: 336px !important;
     }
 
-    .rightcontent {
+    #rightcontent {
         position: initial;
+        height: calc((var(--vh, 1vh) * 100 - 100vw / 16 * 9) - 10px);
         width: 100%;
     }
 

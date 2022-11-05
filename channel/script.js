@@ -6,16 +6,14 @@ This file is identical to the original
 /* Removes the buttons for resizing video and user list size toggle */
 const resizes = document.getElementById("resize-video-smaller");
 const resizel = document.getElementById("resize-video-larger");
-const userlisttoggle = document.getElementById("userlisttoggle");
 resizes.remove();
 resizel.remove();
-userlisttoggle.remove();
 
 /* Adds scrolling banner to MOTD wrap */
 $("#motdwrap").prepend($('<div class="banner-slideshow"><div class="mover-1"></div></div>'));
 
 /* Theme credits */
-$(".credit").append($('<p class="text-muted credit">Theme by TomoLover, available on <a href="https://github.com/deafnv/bokigang-server" target="_blank" rel="noreferrer noopener">Github</a></p>'));
+$(".credit").append($('<p class="text-muted credit">Theme by TomoLover, available on <a href="https://github.com/deafnv/bokitube-server" target="_blank" rel="noreferrer noopener">Github</a></p>'));
 
 /* Create basic two column layout */
 $("#mainpage").prepend($('<div id="content-wrap">'))
@@ -46,8 +44,8 @@ $("#leftcontrols").appendTo($("#rightcontent"));
 $('<div class="emotewrap" id="emotewrap">').appendTo($("#rightcontent"));
 
 /* Meant for implementation of scrolling title - remove if unused */
-$("#rightcontent").prepend($("<div class='currenttitlewrap'>"));
-$("#videowrap-header").prependTo($(".currenttitlewrap"));
+$("#rightcontent").prepend($("<div id='currenttitlewrap'>"));
+$("#videowrap-header").prependTo($("#currenttitlewrap"));
 
 const nodecurrenttitle = document.getElementById("currenttitle");
 const clonecurrenttitle = nodecurrenttitle.cloneNode(true);
@@ -63,6 +61,9 @@ const chatline = document.getElementById("chatline");
 chatline.removeAttribute("placeholder");
 chatline.setAttribute("placeholder", "Send a message");
 chatline.setAttribute("spellcheck", "false");
+
+/* Sets the variable used for mobile chat sizing every 20 milliseconds - there is probably a better implementation of this */
+setInterval(function () {document.documentElement.style.setProperty('--vh', `${window.innerHeight/100}px`);}, 20);
 
 /* Positions the chat depending on media query */
 function chatPosition(x) {
@@ -122,8 +123,8 @@ $(document).ready(function() {
 });
 
 /* Navbar title */
-if (window.location.href == 'https://cytu.be/r/bokigang') {
-    $(".navbar-brand").html("BOKIGANG");
+if (window.location.host == 'cytu.be') {
+    $(".navbar-brand").html(channelName);
 }
 
 /* Adds CSS preview button to built-in CSS editor */
@@ -144,7 +145,7 @@ $('<button class="btn btn-primary" id="cs-csspreview">Preview CSS</button>')
     });
 
 /* Create space to align AFK and Clear buttons to the right - remove if necessary with better implementation */
-$('<button id="spacer-btn" class="btn btn-default btn-sm">Spacer button</button>')
+$('<div id="spacer-btn"></div>')
     .appendTo("#leftcontrols")
     .on("click", function() {});
 
