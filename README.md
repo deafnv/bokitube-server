@@ -28,29 +28,29 @@ https://cdn.jsdelivr.net/gh/deafnv/bokitube-server@master/channel/script.js
 
 ### For site administrators hosting cytube
 
-Coming soon
+If you are hosting your own server, you should have access to the template files. Inserting the theme scripts directly may improve loading speed and apply the theme to all the channels on your server. If this is not what you need, ignore this section and apply the theme through cytube's JS and CSS fields in the channel options.
 
-<!---
 #### Channel CSS
 
-Host the CSS files in [/channel](https://github.com/deafnv/bokitube-server/tree/master/channel) on an external site like Dropbox for highest functionality, or copy and paste the code into the built in CSS editor.
+```
+link(rel="stylesheet", href="https://cdn.jsdelivr.net/gh/deafnv/bokitube-server@master/channel/style.css")
+```
 
-Use the appropriate files and code according to the header comments depending on original or self-hosting.
+Copy and paste the above line into the ```head.pug``` or the head of the ```channel.pug``` file, which should be located in the ```/templates``` folder. Linking the theme in ```head.pug``` will change the navbar in the site accordingly.
 
 #### Channel Javascript
 
-Host the JS files in [/channel](https://github.com/deafnv/bokitube-server/tree/master/channel) on an external site like Dropbox for highest functionality, or copy and paste the code into the built in JS editor.
+```
+script(defer, src="https://cdn.jsdelivr.net/gh/deafnv/bokitube-server@master/channel/script.js")
+```
 
-If self-hosting and inserting external scripts directly into the pug template, use separated files for correct emote panel functionality.
-
-(Use the ```hosted_style.css``` alongside style.css, adding the stylesheets to ```head.pug``` if self-hosting.)
--->
+Copy and paste the above line into the footer of the ```channel.pug``` file, which should be located in the ```/templates``` folder. You may want to
 
 &nbsp;
 
 ## Credits
 
-Server design based on the [BillTube theme](https://github.com/BillTube/BillTube2) with original and simplified implementation.
+Server design inspired by [BillTube theme](https://github.com/BillTube/BillTube2) with original and simplified implementation.
 
 Emotes panel design from [Cytube Plus](https://github.com/zimny-lech/CyTube-Plus).
 
