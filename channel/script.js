@@ -9,6 +9,9 @@ const resizel = document.getElementById("resize-video-larger");
 resizes.remove();
 resizel.remove();
 
+/* Display none on container-fluid after accepting permissions */
+document.querySelector('.container-fluid').style.display = "none";
+
 /* Adds scrolling banner to MOTD wrap */
 $("#motdwrap").prepend($('<div class="banner-slideshow"><div class="mover-1"></div></div>'));
 
