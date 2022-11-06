@@ -17,7 +17,7 @@ Copy and paste the links below to the external javascript and CSS fields in your
 #### Channel CSS
 
 ```
-https://cdn.jsdelivr.net/gh/deafnv/bokitube-server@master/channel/style.css
+https://cdn.jsdelivr.net/gh/deafnv/bokitube-server@master/channel/style.min.css
 ```
 
 To customize the preset theme, paste the following into the CSS editor in the Channel Settings (not External CSS). Change these variables as necessary.
@@ -38,13 +38,14 @@ To customize the preset theme, paste the following into the CSS editor in the Ch
 #### Channel Javascript
 
 ```
-https://cdn.jsdelivr.net/gh/deafnv/bokitube-server@master/channel/script.js
+https://cdn.jsdelivr.net/gh/deafnv/bokitube-server@master/channel/script.min.js
 ```
 
 To customize the navbar title (default Cytube), paste the following into the JS editor in the Channel Settings (not External Javascript)
 
 ```
-channelName = "<custom title here>";
+var channelName = "<custom title here>";
+var faviconUrl = "<custom favicon URL here>";
 ```
 
 ### For site administrators hosting cytube
@@ -54,7 +55,7 @@ If you are hosting your own server, you should have access to the template files
 #### Channel CSS
 
 ```
-link(rel="stylesheet", href="https://cdn.jsdelivr.net/gh/deafnv/bokitube-server@master/channel/style.css")
+link(rel="stylesheet", href="https://cdn.jsdelivr.net/gh/deafnv/bokitube-server@master/channel/style.min.css")
 ```
 
 Copy and paste the above line into the ```head.pug``` or the head of the ```channel.pug``` file, which should be located in the ```/templates``` folder. Linking the theme in ```head.pug``` will change the navbar in the site accordingly.
@@ -62,7 +63,7 @@ Copy and paste the above line into the ```head.pug``` or the head of the ```chan
 #### Channel Javascript
 
 ```
-script(defer, src="https://cdn.jsdelivr.net/gh/deafnv/bokitube-server@master/channel/script.js")
+script(defer, src="https://cdn.jsdelivr.net/gh/deafnv/bokitube-server@master/channel/script.min.js")
 ```
 
 Copy and paste the above line into the footer of the ```channel.pug``` file, which should be located in the ```/templates``` folder. You may want to
