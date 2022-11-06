@@ -399,6 +399,19 @@ Remove if necessary
 }
 
 /* Not sure if theres a better way of calculating screen size to give to video and chat, but this works */
+/* Disappear unnecessary chat elements when screen gets too short */
+@media only screen and (max-height: 560px) {
+    #userlist, #chatheader {
+        display: none;
+    }
+}
+
+@media only screen and (max-height: 900px) {
+    #currenttitlewrap {
+        display: none;
+    }
+}
+
 /* Add media query for smaller screens */
 @media only screen and (max-width: 768px) {
     #leftcontent {
@@ -413,10 +426,6 @@ Remove if necessary
     
     #video-container {
         height: calc(100vw / 16 * 9);
-    }
-
-    #currenttitlewrap {
-        display: none;
     }
 
     /* FIXME: The chat and MOTD merges if you press the chat box (this is mobile mode) */

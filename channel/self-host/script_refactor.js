@@ -4,9 +4,6 @@ This script lacks the extra append prepend things.
 Doing it this way results in faster loading time.
 */
 
-/* Sets the variable used for mobile chat sizing every 20 milliseconds - there is probably a better implementation of this */
-setInterval(function () {document.documentElement.style.setProperty('--vh', `${window.innerHeight/100}px`);}, 20);
-
 /* Adds scrolling banner to MOTD wrap */
 $("#motdwrap").prepend($('<div class="banner-slideshow"><div class="mover-1"></div></div>'));
 
@@ -31,8 +28,27 @@ function chatPosition(x) {
         $("#rightcontent").appendTo($("#leftcontent"));
         $("#channel-content").appendTo($("#leftcontent"));
         $("#footer").appendTo($("#leftcontent"));
+        
+        /* When user clicks chatline on devices with width < 768px, scroll up continuously for 0.5 seconds */
+        document.getElementById("chatline").onclick = function() {
+            var counter = 0;
+            var clickChatInterval = setInterval(() => {
+                document.documentElement.scrollTop = 0;
+
+                if (++counter === 10) {
+                    window.clearInterval(clickChatInterval);
+                }
+            }, 50);
+        }
+
+        /* Sets the variable used for mobile chat sizing every 20 milliseconds - there is probably a better implementation of this */
+        setInterval(function () {
+            document.documentElement.style.setProperty('--vh', `${window.innerHeight/100}px`);
+        }, 20);
     } else {
         $("#rightcontent").appendTo($("#content-wrap"));
+        
+        document.documentElement.style.setProperty('--vh', `${window.innerHeight/100}px`);
     }
 }
 
