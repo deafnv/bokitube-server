@@ -136,17 +136,16 @@ setInterval(function() {
 
 /* Adds favicon and externally hosted fonts from Google Fonts */
 $(document).ready(function() {
-    $('<link id="chanfavicon" href="https://dl.dropboxusercontent.com/s/8a079qbl5cr3zgu/youbdayfavi.png" type="image/x-icon" rel="shortcut icon" />').appendTo("head");
+    /* Navbar title */
+    if (window.location.host == 'cytu.be') {
+        $(".navbar-brand").html(channelName);
+        $('<link id="chanfavicon" href="' + faviconUrl + '" type="image/x-icon" rel="shortcut icon" />').appendTo("head");
+    }
 
     $('<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">').appendTo("head");
     
     $('<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">').appendTo("head");
 });
-
-/* Navbar title */
-if (window.location.host == 'cytu.be') {
-    $(".navbar-brand").html(channelName);
-}
 
 /* Adds CSS preview button to built-in CSS editor */
 $('<button class="btn btn-primary" id="cs-csspreview">Preview CSS</button>')
