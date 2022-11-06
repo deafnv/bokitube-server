@@ -62,13 +62,46 @@ This file is intended for either the original cytu.be site or a self-hosted serv
     padding: 0;
 }
 
-.container-fluid {
+#drinkbarwrap, #resizewrap {
     display: none;
 }
 
 /* TODO: I don't know what this does, but just keep it */
 .profile-box {
+    height: 100vh !important;
+    width: 100vw !important;
+    z-index: 9999 !important;
+    max-height: unset;
+    max-width: unset;
+    position: fixed !important;
+    top: 0px !important;
+    left: 0px !important;
+    padding: unset !important;
     overflow: visible;
+    border: none;
+}
+
+div#chanjs-allow-prompt {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+form#chanjs-allow-prompt span {
+    display: none;
+}
+
+form#chanjs-allow-prompt::before {
+    -webkit-user-select: all;
+    -moz-user-select: all;
+    -ms-user-select: all;  
+    user-select: all;
+    content: "Allow channel scripts? https://cdn.jsdelivr.net/gh/deafnv/bokitube-server@master/channel/script.js https://cdn.jsdelivr.net/gh/deafnv/bokitube-server@master/channel/style.css";
+}
+
+#chanjs-allow-prompt > button {
+    display: none;
 }
 
 #mainpage {
