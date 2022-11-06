@@ -67,7 +67,7 @@ This file is intended for either the original cytu.be site or a self-hosted serv
 }
 
 /* TODO: I don't know what this does, but just keep it */
-.profile-box {
+#chatwrap > .profile-box {
     height: 100vh !important;
     width: 100vw !important;
     z-index: 9999 !important;
