@@ -44,7 +44,8 @@ https://cdn.jsdelivr.net/gh/deafnv/bokitube-server@master/channel/script.js
 To customize the navbar title (default Cytube), paste the following into the JS editor in the Channel Settings (not External Javascript)
 
 ```
-channelName = "<custom title here>";
+var channelName = "<custom title here>";
+var faviconUrl = "<custom favicon URL here>";
 ```
 
 ### For site administrators hosting cytube
