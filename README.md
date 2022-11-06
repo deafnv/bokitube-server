@@ -41,7 +41,7 @@ To customize the preset theme, paste the following into the CSS editor in the Ch
 https://cdn.jsdelivr.net/gh/deafnv/bokitube-server@master/channel/script.min.js
 ```
 
-To customize the navbar title (default Cytube), paste the following into the JS editor in the Channel Settings (not External Javascript)
+To customize the theme from the default Cytube, paste the following into the JS editor in the Channel Settings (not External Javascript)
 
 ```
 var channelName = "<custom title here>";
@@ -50,7 +50,7 @@ var faviconUrl = "<custom favicon URL here>";
 
 ### For site administrators hosting cytube
 
-If you are hosting your own server, you should have access to the template files. Inserting the theme scripts directly may improve loading speed and apply the theme to all the channels on your server. If this is not what you need, ignore this section and apply the theme through cytube's JS and CSS fields in the channel options.
+If you are hosting your own server, you should have access to the template files. Inserting the theme scripts directly may improve loading speed and apply the theme to all the channels on your server. If this is not what you need, ignore this section and apply the theme through cytube's JS and CSS fields in the channel options. Alternatively, if you would like to customize the theme, feel free to host the files in this repo on your own site.
 
 #### Channel CSS
 
@@ -66,7 +66,7 @@ Copy and paste the above line into the ```head.pug``` or the head of the ```chan
 script(defer, src="https://cdn.jsdelivr.net/gh/deafnv/bokitube-server@master/channel/script.min.js")
 ```
 
-Copy and paste the above line into the footer of the ```channel.pug``` file, which should be located in the ```/templates``` folder. You may want to
+Copy and paste the above line into the footer of the ```channel.pug``` file, which should be located in the ```/templates``` folder.
 
 &nbsp;
 
