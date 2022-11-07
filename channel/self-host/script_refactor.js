@@ -4,6 +4,23 @@ This script lacks the extra append prepend things.
 Doing it this way results in faster loading time.
 */
 
+/* Automatically select English captions on loading of Drive video */
+setInterval(function () {
+    var player = document.querySelector("div#ytapiplayer.video-js");
+    if ((document.querySelector("iframe#ytapiplayer") == null) && (player != null) && (player.getAttribute("engselected") == null)) {
+        player.setAttribute("engselected", "false");
+        var videojsCounter = 0;
+        var videojscaption = setInterval(() => {
+            $("li.vjs-menu-item").eq(3).trigger('click');
+            
+            if (++videojsCounter === 4) {
+                player.setAttribute("engselected", "true");
+                window.clearInterval(videojscaption);
+            }
+        }, 100);
+    }
+}, 500);
+
 /* Adds scrolling banner to MOTD wrap */
 $("#motdwrap").prepend($('<div class="banner-slideshow"><div class="mover-1"></div></div>'));
 
@@ -31,11 +48,11 @@ function chatPosition(x) {
         
         /* When user clicks chatline on devices with width < 768px, scroll up continuously for 0.5 seconds */
         document.getElementById("chatline").onclick = function() {
-            var counter = 0;
+            var clickChatIntervalCounter = 0;
             var clickChatInterval = setInterval(() => {
                 document.documentElement.scrollTop = 0;
 
-                if (++counter === 10) {
+                if (++clickChatIntervalCounter === 10) {
                     window.clearInterval(clickChatInterval);
                 }
             }, 50);
