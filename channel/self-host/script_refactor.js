@@ -4,6 +4,9 @@ This script lacks the extra append prepend things.
 Doing it this way results in faster loading time.
 */
 
+/* Display none on container-fluid after accepting permissions */
+document.querySelector('.container-fluid').style.display = "none";
+
 /* Automatically select English captions on loading of Drive video */
 setInterval(function () {
     var player = document.querySelector("div#ytapiplayer.video-js");
@@ -34,6 +37,7 @@ $("#footer").appendTo($("#leftcontent"));
 const pagewrap = document.getElementById("wrap");
 pagewrap.setAttribute("style", "padding-bottom: 0px;")
 
+// FIXME: Broken for some reason
 /* Add hint text for chatline */
 const chatline = document.getElementById("chatline");
 chatline.removeAttribute("placeholder");

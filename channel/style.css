@@ -196,6 +196,10 @@ form#chanjs-allow-prompt::before {
     padding: 0;
 }
 
+div.embed-responsive * {
+    max-height: calc(100vh - 50px);
+}
+
 /* MOTD glass styling */
 #motdwrap {
     /* From https://css.glass */
@@ -431,22 +435,30 @@ Remove if necessary
     font-size: 11px;
 }
 
-/* Not sure if theres a better way of calculating screen size to give to video and chat, but this works */
-/* Disappear unnecessary chat elements when screen gets too short */
-@media only screen and (max-height: 560px) {
-    #userlist, #chatheader {
-        display: none;
-    }
-}
-
-@media only screen and (max-height: 900px) {
-    #currenttitlewrap {
-        display: none;
+/* Video fix on shorter screens */
+@media only screen and (max-height: 821px) {
+    #videowrap {
+        top: unset;
+        left: unset;
+        transform: unset;
     }
 }
 
 /* Add media query for smaller screens */
 @media only screen and (max-width: 768px) {
+    /* Disappear unnecessary chat elements when screen gets too short */
+    @media only screen and (max-height: 560px) {
+        #userlist, #chatheader {
+            display: none;
+        }
+    }
+
+    @media only screen and (max-height: 900px) {
+        #currenttitlewrap {
+            display: none;
+        }
+    }
+
     #leftcontent {
         width: 100vw;
     }
@@ -457,6 +469,7 @@ Remove if necessary
         margin-bottom: 0px;
     }
     
+    /* Not sure if theres a better way of calculating screen size to give to video and chat, but this works */
     #video-container {
         height: calc(100vw / 16 * 9);
     }
