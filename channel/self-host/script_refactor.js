@@ -1,7 +1,7 @@
 /* 
-This script is intended to be used only by administrators willing to refactor the channel pug template.
-This script lacks the extra append prepend things.
-Doing it this way results in faster loading time.
+* This script is intended to be used only by administrators willing to refactor the channel pug template.
+* This script lacks the extra append prepend things.
+* Doing it this way results in faster loading time.
 */
 
 /* Display none on container-fluid after accepting permissions */
@@ -307,9 +307,10 @@ function dragElement(elmnt) {
 }
 console.log('Emotes panel loaded');
 
-
-//? The emotes on a channel are loaded pretty slow in comparison to the page itself, so tricks like the HTML defer tag or jQuery document.ready aren't
-//? sufficient for this specific use case. As a temporary workaround, I've put a 1.8s delay on the emotes panel script. An actual fix to this issue could be 
-//? to either change the emotes panel functionality itself on the cytube source code, or to imitate what the site does with emote loading, which is to 
-//? continuously check for the emotes list, which would allow the list to also update dynamically without having the user to refresh to see the changes 
-//? reflected in the custom emotes panel. From some light testing, setInterval doesnt seem to work for some reason
+/*
+? The emotes on a channel are loaded pretty slow in comparison to the page itself, so tricks like the HTML defer tag or jQuery document.ready aren't
+? sufficient for this specific use case. As a temporary workaround, I've put a 1.8s delay on the emotes panel script. An actual fix to this issue could be 
+? to either change the emotes panel functionality itself on the cytube source code, or to imitate what the site does with emote loading, which is to 
+? continuously check for the emotes list, which would allow the list to also update dynamically without having the user to refresh to see the changes 
+? reflected in the custom emotes panel. From some light testing, setInterval doesnt seem to work for some reason
+*/

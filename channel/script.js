@@ -1,6 +1,5 @@
 /* 
-This script is intended to be placed in the footer of the channel pug template with a defer tag, if self-hosting.
-This file is identical to the original
+* This script is intended to be placed in the footer of the channel pug template with a defer tag, if self-hosting.
 */
 
 /* Removes the buttons for resizing video and user list size toggle */
@@ -199,8 +198,8 @@ $('<button id="clear-btn" class="btn btn-default btn-sm">Clear</button>')
 
 /* Custom emotes panel */
 
-/* The following code is obtained from https://github.com/zimny-lech/CyTube-Plus with slight modification and thus is licensed under the MIT License */
-/* https://github.com/zimny-lech/CyTube-Plus/blob/master/LICENSE */
+//* The following code is obtained from https://github.com/zimny-lech/CyTube-Plus with slight modification and thus is licensed under the MIT License
+//* https://github.com/zimny-lech/CyTube-Plus/blob/master/LICENSE
 GroupEmotes_Number = 100;
 UI_GroupEmotes = 1;
 chatpanel = $('<div id="chatpanel" class="row" />').insertBefore("#playlistmanagerwrap");
@@ -212,7 +211,7 @@ function insertText(str) {
     $("#chatline").val($("#chatline").val() + str).focus();
 }
 
-/* FIXME: This is a really sketchy fix to a bug with the emotes loading, more details below */
+//! This is a really sketchy fix to a bug with the emotes loading, more details below
 setTimeout(function() {
     if (typeof GroupEmotes_Number !== "number" || GroupEmotes_Number < 1) {
         GroupEmotes_Number = 100;
@@ -280,7 +279,7 @@ emotesbtn = $('<button id="emotes-btn" class="btn btn-sm btn-default" title="Dis
     .on("click", function() {
         toggleDiv(emotespanel);
     });
-/* END OF MIT LICENSED CODE */
+//* END OF MIT LICENSED CODE
 
 
 $('#newpollbtn').prependTo($("#leftcontrols"));
@@ -330,9 +329,10 @@ function dragElement(elmnt) {
 }
 console.log('Emotes panel loaded');
 
-
-/* The emotes on a channel are loaded pretty slow in comparison to the page itself, so tricks like the HTML defer tag or jQuery document.ready aren't
-sufficient for this specific use case. As a temporary workaround, I've put a 1.8s delay on the emotes panel script. An actual fix to this issue could be 
-to either change the emotes panel functionality itself on the cytube source code, or to imitate what the site does with emote loading, which is to 
-continuously check for the emotes list, which would allow the list to also update dynamically without having the user to refresh to see the changes 
-reflected in the custom emotes panel. From some light testing, setInterval doesnt seem to work for some reason */
+/*
+? The emotes on a channel are loaded pretty slow in comparison to the page itself, so tricks like the HTML defer tag or jQuery document.ready aren't
+? sufficient for this specific use case. As a temporary workaround, I've put a 1.8s delay on the emotes panel script. An actual fix to this issue could be 
+? to either change the emotes panel functionality itself on the cytube source code, or to imitate what the site does with emote loading, which is to 
+? continuously check for the emotes list, which would allow the list to also update dynamically without having the user to refresh to see the changes 
+? reflected in the custom emotes panel. From some light testing, setInterval doesnt seem to work for some reason
+*/
