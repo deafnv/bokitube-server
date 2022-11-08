@@ -4,7 +4,7 @@
 
 /* Modify these variables as you wish */
 :root {
-    --leftcontentvw:  78.4vw;;
+    --leftcontentvw:  78.4vw;
     --rightcontentvw: 21.6vw;
     --bannerimg: url("https://dl.dropboxusercontent.com/s/eyzfkmihwol6b69/banner%20%280-00-00-00%29.png");
     --dialogbgimageurl: url("https://dl.dropboxusercontent.com/s/v59wycx9g8p05e5/astolfo_render__1__by_mrsterben_dbzfx5u.png");
@@ -474,7 +474,10 @@ div.embed-responsive * {
     
     /* Not sure if theres a better way of calculating screen size to give to video and chat, but this works */
     #video-container {
+        position: fixed;
         height: calc(100vw / 16 * 9);
+        width: 100vw;
+        z-index: 1000;
     }
 
     /* FIXME: The chat and MOTD merges if you press the chat box (this is mobile mode) */
@@ -489,6 +492,7 @@ div.embed-responsive * {
 
     #rightcontent {
         position: initial;
+        margin-top: calc(100vw / 16 * 9);
         height: calc((var(--vh, 1vh) * 100 - 100vw / 16 * 9) - 10px);
         width: 100%;
     }
