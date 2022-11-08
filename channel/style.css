@@ -182,16 +182,15 @@ form#chanjs-allow-prompt::before {
 }
 
 #video-container {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
     height: calc(100vh - 50px);
     background-color: black;
 }
 
 #videowrap {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
     width: 100%;
     padding: 0;
 }
@@ -441,12 +440,10 @@ div.embed-responsive * {
     font-size: 11px;
 }
 
-/* Video fix on shorter screens */
-@media only screen and (max-height: 821px) {
-    #videowrap {
-        top: unset;
-        left: unset;
-        transform: unset;
+/* Fix video clipping on rightcontent min-width */
+@media only screen and (max-width: 1264px) {
+    #leftcontent{
+        width: calc(100vw - 273px);
     }
 }
 
