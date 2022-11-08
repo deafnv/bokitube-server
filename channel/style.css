@@ -66,7 +66,6 @@
     display: none;
 }
 
-/* TODO: I don't know what this does, but just keep it */
 #chatwrap > .profile-box {
     height: 100vh !important;
     width: 100vw !important;
@@ -86,18 +85,6 @@ div#chanjs-allow-prompt {
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-}
-
-form#chanjs-allow-prompt span {
-    display: none;
-}
-
-form#chanjs-allow-prompt::before {
-    -webkit-user-select: all;
-    -moz-user-select: all;
-    -ms-user-select: all;  
-    user-select: all;
-    content: "Allow channel scripts? https://cdn.jsdelivr.net/gh/deafnv/bokitube-server@master/channel/script.js https://cdn.jsdelivr.net/gh/deafnv/bokitube-server@master/channel/style.css";
 }
 
 #chanjs-allow-prompt > button.close {
@@ -404,8 +391,6 @@ div.embed-responsive * {
 }
 
 .btn:hover {
-    background-image: none;
-    background-color: var(--tertiarycolor);
     filter: brightness(0.5);
     /* Theres a better way to apply the opacity filter with this, but it cant work for now
     -webkit-backdrop-filter: opacity(0.5);
@@ -416,6 +401,10 @@ div.embed-responsive * {
 .btn-danger {
     color: #fff;
     background-color: #ee5f5b;
+}
+
+.btn-danger:hover {
+    filter: brightness(0.5);
 }
 
 #jump-btn {
@@ -480,7 +469,12 @@ div.embed-responsive * {
         z-index: 1000;
     }
 
-    /* FIXME: The chat and MOTD merges if you press the chat box (this is mobile mode) */
+    #emotewrap {
+        position: fixed;
+        top: calc(135vw / 16 * 9);
+        left: 5vw;
+    }
+
     #chatwrap {
         height: 485px !important;
         width: 100%;
@@ -489,6 +483,8 @@ div.embed-responsive * {
     #messagebuffer {
         height: 336px !important;
     }
+
+    
 
     #rightcontent {
         position: initial;
@@ -578,6 +574,7 @@ textarea.form-control {
     position: absolute;
     cursor: move;
     top: 17%;
+    left: -4%;
 }
 
 #emotespanel {
