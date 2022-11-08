@@ -70,7 +70,7 @@
 #chatwrap > .profile-box {
     height: 100vh !important;
     width: 100vw !important;
-    z-index: 9999 !important;
+    z-index: 1039 !important;
     max-height: unset;
     max-width: unset;
     position: fixed !important;
@@ -100,7 +100,7 @@ form#chanjs-allow-prompt::before {
     content: "Allow channel scripts? https://cdn.jsdelivr.net/gh/deafnv/bokitube-server@master/channel/script.js https://cdn.jsdelivr.net/gh/deafnv/bokitube-server@master/channel/style.css";
 }
 
-#chanjs-allow-prompt > button {
+#chanjs-allow-prompt > button.close {
     display: none;
 }
 
