@@ -11,7 +11,7 @@ This file is intended for either the original cytu.be site or a self-hosted serv
     --bgimageurl: url("https://wallpapercave.com/wp/wp2225973.jpg");
     --primarycolor: #000000;
     --secondarycolor: #2e2e2e;
-    --tertiarycolor: #3bc0ec;
+    --tertiarycolor: #627b83;
 }
 
 /* Hosted custom fonts, currently being hosted on the server itself */
@@ -231,6 +231,9 @@ div.embed-responsive * {
 }
 
 #rightcontrols {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
     width: 99% !important;
 }
 
@@ -396,29 +399,32 @@ div.embed-responsive * {
     min-width: inherit;
 }
 
-#newpollbtn, #emotes-btn, #afk-btn, #clear-btn {
+.btn {
     background-image: none;
     background-color: var(--tertiarycolor);
 }
 
-#newpollbtn:hover, #emotes-btn:hover, #afk-btn:hover, #clear-btn:hover {
+.btn:hover {
     background-image: none;
     background-color: var(--tertiarycolor);
-    filter: opacity(0.5);
+    filter: brightness(0.5);
     /* Theres a better way to apply the opacity filter with this, but it cant work for now
     -webkit-backdrop-filter: opacity(0.5);
     backdrop-filter: opacity(0.5);
     */
 }
 
-/*
-There's probably a better way to space the buttons apart
-Remove if necessary
-*/
-#spacer-btn {
-    visibility: hidden;
-    flex-grow: 1;
-    pointer-events: none;
+.btn-danger {
+    color: #fff;
+    background-color: #ee5f5b;
+}
+
+#jump-btn {
+    color: white;
+}
+
+#afk-btn {
+    margin-left: auto;
 }
 
 /* Footer  styling */

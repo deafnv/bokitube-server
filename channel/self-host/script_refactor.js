@@ -77,6 +77,17 @@ var mediaQuery = window.matchMedia("(max-width: 768px)");
 chatPosition(mediaQuery); // Call listener function at run time
 mediaQuery.addEventListener('change', chatPosition); // Attach listener function on state changes
 
+/* Add jump to current item button */
+const jumpBtn = document.createElement("button");
+jumpBtn.innerHTML = "Scroll to current item"
+jumpBtn.setAttribute("id", "jump-btn");
+jumpBtn.setAttribute("class", "btn");
+jumpBtn.onclick = function() {
+    window.scrollQueue();
+}
+const rightControls = document.getElementById("rightcontrols");
+rightControls.insertBefore(jumpBtn, rightControls.children[1]);
+
 
 
 //OLDER CODE: DON'T TOUCH
@@ -142,11 +153,6 @@ $('<button class="btn btn-primary" id="cs-csspreview">Preview CSS</button>')
         document.getElementById("channeloptions").style.visibility = "visible";
         document.getElementById("cs-csseditor").style.visibility = "visible";
     });
-
-/* Create space to align AFK and Clear buttons to the right - remove if necessary with better implementation */
-$('<div id="spacer-btn"></div>')
-    .appendTo("#leftcontrols")
-    .on("click", function() {});
 
 /* Add custom AFK button for manual AFK */
 $('<button id="afk-btn" class="btn btn-default btn-sm">AFK</button>')
