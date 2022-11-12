@@ -12,11 +12,15 @@ h1, h2, h3, h4, h5, h6 {
     padding-bottom: 60px;
 }
 
-.hero-section{
-    align-items: flex-start;
+#mainpage > .container {
     display: flex;
+    padding-top: 52px;
+    padding-bottom: 60px;
+    min-height: 520px;
+    height: calc(100vh - 112px);
+    align-content: center;
     justify-content: center;
-    padding: 135px 24px;
+    flex-direction: column;
 }
 
 #select-cards {
@@ -32,13 +36,6 @@ h1, h2, h3, h4, h5, h6 {
 .card{
     list-style: none;
     position: relative;
-}
-
-.card:before{
-    content: '';
-    display: block;
-    padding-bottom: 180%;
-    width: 100%;
 }
 
 .card__background{
@@ -88,15 +85,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Add media query for smaller screens */
-@media only screen and (max-width: 768px) {
-    .container {
-        margin-left: unset;
-    }
-
-    .hero-section {
-        padding: 6vh 6vw;
-    }
-
+@media only screen and (max-width: 991px) {
     #select-cards {
         grid-template-columns: unset;
         grid-template-rows: repeat(4, 1fr);
@@ -104,13 +93,19 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .card {
-        width: 80vw;
         max-height: 15vh;
     }
 
     .card__background {
-        background-size: cover;
-        background-position: 50% -6vh;
+        background-size: 90%;
+        background-position: 29% -13vh;
+    }
+
+    @media only screen and (max-width: 768px) {
+        .card__background {
+            background-size: 83%;
+            background-position: 41% -8vh;
+        }
     }
 
     .card__content {

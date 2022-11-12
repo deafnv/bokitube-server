@@ -80,6 +80,14 @@
     border: none;
 }
 
+.fluid > .profile-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1020;
+}
+
 div#chanjs-allow-prompt {
     position: absolute;
     top: 50%;
