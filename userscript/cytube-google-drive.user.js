@@ -8,6 +8,8 @@
 // @include https://www.cytubebg.ddns.net/r/*
 // @include https://cytubegce.ddns.net/r/*
 // @include https://www.cytubegce.ddns.net/r/*
+// @include https://ilovesabrina.org/r/*
+// @include https://www.ilovesabrina.org/r/*
 // @grant unsafeWindow
 // @grant GM_xmlhttpRequest
 // @grant GM.xmlHttpRequest
