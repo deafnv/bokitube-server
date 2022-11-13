@@ -221,7 +221,7 @@ function emotesPanel() {
     len = CHANNEL.emotes.length;
     if (len < 1) {
         emotespanel.addClass('row');
-        makeAlert("No emotes available", "Ask channel administrator.").appendTo(emotespanel);
+        makeAlert("No emotes available", "Ask channel administrator. This panel will update every second until an emote is found.").appendTo(emotespanel);
 
         console.log('No emotes found, reloading in 1 second')
         setTimeout(function() {emotesPanel()}, 1000);
