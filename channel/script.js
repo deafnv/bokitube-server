@@ -211,8 +211,10 @@ function insertText(str) {
     $("#chatline").val($("#chatline").val() + str).focus();
 }
 
-//! This is a really sketchy fix to a bug with the emotes loading, more details below
-setTimeout(function() {
+function emotesPanel() {
+    emotespanel.removeClass('row');
+    document.querySelector('#emotespanel').replaceChildren();
+
     if (typeof GroupEmotes_Number !== "number" || GroupEmotes_Number < 1) {
         GroupEmotes_Number = 100;
     }
@@ -220,6 +222,9 @@ setTimeout(function() {
     if (len < 1) {
         emotespanel.addClass('row');
         makeAlert("No emotes available", "Ask channel administrator.").appendTo(emotespanel);
+
+        console.log('No emotes found, reloading in 1 second')
+        setTimeout(function() {emotesPanel()}, 1000);
     } else if (UI_GroupEmotes != "1" || len <= GroupEmotes_Number) {
         for (i in CHANNEL.emotes) {
             $('<img onclick="insertText(\'' + CHANNEL.emotes[i].name + ' \')" />')
@@ -265,7 +270,9 @@ setTimeout(function() {
         $("#emotes-0").show();
         $("#emotescontrols button:nth-child(1)").addClass('active');
     }
-}, 1800)
+}
+
+emotesPanel();
 
 /* PLace emotes panel in a wrap */
 $("#emotespanel").appendTo($(".emotewrap"));
@@ -327,12 +334,3 @@ function dragElement(elmnt) {
     document.onmousemove = null;
     }
 }
-console.log('Emotes panel loaded');
-
-/*
-? The emotes on a channel are loaded pretty slow in comparison to the page itself, so tricks like the HTML defer tag or jQuery document.ready aren't
-? sufficient for this specific use case. As a temporary workaround, I've put a 1.8s delay on the emotes panel script. An actual fix to this issue could be 
-? to either change the emotes panel functionality itself on the cytube source code, or to imitate what the site does with emote loading, which is to 
-? continuously check for the emotes list, which would allow the list to also update dynamically without having the user to refresh to see the changes 
-? reflected in the custom emotes panel. From some light testing, setInterval doesnt seem to work for some reason
-*/
