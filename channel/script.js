@@ -200,9 +200,18 @@ $('<button id="clear-btn" class="btn btn-default btn-sm">Clear</button>')
 
 //* The following code is obtained from https://github.com/zimny-lech/CyTube-Plus with slight modification and thus is licensed under the MIT License
 //* https://github.com/zimny-lech/CyTube-Plus/blob/master/LICENSE
-var isFloating = 0;
 $('<div class="emotewrap" id="emotewrap">').appendTo($("#rightcontent"));
-emotespanel = $('<div id="emotespanel" class="ep__fixed" style="display:none" />').insertAfter('#userlist');
+if (!localStorage.epposition) {
+    localStorage.epposition = 1;
+    emotespanel = $('<div id="emotespanel" class="ep__fixed" style="display:none" />').insertAfter('#userlist');
+}
+
+if (localStorage.epposition == 0) {
+    emotespanel = $('<div id="emotespanel" class="ep__floating" style="display:none" />').appendTo($("#emotewrap"));
+} else {
+    emotespanel = $('<div id="emotespanel" class="ep__fixed" style="display:none" />').insertAfter('#userlist');
+}
+
 function toggleDiv(div) {
     $(div).css('display') == "none" ? $(div).show() : $(div).hide();
 }
@@ -249,14 +258,14 @@ $('<li><a onclick="switchEp()" style="cursor: pointer;">Switch EP</a></li>').app
 
 function switchEp() {
     const panel = document.querySelector("#emotespanel");
-    if(isFloating == 0) { 
+    if(localStorage.epposition == 1) { 
         panel.setAttribute("class", "ep__floating");
-        $("#emotespanel").appendTo($("#emotewrap"))
-        isFloating = 1;
+        $("#emotespanel").appendTo($("#emotewrap"));
+        localStorage.epposition = 0;
     } else {
         panel.setAttribute("class", "ep__fixed");
         $("#emotespanel").insertAfter('#userlist');
-        isFloating = 0;
+        localStorage.epposition = 1;
     }
 }
 
