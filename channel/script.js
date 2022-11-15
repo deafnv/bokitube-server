@@ -355,10 +355,6 @@ function autocomplete(inp, arr) {
                 (or any other open lists of autocompleted values:*/
                 closeAllLists();
             });
-
-            b.addEventListener("mouseover", function(e) {
-                inp.value = this.getElementsByTagName("input")[0].value;
-            });
             a.appendChild(b);
           }
         }
