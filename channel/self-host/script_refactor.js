@@ -177,8 +177,9 @@ $('<button id="clear-btn" class="btn btn-default btn-sm">Clear</button>')
 
 //* The following code is obtained from https://github.com/zimny-lech/CyTube-Plus with slight modification and thus is licensed under the MIT License
 //* https://github.com/zimny-lech/CyTube-Plus/blob/master/LICENSE
-chatpanel = $('<div id="chatpanel" class="row" />').insertBefore("#playlistmanagerwrap");
-emotespanel = $('<div id="emotespanel" style="display:none" />').appendTo(chatpanel);
+var isFloating = 0;
+$('<div class="emotewrap" id="emotewrap">').appendTo($("#rightcontent"));
+emotespanel = $('<div id="emotespanel" class="ep__fixed" style="display:none" />').insertAfter('#userlist');
 function toggleDiv(div) {
     $(div).css('display') == "none" ? $(div).show() : $(div).hide();
 }
@@ -210,10 +211,6 @@ function emotesPanel() {
 }
 emotesPanel();
 
-/* PLace emotes panel in a wrap */
-$('<div class="emotewrap" id="emotewrap">').appendTo($("#rightcontent"));
-$("#emotespanel").appendTo($(".emotewrap"));
-
 /* Remove original emote button */
 $("#emotelistbtn").remove();
 
@@ -225,6 +222,22 @@ emotesbtn = $('<button id="emotes-btn" class="btn btn-sm btn-default" title="Dis
     });
 //* END OF MIT LICENSED CODE
 
+window.addEventListener('load', (event) => {
+    $('<li><a onclick="switchEp()" style="cursor: pointer;">Switch EP</a></li>').appendTo(".navbar-nav")
+});
+
+function switchEp() {
+    const panel = document.querySelector("#emotespanel");
+    if(isFloating == 0) { 
+        panel.setAttribute("class", "ep__floating");
+        $("#emotespanel").appendTo($("#emotewrap"))
+        isFloating = 1;
+    } else {
+        panel.setAttribute("class", "ep__fixed");
+        $("#emotespanel").insertAfter('#userlist');
+        isFloating = 0;
+    }
+}
 
 $('#newpollbtn').prependTo($("#leftcontrols"));
 

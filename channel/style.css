@@ -585,7 +585,7 @@ textarea.form-control {
     left: -4%;
 }
 
-#emotespanel {
+.ep__floating {
     position: fixed;
     z-index: 1020;
     height: 28% !important;
@@ -604,15 +604,31 @@ textarea.form-control {
     backdrop-filter: blur(3.8px);
     -webkit-backdrop-filter: blur(3.8px);
 }
+
+.ep__fixed {
+    z-index: 1020;
+    height: 23% !important;
+    width: 100%;
+    margin: 0;
+    overflow: scroll;
+    text-align: center;
+    border: var(--primarycolor);
+    border-style: none none solid none;
+    border-width: thick;
+    background-color: var(--secondarycolor);
+}
+
 #emotespanel img {
     margin: 5px;
     max-height: 50px;
     cursor: pointer
 }
+
 #emotesbtnwrap {
     text-align: center;
     margin: 5px
 }
+
 #emotespanel .alert {
     text-align: left;
     margin: 5px -10px
@@ -635,6 +651,7 @@ textarea.form-control {
     transform: translate3d(0, 0, 0);
     border-color: #916907
 }
+
 .banner-slideshow > div {
     height: 400px;
     width: 5066px;
@@ -647,9 +664,11 @@ textarea.form-control {
     height: 100%;
     transform: translate3d(0, 0, 0)
 }
+
 .banner-slideshow .mover-1 {
     animation: moveSlideshow 20s linear infinite
 }
+
 @keyframes moveSlideshow {
     100% {
         transform: translateX(-50%)
