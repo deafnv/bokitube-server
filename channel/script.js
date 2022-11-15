@@ -245,9 +245,7 @@ emotesbtn = $('<button id="emotes-btn" class="btn btn-sm btn-default" title="Dis
     });
 //* END OF MIT LICENSED CODE
 
-window.addEventListener('load', (event) => {
-    $('<li><a onclick="switchEp()" style="cursor: pointer;">Switch EP</a></li>').appendTo(".navbar-nav")
-});
+$('<li><a onclick="switchEp()" style="cursor: pointer;">Switch EP</a></li>').appendTo(".navbar-nav")
 
 function switchEp() {
     const panel = document.querySelector("#emotespanel");
