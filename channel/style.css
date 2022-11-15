@@ -675,3 +675,42 @@ textarea.form-control {
         transform: translateX(-50%)
     }
 }
+
+.autocomplete-items {
+    position: absolute;
+    max-height: 150px;
+    overflow: scroll;
+    border: 1px solid #d4d4d4;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    z-index: 99;
+    /*position the autocomplete items to be the same width as the container:*/
+    bottom: 100px;
+    left: 0;
+    right: 0;
+    /* From https://css.glass */
+    background: rgba(0, 0, 0, 0.27);
+    border-style: none;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.8px);
+    -webkit-backdrop-filter: blur(3.8px);
+}
+  
+.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background: transparent; 
+    border: none;
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+    background-color: #4a4a4a; 
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+    background-color: var(--tertiarycolor) !important; 
+    color: #ffffff; 
+}
