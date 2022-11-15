@@ -607,6 +607,7 @@ textarea.form-control {
 
 .ep__fixed {
     z-index: 1020;
+    min-height: 23% !important;
     height: 23% !important;
     width: 100%;
     margin: 0;
