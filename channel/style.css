@@ -5,7 +5,6 @@
 /* Modify these variables as you wish */
 :root {
     --leftcontentvw:  78.4vw;
-    --rightcontentvw: 21.6vw;
     --bannerimg: url("https://dl.dropboxusercontent.com/s/eyzfkmihwol6b69/banner%20%280-00-00-00%29.png");
     --dialogbgimageurl: url("https://dl.dropboxusercontent.com/s/v59wycx9g8p05e5/astolfo_render__1__by_mrsterben_dbzfx5u.png");
     --bgimageurl: url("https://wallpapercave.com/wp/wp2225973.jpg");
@@ -248,7 +247,7 @@ div.embed-responsive * {
     flex-direction: column;
     background-color: red;
     height: calc(100vh - 50px);
-    width: var(--rightcontentvw);
+    width: calc(100vw - var(--leftcontentvw));
     min-width: 273px;
     position: fixed;
     right: 0;
