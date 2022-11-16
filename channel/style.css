@@ -245,7 +245,6 @@ div.embed-responsive * {
 #rightcontent {
     display: flex;
     flex-direction: column;
-    background-color: red;
     height: calc(100vh - 50px);
     width: calc(100vw - var(--leftcontentvw));
     min-width: 273px;

@@ -347,7 +347,7 @@ function autocomplete(inp, arr) {
                 b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
                 b.innerHTML += "<img id='autocomplete-image' src='" + CHANNEL.emotes[i].image + "'>";
                 b.addEventListener("click", function(e) {
-                    $("#chatline").val($("#chatline").val() + this.getElementsByTagName("input")[0].value.substring(matched.length));
+                    $("#chatline").val($("#chatline").val().substring(0, $("#chatline").val().length - $("#chatline").val().match(/(?<!\S)\/\S*$/gim).toString().length) + this.getElementsByTagName("input")[0].value);
                     closeAllLists();
                 });
                 a.appendChild(b);
@@ -364,16 +364,17 @@ function autocomplete(inp, arr) {
             currentFocus++;
             addActive(x);
 
-            document.querySelector('.autocomplete-active').scrollIntoViewIfNeeded();
-            $("#chatline").val(currentInputVal + document.getElementsByClassName('autocomplete-active')[0].querySelector('input').getAttribute('value').substring(matchedlength));
+            document.querySelector('.autocomplete-active').scrollIntoViewIfNeeded(false);
+            $("#chatline").val(currentInputVal.substring(0, (currentInputVal.length - currentInputVal.match(/(?<!\S)\/\S*$/gim).toString().length)) + document.getElementsByClassName('autocomplete-active')[0].querySelector('input').getAttribute('value'));
         } else if (e.keyCode == 38) {
             e.preventDefault();
             currentFocus--;
             addActive(x);
 
-            document.querySelector('.autocomplete-active').scrollIntoViewIfNeeded();
-            $("#chatline").val(currentInputVal + document.getElementsByClassName('autocomplete-active')[0].querySelector('input').getAttribute('value').substring(matchedlength));
-        } else if (e.keyCode == 13) {
+            document.querySelector('.autocomplete-active').scrollIntoViewIfNeeded(false);
+            $("#chatline").val(currentInputVal.substring(0, (currentInputVal.length - currentInputVal.match(/(?<!\S)\/\S*$/gim).toString().length)) + document.getElementsByClassName('autocomplete-active')[0].querySelector('input').getAttribute('value'));
+        } else if (e.keyCode == 13 || e.keyCode == 9) {
+            // stoppropagation doesnt really work here to stop enter from sending message
             closeAllLists();
         }
     });
