@@ -690,11 +690,11 @@ textarea.form-control {
     left: 0;
     right: 0;
     /* From https://css.glass */
-    background: rgba(0, 0, 0, 0.27);
+    background: rgba(0, 0, 0, 0.67);
     border-style: none;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(3.8px);
-    -webkit-backdrop-filter: blur(3.8px);
+    backdrop-filter: blur(7.8px);
+    -webkit-backdrop-filter: blur(7.8px);
 }
   
 .autocomplete-items div {
