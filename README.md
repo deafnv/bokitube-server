@@ -26,14 +26,14 @@ To customize the preset theme, paste the following into the CSS editor in the Ch
 
 ```
 :root {
-    --leftcontentvw:  78.4vw;;
+    --leftcontentvw:  78.4vw;
     --rightcontentvw: 21.6vw;
     --bannerimg: url("https://dl.dropboxusercontent.com/s/eyzfkmihwol6b69/banner%20%280-00-00-00%29.png");
     --dialogbgimageurl: url("https://dl.dropboxusercontent.com/s/v59wycx9g8p05e5/astolfo_render__1__by_mrsterben_dbzfx5u.png");
     --bgimageurl: url("https://wallpapercave.com/wp/wp2225973.jpg");
     --primarycolor: #000000;
     --secondarycolor: #2e2e2e;
-    --tertiarycolor: #3bc0ec;
+    --tertiarycolor: #627b83;
 }
 ```
 
