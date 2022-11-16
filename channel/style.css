@@ -697,7 +697,9 @@ textarea.form-control {
 }
   
 .autocomplete-items div {
-    padding: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
     cursor: pointer;
     background: transparent; 
     border: none;
@@ -706,6 +708,12 @@ textarea.form-control {
 /*when hovering an item:*/
 .autocomplete-items div:hover {
     background-color: #4a4a4a; 
+}
+
+#autocomplete-image {
+    margin-left: auto;
+    display: block;
+    height: 42px;
 }
 
 /*when navigating through the items using the arrow keys:*/

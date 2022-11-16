@@ -345,6 +345,7 @@ function autocomplete(inp, arr) {
                 b.innerHTML = "<strong>" + arr[i].substr(0, matched.length) + "</strong>";
                 b.innerHTML += arr[i].substr(matched.length);
                 b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                b.innerHTML += "<img id='autocomplete-image' src='" + CHANNEL.emotes[i].image + "'>";
                 b.addEventListener("click", function(e) {
                     $("#chatline").val($("#chatline").val() + this.getElementsByTagName("input")[0].value.substring(matched.length));
                     closeAllLists();
@@ -373,8 +374,7 @@ function autocomplete(inp, arr) {
             document.querySelector('.autocomplete-active').scrollIntoViewIfNeeded();
             $("#chatline").val(currentInputVal + document.getElementsByClassName('autocomplete-active')[0].querySelector('input').getAttribute('value').substring(matchedlength));
         } else if (e.keyCode == 13) {
-            e.preventDefault();
-            e.stopPropagation();
+            closeAllLists();
         }
     });
 
