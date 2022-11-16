@@ -178,16 +178,47 @@ $('<button id="clear-btn" class="btn btn-default btn-sm">Clear</button>')
 //* The following code is obtained from https://github.com/zimny-lech/CyTube-Plus with slight modification and thus is licensed under the MIT License
 //* https://github.com/zimny-lech/CyTube-Plus/blob/master/LICENSE
 var autocompleteArr = [];
-$('<div class="emotewrap" id="emotewrap">').appendTo($("#rightcontent"));
+
+if (!localStorage.epFlTop || !localStorage.epFlLeft) {
+    localStorage.epFlTop = 100;
+    localStorage.epFlLeft = -15;
+}
+
+//FIXME: Instead of checking this every 10 seconds, check it after every stop drag instance in the dragelement function
+setInterval(function() {
+    var emotewrapstyletop = document.querySelector('#emotewrap').style.top.substring(0, document.querySelector('#emotewrap').style.top.length - 2);
+    var emotewrapstyleleft = document.querySelector('#emotewrap').style.left.substring(0, document.querySelector('#emotewrap').style.left.length - 2);
+    //FIXME: query browser window height and width for more accurate out of bounds measurements
+    if (emotewrapstyletop < -265 || emotewrapstyletop > 865 || emotewrapstyleleft < -1910 || emotewrapstyleleft > 380) {
+        document.querySelector('#emotewrap').style.top = '100px';
+        document.querySelector('#emotewrap').style.left = '-15px';
+        localStorage.epFlTop = 100;
+        localStorage.epFlLeft = -15;
+    } else {
+        localStorage.epFlTop = emotewrapstyletop;
+        localStorage.epFlLeft = emotewrapstyleleft;
+    }
+}, 10000);
+
+$('<div class="emotewrap" id="emotewrap" style="top: ' + localStorage.epFlTop + 'px; left: ' + localStorage.epFlLeft + 'px;">').appendTo($("#rightcontent"));
+
 if (!localStorage.epposition) {
     localStorage.epposition = 1;
     emotespanel = $('<div id="emotespanel" class="ep__fixed" style="display:none" />').insertAfter('#userlist');
+}
+
+if (!localStorage.epIsOpen) {
+    localStorage.epIsOpen = 0;
 }
 
 if (localStorage.epposition == 0) {
     emotespanel = $('<div id="emotespanel" class="ep__floating" style="display:none" />').appendTo($("#emotewrap"));
 } else {
     emotespanel = $('<div id="emotespanel" class="ep__fixed" style="display:none" />').insertAfter('#userlist');
+}
+
+if (localStorage.epIsOpen == 1) {
+    toggleDiv(emotespanel);
 }
 
 function toggleDiv(div) {
@@ -230,6 +261,7 @@ emotesbtn = $('<button id="emotes-btn" class="btn btn-sm btn-default" title="Dis
     .prependTo("#leftcontrols")
     .on("click", function() {
         toggleDiv(emotespanel);
+        localStorage.epIsOpen == 0 ? localStorage.epIsOpen = 1 : localStorage.epIsOpen = 0;
     });
 //* END OF MIT LICENSED CODE
 

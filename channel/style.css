@@ -583,6 +583,7 @@ textarea.form-control {
     left: -4%;
 }
 
+/* FIXME: Make the floating emote panel look better on mobile. */
 .ep__floating {
     position: fixed;
     z-index: 1020;
