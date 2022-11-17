@@ -336,6 +336,7 @@ function autocomplete(inp, arr) {
         $("#autocomplete-list").insertBefore(document.querySelectorAll('form')[1]);
 
         var matched = document.getElementById("chatline").value.match(/(?<!\S)\/\S*$/gim).toString();
+        var matchedNoSlash = matched.substring(1, matched.length);
         currentInputVal = document.getElementById("chatline").value;
 
         for (i = 0; i < arr.length; i++) {
@@ -344,6 +345,19 @@ function autocomplete(inp, arr) {
                 b = document.createElement("DIV");
                 b.innerHTML = "<strong>" + arr[i].substr(0, matched.length) + "</strong>";
                 b.innerHTML += arr[i].substr(matched.length);
+                b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                b.innerHTML += "<img id='autocomplete-image' src='" + CHANNEL.emotes[i].image + "'>";
+                b.addEventListener("click", function(e) {
+                    $("#chatline").val($("#chatline").val().substring(0, $("#chatline").val().length - $("#chatline").val().match(/(?<!\S)\/\S*$/gim).toString().length) + this.getElementsByTagName("input")[0].value);
+                    closeAllLists();
+                });
+                a.appendChild(b);
+            } else if (arr[i].match(new RegExp(matchedNoSlash, 'gi')) != null) {
+                new RegExp(matchedNoSlash, 'gi').test(arr[i]);
+                b = document.createElement("DIV");
+                b.innerHTML = RegExp.leftContext;
+                b.innerHTML += "<strong>" + RegExp.lastMatch + "</strong>";
+                b.innerHTML += RegExp.rightContext;
                 b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
                 b.innerHTML += "<img id='autocomplete-image' src='" + CHANNEL.emotes[i].image + "'>";
                 b.addEventListener("click", function(e) {
