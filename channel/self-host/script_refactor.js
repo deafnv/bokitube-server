@@ -184,21 +184,6 @@ if (!localStorage.epFlTop || !localStorage.epFlLeft) {
     localStorage.epFlLeft = -15;
 }
 
-//FIXME: Instead of checking this every 10 seconds, check it after every stop drag instance in the dragelement function
-setInterval(function() {
-    var emotewrapstyletop = document.querySelector('#emotewrap').style.top.substring(0, document.querySelector('#emotewrap').style.top.length - 2);
-    var emotewrapstyleleft = document.querySelector('#emotewrap').style.left.substring(0, document.querySelector('#emotewrap').style.left.length - 2);
-    //FIXME: query browser window height and width for more accurate out of bounds measurements
-    if (emotewrapstyletop < -265 || emotewrapstyletop > 865 || emotewrapstyleleft < -1910 || emotewrapstyleleft > 380) {
-        document.querySelector('#emotewrap').style.top = '100px';
-        document.querySelector('#emotewrap').style.left = '-15px';
-        localStorage.epFlTop = 100;
-        localStorage.epFlLeft = -15;
-    } else {
-        localStorage.epFlTop = emotewrapstyletop;
-        localStorage.epFlLeft = emotewrapstyleleft;
-    }
-}, 10000);
 
 $('<div class="emotewrap" id="emotewrap" style="top: ' + localStorage.epFlTop + 'px; left: ' + localStorage.epFlLeft + 'px;">').appendTo($("#rightcontent"));
 
@@ -273,6 +258,10 @@ function switchEp() {
         panel.setAttribute("class", "ep__floating");
         $("#emotespanel").appendTo($("#emotewrap"));
         localStorage.epposition = 0;
+        document.querySelector('#emotewrap').style.top = '100px';
+        document.querySelector('#emotewrap').style.left = '-15px';
+        localStorage.epFlTop = 100;
+        localStorage.epFlLeft = -15;
     } else {
         panel.setAttribute("class", "ep__fixed");
         $("#emotespanel").insertAfter('#userlist');
@@ -323,6 +312,8 @@ function dragElement(elmnt) {
     // stop moving when mouse button is released:
     document.onmouseup = null;
     document.onmousemove = null;
+    localStorage.epFlTop = document.querySelector('#emotewrap').style.top.substring(0, document.querySelector('#emotewrap').style.top.length - 2);
+    localStorage.epFlLeft = document.querySelector('#emotewrap').style.left.substring(0, document.querySelector('#emotewrap').style.left.length - 2);
     }
 }
 

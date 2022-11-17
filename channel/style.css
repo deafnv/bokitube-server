@@ -477,8 +477,15 @@ div.embed-responsive * {
 
     #emotewrap {
         position: fixed;
-        top: calc(135vw / 16 * 9);
-        left: 5vw;
+        top: calc(139vw / 16 * 9) !important;
+        left: -4vw !important;
+    }
+
+    #emotespanel {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        z-index: 999;
     }
 
     #chatwrap {
