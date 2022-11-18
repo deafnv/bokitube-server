@@ -232,8 +232,11 @@ function emotesPanel() {
                     'title': CHANNEL.emotes[i].name
                 })
                 .appendTo(emotespanel);
-            autocompleteArr.push(CHANNEL.emotes[i].name);
+            autocompleteArr.push({"name":CHANNEL.emotes[i].name, "image": CHANNEL.emotes[i].image});
         }
+        autocompleteArr.sort((a, b) => a.name.localeCompare(b.name));
+        // Disable autocomplete on mobile, performance is really bad right now, with or without
+        if (!window.matchMedia("(max-width: 768px)").matches) {autocomplete(document.getElementById("chatline"), autocompleteArr);}
     }
 }
 emotesPanel();
@@ -340,29 +343,29 @@ function autocomplete(inp, arr) {
         currentInputVal = document.getElementById("chatline").value;
 
         for (i = 0; i < arr.length; i++) {
-            if (arr[i].substr(0, matched.length).toUpperCase() == matched.toUpperCase()) {
+            if (arr[i].name.substr(0, matched.length).toUpperCase() == matched.toUpperCase()) {
                 matchedlength = matched.length;
                 b = document.createElement("DIV");
-                b.innerHTML = "<strong>" + arr[i].substr(0, matched.length) + "</strong>";
-                b.innerHTML += arr[i].substr(matched.length);
-                b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-                b.innerHTML += "<img id='autocomplete-image' src='" + CHANNEL.emotes[i].image + "'>";
+                b.innerHTML = "<strong>" + arr[i].name.substr(0, matched.length) + "</strong>";
+                b.innerHTML += arr[i].name.substr(matched.length);
+                b.innerHTML += "<input type='hidden' value='" + arr[i].name + "'>";
+                b.innerHTML += "<img id='autocomplete-image' src='" + arr[i].image + "'>";
                 b.addEventListener("click", function(e) {
                     $("#chatline").val($("#chatline").val().substring(0, $("#chatline").val().length - $("#chatline").val().match(/(?<!\S)\/\S*$/gim).toString().length) + this.getElementsByTagName("input")[0].value);
                     closeAllLists();
                 });
                 a.appendChild(b);
-            } else if (arr[i].match(new RegExp(matchedNoSlash, 'gi')) != null) {
+            } else if (arr[i].name.match(new RegExp(matchedNoSlash, 'gi')) != null) {
                 var searchRegex = new RegExp(matchedNoSlash, 'gi');
-                var matchInArr = arr[i].match(searchRegex)[0];
-                var indexInArr = arr[i].search(searchRegex);
+                var matchInArr = arr[i].name.match(searchRegex)[0];
+                var indexInArr = arr[i].name.search(searchRegex);
                 b = document.createElement("DIV");
                 b.innerHTML = "<strong>/</strong>";
-                b.innerHTML += arr[i].substring(1, indexInArr);
+                b.innerHTML += arr[i].name.substring(1, indexInArr);
                 b.innerHTML += "<strong>" + matchInArr + "</strong>";
-                b.innerHTML += arr[i].substring((indexInArr + matchInArr.length), arr[i].length);
-                b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-                b.innerHTML += "<img id='autocomplete-image' src='" + CHANNEL.emotes[i].image + "'>";
+                b.innerHTML += arr[i].name.substring((indexInArr + matchInArr.length), arr[i].name.length);
+                b.innerHTML += "<input type='hidden' value='" + arr[i].name + "'>";
+                b.innerHTML += "<img id='autocomplete-image' src='" + arr[i].image + "'>";
                 b.addEventListener("click", function(e) {
                     $("#chatline").val($("#chatline").val().substring(0, $("#chatline").val().length - $("#chatline").val().match(/(?<!\S)\/\S*$/gim).toString().length) + this.getElementsByTagName("input")[0].value);
                     closeAllLists();
@@ -423,6 +426,3 @@ function autocomplete(inp, arr) {
         closeAllLists(e.target);
     });
 }
-
-// Disable autocomplete on mobile, performance is really bad right now, with or without
-if (!window.matchMedia("(max-width: 768px)").matches) {autocomplete(document.getElementById("chatline"), autocompleteArr);}
