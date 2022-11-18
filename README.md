@@ -2,7 +2,7 @@
 
 ![Preview](https://raw.githubusercontent.com/deafnv/bokitube-server/master/images/ss.png)
 
-[Live demo](https://cytubegce.ddns.net)
+[Live demo](https://ilovesabrina.org/r/testchannel)
 
 ## Description
 

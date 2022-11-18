@@ -353,11 +353,14 @@ function autocomplete(inp, arr) {
                 });
                 a.appendChild(b);
             } else if (arr[i].match(new RegExp(matchedNoSlash, 'gi')) != null) {
-                new RegExp(matchedNoSlash, 'gi').test(arr[i]);
+                var searchRegex = new RegExp(matchedNoSlash, 'gi');
+                var matchInArr = arr[i].match(searchRegex)[0];
+                var indexInArr = arr[i].search(searchRegex);
                 b = document.createElement("DIV");
-                b.innerHTML = RegExp.leftContext;
-                b.innerHTML += "<strong>" + RegExp.lastMatch + "</strong>";
-                b.innerHTML += RegExp.rightContext;
+                b.innerHTML = "<strong>/</strong>";
+                b.innerHTML += arr[i].substring(1, indexInArr);
+                b.innerHTML += "<strong>" + matchInArr + "</strong>";
+                b.innerHTML += arr[i].substring((indexInArr + matchInArr.length), arr[i].length);
                 b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
                 b.innerHTML += "<img id='autocomplete-image' src='" + CHANNEL.emotes[i].image + "'>";
                 b.addEventListener("click", function(e) {
