@@ -240,6 +240,12 @@ function insertText(str) {
     $("#chatline").val($("#chatline").val() + str).focus();
 }
 
+let observer = new IntersectionObserver(observerCallback);
+
+function observerCallback() {
+    toggleDiv('#queue');
+}
+
 function emotesPanel() {
     emotespanel.removeClass('row');
     document.querySelector('#emotespanel').replaceChildren();
@@ -263,7 +269,11 @@ function emotesPanel() {
         }
         autocompleteArr.sort((a, b) => a.name.localeCompare(b.name));
         // Disable autocomplete on mobile, performance is really bad right now, with or without
-        if (!window.matchMedia("(max-width: 768px)").matches) {autocomplete(document.getElementById("chatline"), autocompleteArr);}
+        if (!window.matchMedia("(max-width: 768px)").matches) {
+            autocomplete(document.getElementById("chatline"), autocompleteArr);
+        } else {
+            observer.observe(document.querySelector('#rightpane-inner').children[5]);
+        }
     }
 }
 emotesPanel();
