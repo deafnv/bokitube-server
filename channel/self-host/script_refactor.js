@@ -173,35 +173,31 @@ $('<button id="clear-btn" class="btn btn-default btn-sm">Clear</button>')
         });
     });
 
-/* Custom emotes panel */
-
-//* The following code is obtained from https://github.com/zimny-lech/CyTube-Plus with slight modification and thus is licensed under the MIT License
-//* https://github.com/zimny-lech/CyTube-Plus/blob/master/LICENSE
-var autocompleteArr = [];
-
+/* Initialize default values for floating emotes panel positioning for new users */
 if (!localStorage.epFlTop || !localStorage.epFlLeft) {
     localStorage.epFlTop = 100;
     localStorage.epFlLeft = -15;
 }
 
-
 $('<div class="emotewrap" id="emotewrap" style="top: ' + localStorage.epFlTop + 'px; left: ' + localStorage.epFlLeft + 'px;">').appendTo($("#rightcontent"));
 
+/* Initialize default values for emotes panel positioning for new users */
 if (!localStorage.epposition) {
     localStorage.epposition = 1;
     emotespanel = $('<div id="emotespanel" class="ep__fixed" style="display:none" />').insertAfter('#userlist');
 }
 
-if (!localStorage.epIsOpen) {
-    localStorage.epIsOpen = 0;
-}
-
+/* Set emotes panel to floating or fixed depending on last session */
 if (localStorage.epposition == 0) {
     emotespanel = $('<div id="emotespanel" class="ep__floating" style="display:none" />').appendTo($("#emotewrap"));
 } else {
     emotespanel = $('<div id="emotespanel" class="ep__fixed" style="display:none" />').insertAfter('#userlist');
 }
 
+/* Initialize default values for emotes panel state for new users */
+if (!localStorage.epIsOpen) {
+    localStorage.epIsOpen = 0;
+}
 if (localStorage.epIsOpen == 1) {
     toggleDiv(emotespanel);
 }
@@ -210,15 +206,17 @@ function toggleDiv(div) {
     $(div).css('display') == "none" ? $(div).show() : $(div).hide();
 }
 function insertText(str) {
-    $("#chatline").val($("#chatline").val() + str).focus();
+    $("#chatline").val($("#chatline").val() + str).focus(); // TODO: remove this utility function so that the chatline doesn't get focused on emote press on mobile
 }
 
+/* Initialize intersection observer to improve performance - see https://github.com/deafnv/bokitube-server/commit/1d81d089762a7cb421d252dba385cd706ede4960 */
 let observer = new IntersectionObserver(observerCallback);
-
 function observerCallback() {
     toggleDiv('#queue');
 }
 
+/* Custom emotes panel */
+var autocompleteArr = [];
 function emotesPanel() {
     emotespanel.removeClass('row');
     document.querySelector('#emotespanel').replaceChildren();
@@ -241,10 +239,11 @@ function emotesPanel() {
             autocompleteArr.push({"name":CHANNEL.emotes[i].name, "image": CHANNEL.emotes[i].image});
         }
         autocompleteArr.sort((a, b) => a.name.localeCompare(b.name));
-        // Disable autocomplete on mobile, performance is really bad right now, with or without
+        // Disable autocomplete on mobile - legacy, enable if needed, although mobile has less vertical space as is
         if (!window.matchMedia("(max-width: 768px)").matches) {
             autocomplete(document.getElementById("chatline"), autocompleteArr);
         } else {
+            // See line 212 for details
             observer.observe(document.querySelector('#rightpane-inner').children[5]);
         }
     }
@@ -261,8 +260,8 @@ emotesbtn = $('<button id="emotes-btn" class="btn btn-sm btn-default" title="Dis
         toggleDiv(emotespanel);
         localStorage.epIsOpen == 0 ? localStorage.epIsOpen = 1 : localStorage.epIsOpen = 0;
     });
-//* END OF MIT LICENSED CODE
 
+/* Switch emotes panel - fixed or floating */
 $('<li><a onclick="switchEp()" style="cursor: pointer;">Switch EP</a></li>').appendTo(".navbar-nav")
 
 function switchEp() {
@@ -330,6 +329,7 @@ function dragElement(elmnt) {
     }
 }
 
+/* Autocomplete function for emotes */
 function autocomplete(inp, arr) {
     var currentFocus;
     var currentInputVal = '';
@@ -348,12 +348,14 @@ function autocomplete(inp, arr) {
         this.parentNode.appendChild(a);
         $("#autocomplete-list").insertBefore(document.querySelectorAll('form')[1]);
 
+        // FIXME: Regex lookbehinds aren't supported on Safari, might have to find alternative
+        // Regex searches for / character preceded by a space, matching all succeeding characters unless it is a whitespace.
         var matched = document.getElementById("chatline").value.match(/(?<!\S)\/\S*$/gim).toString();
         var matchedNoSlash = matched.substring(1, matched.length);
         currentInputVal = document.getElementById("chatline").value;
 
         for (i = 0; i < arr.length; i++) {
-            if (arr[i].name.substr(0, matched.length).toUpperCase() == matched.toUpperCase()) {
+            if (arr[i].name.substr(0, matched.length).toUpperCase() == matched.toUpperCase()) { // Handle direct match
                 matchedlength = matched.length;
                 b = document.createElement("DIV");
                 b.innerHTML = "<strong>" + arr[i].name.substr(0, matched.length) + "</strong>";
@@ -365,7 +367,7 @@ function autocomplete(inp, arr) {
                     closeAllLists();
                 });
                 a.appendChild(b);
-            } else if (arr[i].name.substring(1, arr[i].name.length).indexOf(matchedNoSlash) > -1) {
+            } else if (arr[i].name.substring(1, arr[i].name.length).indexOf(matchedNoSlash) > -1) { // Handle match in string
                 var indexInArr = arr[i].name.indexOf(matchedNoSlash);
                 b = document.createElement("DIV");
                 b.innerHTML = "<strong>/</strong>";
