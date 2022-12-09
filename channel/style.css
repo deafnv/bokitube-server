@@ -80,10 +80,10 @@
 }
 
 .fluid > .profile-box {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%,-50%) !important;
     z-index: 1020;
 }
 
@@ -354,6 +354,16 @@ div.embed-responsive * {
 .channel-emote {
     max-width: 80px;
     max-height: 80px;
+}
+
+.emote-big {
+    max-width: 120px;
+    max-height: 120px;
+}
+
+.emote-big > img {
+    max-width: -webkit-fill-available;
+    max-height: -webkit-fill-available;
 }
 
 .nick-highlight {
