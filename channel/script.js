@@ -130,21 +130,25 @@ setInterval(function() {
     }
 }, 500);
 
-setInterval(function() {
-    if (document.hasFocus() && FOCUS_AFK && VOL_AFK) {
-        socket.emit("chatMsg", {
-            msg: '/afk'
-        });
-        FOCUS_AFK = !FOCUS_AFK;
-        VOL_AFK = !VOL_AFK;
-    } else if (!document.hasFocus() && !FOCUS_AFK && !VOL_AFK) {
+window.addEventListener("focus", () => {
+    if (FOCUS_AFK && VOL_AFK) {
         socket.emit("chatMsg", {
             msg: '/afk'
         });
         FOCUS_AFK = !FOCUS_AFK;
         VOL_AFK = !VOL_AFK;
     }
-}, 500);
+});
+
+window.addEventListener("blur", () => {
+    if (!FOCUS_AFK && !VOL_AFK) {
+        socket.emit("chatMsg", {
+            msg: '/afk'
+        });
+        FOCUS_AFK = !FOCUS_AFK;
+        VOL_AFK = !VOL_AFK;
+    }
+});
 
 /* Adds favicon and externally hosted fonts from Google Fonts */
 $(document).ready(function() {
