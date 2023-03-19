@@ -501,6 +501,7 @@ socket.on("chatMsg", (message) => {
                 } else {
                     $('div#messagebuffer').children().last().find('span.timestamp').after(`<div onclick="scrollToReply('${replyIdScroll}')" class="reply"><span class="reply-header"></span><span class="reply-msg"></span></div>`)
                 }
+                $('span.reply-header').last().html(`Replying to ${replyingTo[0].username}:`)
                 $('span.reply-msg').last().html(replyingTo[0].message.replace(/\[r\](.+?)\[\/r\]/, '').trim())
                 $('div#messagebuffer').children().last().children().last().html(message.msg.replace(/\[r\](.+?)\[\/r\]/, '').trim())
             }, LOAD_IN_DELAY)
