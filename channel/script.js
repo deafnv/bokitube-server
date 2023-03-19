@@ -499,8 +499,8 @@ socket.on("chatMsg", (message) => {
                 } else {
                     $('div#messagebuffer').children().last().find('span.timestamp').after(`<div onclick="scrollToReply('${replyIdScroll}')" class="reply"><span class="reply-msg"></span></div>`)
                 }
-                $('span.reply-msg').last().text(replyingTo[0].message.replace(/\[r\](.+?)\[\/r\]/, '').trim())
-                $('div#messagebuffer').children().last().children().last().html(processReplyMessage(message.msg))
+                $('span.reply-msg').last().html(replyingTo[0].message.replace(/\[r\](.+?)\[\/r\]/, '').trim())
+                $('div#messagebuffer').children().last().children().last().html(message.msg.replace(/\[r\](.+?)\[\/r\]/, '').trim())
             }, LOAD_IN_DELAY)
             
             console.log(processReplyMessage(message.msg))
@@ -554,12 +554,12 @@ document.addEventListener("contextmenu", (e) => {
             pseudoId = `${username}_${sanitizeMessageForPseudoID(message)}_${$(target).siblings('.timestamp').text().split(':').join('').replaceAll(/\[|\]/g, '').trim()}` //Message Pseudo ID
         } else if (target.className.includes('timestamp')) {
             //Clicked on timestamp
-            message = $(target).siblings().length > 1 ? $(target).siblings().last().text() : $(target).siblings().text()
+            message = $(target).siblings().length > 1 ? $(target).siblings().last().html() : $(target).siblings().html()
             username = target.parentNode.className.split('-')[2].split(' ')[0]
             pseudoId = `${username}_${sanitizeMessageForPseudoID(message)}_${target.innerHTML.split(':').join('').replaceAll(/\[|\]/g, '').trim()}`
         } else {
             //Clicked on message text parent
-            message = $(target).find('span:not(.timestamp)').length > 1 ? $(target).find('span:not(.timestamp)').last().text() : $(target).find('span:not(.timestamp)').text()
+            message = $(target).find('span:not(.timestamp)').length > 1 ? $(target).find('span:not(.timestamp)').last().html() : $(target).find('span:not(.timestamp)').html()
             username = target.className.split('-')[2].split(' ')[0]
             pseudoId = `${username}_${sanitizeMessageForPseudoID(message)}_${$(target).find('span.timestamp').text().split(':').join('').replaceAll(/\[|\]/g, '').trim()}`
         }
@@ -570,7 +570,9 @@ document.addEventListener("contextmenu", (e) => {
     }
 })
 
-function sanitizeMessageForPseudoID(message1) {
+function sanitizeMessageForPseudoID(message1) { 
+    //This will generate generic <img for this portion of the id if the message begins with an emote
+    //Could be fixed if the emote name is used, or a more robust id is used
     return message1.match(/(?:.*?\[\/r\]\s+)(.+)/) 
         ? message1.match(/(?:.*?\[\/r\]\s+)(.+)/)[1].split(' ')[0]
         : message1.split(' ')[0]
@@ -580,19 +582,10 @@ function getAllMessages() {
     let messages = []
     $('div#messagebuffer').children().each((i, element) => {
         if (!$(element).attr('class')?.includes('chat-msg-') || $(element).attr('class')?.includes('server')) return
-        const message = $(element).find('span:not(.timestamp)').length > 1 ? $(element).find('span:not(.timestamp)').last().text() : $(element).find('span:not(.timestamp)').text()
+        const message = $(element).find('span:not(.timestamp)').length > 1 ? $(element).find('span:not(.timestamp)').last().html() : $(element).find('span:not(.timestamp)').html()
         const username = $(element).attr('class').split('-')[2].split(' ')[0]
         messages.push({
-            pseudoId: `${username}_${sanitizeMessageForPseudoID(message).replace(/[<>"'&]/g, (match) => {
-                switch (match) {
-                  case '<': return '&lt;';
-                  case '>': return '&gt;';
-                  case '"': return '&quot;';
-                  case "'": return '&#39;';
-                  case '&': return '&amp;';
-                  default: return match;
-                }
-              })}_${$(element).find('span.timestamp').text().split(':').join('').replaceAll(/\[|\]/g, '').trim()}`,
+            pseudoId: `${username}_${sanitizeMessageForPseudoID(message)}_${$(element).find('span.timestamp').text().split(':').join('').replaceAll(/\[|\]/g, '').trim()}`,
             message,
             username,
             element
@@ -615,7 +608,7 @@ $(document).ready(() => {
     const messages = getAllMessages()
     $('div#messagebuffer').children().each((i, element) => {
         if (!$(element).attr('class')?.includes('chat-msg-') || $(element).attr('class')?.includes('server')) return
-        const message = $(element).find('span:not(.timestamp)').length > 1 ? $(element).find('span:not(.timestamp)').last().text() : $(element).find('span:not(.timestamp)').text()
+        const message = $(element).find('span:not(.timestamp)').length > 1 ? $(element).find('span:not(.timestamp)').last().html() : $(element).find('span:not(.timestamp)').html()
         if (/\[r\](.+?)\[\/r\]/g.exec(message)) {
             const replyId = message.replace(/.*\[r\](.*?)\[\/r\].*/, '$1').replace(/&lt;/g, '<')
                 .replace(/&gt;/g, '>')
@@ -637,13 +630,14 @@ $(document).ready(() => {
             if (!replyingTo[0]?.message) { //If chat is cleared and no message found, not working
                 $(element).children().last().html(processReplyMessage(message))
             } else {
+                console.log(processReplyMessage(replyingTo[0].message))
                 if ($(element).find('.username').length != 0) {
                     $(element).find('span.timestamp').next().after(`<div onclick="scrollToReply('${replyIdScroll}')" class="reply"><span class="reply-msg"></span></div>`)
                 } else {    
                     $(element).find('span.timestamp').after(`<div onclick="scrollToReply('${replyIdScroll}')" class="reply"><span class="reply-msg"></span></div>`)
                 }
-                $(element).find('span.reply-msg').text(replyingTo[0].message.replace(/\[r\](.+?)\[\/r\]/, '').trim())
-                $(element).children().last().html(processReplyMessage(message))
+                $(element).find('span.reply-msg').html(replyingTo[0].message.replace(/\[r\](.+?)\[\/r\]/, '').trim())
+                $(element).children().last().html(message.replace(/\[r\](.+?)\[\/r\]/, '').trim())
                 
                 setTimeout(() => $('#messagebuffer').animate({scrollTop: $('#messagebuffer').height() + 100000}, 'fast'), LOAD_IN_DELAY * 2)
             }
