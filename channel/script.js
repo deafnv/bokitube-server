@@ -484,8 +484,6 @@ socket.on("chatMsg", (message) => {
               default: return match;
             }
         })
-        console.log(messages)
-        console.log(replyId)
         
         if (!replyingTo[0]?.message) { //If chat is cleared and no message found, not working
             setTimeout(() => {
@@ -506,7 +504,6 @@ socket.on("chatMsg", (message) => {
                 $('div#messagebuffer').children().last().children().last().html(message.msg.replace(/\[r\](.+?)\[\/r\]/, '').trim())
             }, LOAD_IN_DELAY)
             
-            console.log(processReplyMessage(message.msg))
             setTimeout(() => $('#messagebuffer').animate({scrollTop: $('#messagebuffer').height() + 100000}, 'fast'), LOAD_IN_DELAY * 2)
         }
 
@@ -570,8 +567,6 @@ document.addEventListener("contextmenu", (e) => {
             pseudoId = `${username}_${sanitizeMessageForPseudoID(message)}_${$(target).find('span.timestamp').text().split(':').join('').replaceAll(/\[|\]/g, '').trim()}`
         }
 
-        console.log(message, username, pseudoId)
-
         $('#chatline').val(`[r]${pseudoId.trim()}[/r] `).focus()
     }
 })
@@ -580,8 +575,8 @@ function sanitizeMessageForPseudoID(message1) {
     //This will generate generic <img for this portion of the id if the message begins with an emote
     //Could be fixed if the emote name is used, or a more robust id is used
     return message1.match(/(?:.*?\[\/r\]\s+)(.+)/) 
-        ? message1.match(/(?:.*?\[\/r\]\s+)(.+)/)[1].split(' ')[0]
-        : message1.split(' ')[0]
+        ? message1.match(/(?:.*?\[\/r\]\s+)(.+)/)[1].split(' ')[0].substring(0, 12)
+        : message1.split(' ')[0].substring(0, 12)
 }
 
 function getAllMessages() {
@@ -644,7 +639,7 @@ $(document).ready(() => {
                 } else {    
                     $(element).find('span.timestamp').after(`<div onclick="scrollToReply('${replyIdScroll}')" class="reply"><span class="reply-header"></span><span class="reply-msg"></span></div>`)
                 }
-                console.log(replyingTo[0].username)
+                
                 $(element).find('span.reply-header').html(`Replying to ${replyingTo[0].username}:`)
                 $(element).find('span.reply-msg').html(replyingTo[0].message.replace(/\[r\](.+?)\[\/r\]/, '').trim())
                 $(element).children().last().html(message.replace(/\[r\](.+?)\[\/r\]/, '').trim())

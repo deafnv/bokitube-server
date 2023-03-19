@@ -545,8 +545,6 @@ document.addEventListener("contextmenu", (e) => {
             pseudoId = `${username}_${sanitizeMessageForPseudoID(message)}_${$(target).find('span.timestamp').text().split(':').join('').replaceAll(/\[|\]/g, '').trim()}`
         }
 
-        console.log(message, username, pseudoId)
-
         $('#chatline').val(`[r]${pseudoId.trim()}[/r] `).focus()
     }
 })
@@ -555,8 +553,8 @@ function sanitizeMessageForPseudoID(message1) {
     //This will generate generic <img for this portion of the id if the message begins with an emote
     //Could be fixed if the emote name is used, or a more robust id is used
     return message1.match(/(?:.*?\[\/r\]\s+)(.+)/) 
-        ? message1.match(/(?:.*?\[\/r\]\s+)(.+)/)[1].split(' ')[0]
-        : message1.split(' ')[0]
+        ? message1.match(/(?:.*?\[\/r\]\s+)(.+)/)[1].split(' ')[0].substring(0, 12)
+        : message1.split(' ')[0].substring(0, 12)
 }
 
 function getAllMessages() {
@@ -631,5 +629,5 @@ $(document).ready(() => {
             }
         }
     })
-    }, 2000)
+    }, 2500)
 })
