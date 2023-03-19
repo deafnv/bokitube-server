@@ -463,8 +463,8 @@ function autocomplete(inp, arr) {
     });
 }
 
+/* Reply feature */
 const LOAD_IN_DELAY = 10 //Delay to allow message to come in before modifying it
-
 socket.on("chatMsg", (message) => {
     if (/\[r\](.+?)\[\/r\]/g.exec(message.msg)) { //TODO: Check into matching message content with this matched reply format message to mitigate quick successive messages
         const replyId = message.msg.replace(/.*\[r\](.*?)\[\/r\].*/, '$1').replace(/&lt;/g, '<')
@@ -610,3 +610,43 @@ function getSelectionText() {
     }
     return text;
 }
+
+$(document).ready(() => {
+    const messages = getAllMessages()
+    $('div#messagebuffer').children().each((i, element) => {
+        if (!$(element).attr('class')?.includes('chat-msg-') || $(element).attr('class')?.includes('server')) return
+        const message = $(element).find('span:not(.timestamp)').length > 1 ? $(element).find('span:not(.timestamp)').last().text() : $(element).find('span:not(.timestamp)').text()
+        if (/\[r\](.+?)\[\/r\]/g.exec(message)) {
+            const replyId = message.replace(/.*\[r\](.*?)\[\/r\].*/, '$1').replace(/&lt;/g, '<')
+                .replace(/&gt;/g, '>')
+                .replace(/&quot;/g, '"')
+                .replace(/&#39;/g, "'")
+                .replace(/&amp;/g, '&') //Bandage fix for chat sanitizer
+            const replyingTo = messages.filter((item) => item.pseudoId == replyId)
+            const replyIdScroll = replyId.replace(/[<>"'&]/g, (match) => {
+                switch (match) {
+                    case '<': return '&lt;';
+                    case '>': return '&gt;';
+                    case '"': return '&quot;';
+                    case "'": return '&#39;';
+                    case '&': return '&amp;';
+                    default: return match;
+                }
+            })
+
+            if (!replyingTo[0]?.message) { //If chat is cleared and no message found, not working
+                $(element).children().last().html(processReplyMessage(message))
+            } else {
+                if ($(element).find('.username').length != 0) {
+                    $(element).find('span.timestamp').next().after(`<div onclick="scrollToReply('${replyIdScroll}')" class="reply"><span class="reply-msg"></span></div>`)
+                } else {    
+                    $(element).find('span.timestamp').after(`<div onclick="scrollToReply('${replyIdScroll}')" class="reply"><span class="reply-msg"></span></div>`)
+                }
+                $(element).find('span.reply-msg').text(replyingTo[0].message.replace(/\[r\](.+?)\[\/r\]/, '').trim())
+                $(element).children().last().html(processReplyMessage(message))
+                
+                setTimeout(() => $('#messagebuffer').animate({scrollTop: $('#messagebuffer').height() + 100000}, 'fast'), LOAD_IN_DELAY * 2)
+            }
+        }
+    })
+})
