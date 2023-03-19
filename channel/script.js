@@ -542,7 +542,10 @@ function getTimeString(unix) {
 
 document.addEventListener("contextmenu", (e) => {
     const target = e.target
-    if ((target.className.includes('chat-msg-') || target.parentNode.className.includes('chat-msg-')) && !target.className.includes('server') && getSelectionText().length == 0) {
+    if (
+        (target.className.includes('chat-msg-') || target.parentNode.className.includes('chat-msg-') || target.parentNode.parentNode.className.includes('chat-msg-')) 
+        && !target.className.includes('server') && !target.className.includes('reply') && getSelectionText().length == 0
+    ) {
         e.preventDefault()
         let message
         let username

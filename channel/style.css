@@ -741,11 +741,15 @@ textarea.form-control {
 
 /* Reply styling */
 .reply {
+    position: relative;
     background-color: var(--tertiarycolor);
     padding: 0.5rem;
+    padding-top: 0;
     margin-bottom: 0.4rem;
     border: gray 1px solid;
-    border-radius: 0.5rem;
+    border-radius: 1rem 1rem 1rem 0;
+    overflow: hidden;
+    max-height: 10rem;
     width: 79%;
     transition-property: background-color;
     transition-timing-function: cubic-bezier(.4,0,.2,1);
@@ -756,6 +760,20 @@ textarea.form-control {
 .reply:hover {
     background-color: var(--secondarycolor);
 }
+
+.reply:hover::after {
+    background-image: unset;
+}
+
+.reply::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1rem;
+    background-image: linear-gradient(to bottom, transparent, var(--tertiarycolor));
+  }
 
 .reply-msg {
     overflow: hidden;
