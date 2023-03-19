@@ -773,7 +773,11 @@ textarea.form-control {
     right: 0;
     height: 1rem;
     background-image: linear-gradient(to bottom, transparent, var(--tertiarycolor));
-  }
+}
+
+.reply-header {
+    font-size: small;
+}
 
 .reply-msg {
     overflow: hidden;
@@ -783,6 +787,7 @@ textarea.form-control {
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    color: white;
 }
 
 #messagebuffer > div {

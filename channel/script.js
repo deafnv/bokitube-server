@@ -494,10 +494,12 @@ socket.on("chatMsg", (message) => {
         } else {
             setTimeout(() => {
                 if ($('div#messagebuffer').children().last().find('.username').length != 0) {
-                    console.log('USERNAME HERE')
-                    $('div#messagebuffer').children().last().find('span.timestamp').next().after(`<div onclick="scrollToReply('${replyIdScroll}')" class="reply"><span class="reply-msg"></span></div>`)
+                    $('div#messagebuffer').children().last()
+                        .find('span.timestamp')
+                        .next()
+                        .after(`<div onclick="scrollToReply('${replyIdScroll}')" class="reply"><span class="reply-header"></span><span class="reply-msg"></span></div>`)
                 } else {
-                    $('div#messagebuffer').children().last().find('span.timestamp').after(`<div onclick="scrollToReply('${replyIdScroll}')" class="reply"><span class="reply-msg"></span></div>`)
+                    $('div#messagebuffer').children().last().find('span.timestamp').after(`<div onclick="scrollToReply('${replyIdScroll}')" class="reply"><span class="reply-header"></span><span class="reply-msg"></span></div>`)
                 }
                 $('span.reply-msg').last().html(replyingTo[0].message.replace(/\[r\](.+?)\[\/r\]/, '').trim())
                 $('div#messagebuffer').children().last().children().last().html(message.msg.replace(/\[r\](.+?)\[\/r\]/, '').trim())
@@ -633,12 +635,16 @@ $(document).ready(() => {
             if (!replyingTo[0]?.message) { //If chat is cleared and no message found, not working
                 $(element).children().last().html(processReplyMessage(message))
             } else {
-                console.log(processReplyMessage(replyingTo[0].message))
                 if ($(element).find('.username').length != 0) {
-                    $(element).find('span.timestamp').next().after(`<div onclick="scrollToReply('${replyIdScroll}')" class="reply"><span class="reply-msg"></span></div>`)
+                    $(element)
+                        .find('span.timestamp')
+                        .next()
+                        .after(`<div onclick="scrollToReply('${replyIdScroll}')" class="reply"><span class="reply-header"></span><span class="reply-msg"></span></div>`)
                 } else {    
-                    $(element).find('span.timestamp').after(`<div onclick="scrollToReply('${replyIdScroll}')" class="reply"><span class="reply-msg"></span></div>`)
+                    $(element).find('span.timestamp').after(`<div onclick="scrollToReply('${replyIdScroll}')" class="reply"><span class="reply-header"></span><span class="reply-msg"></span></div>`)
                 }
+                console.log(replyingTo[0].username)
+                $(element).find('span.reply-header').html(`Replying to ${replyingTo[0].username}:`)
                 $(element).find('span.reply-msg').html(replyingTo[0].message.replace(/\[r\](.+?)\[\/r\]/, '').trim())
                 $(element).children().last().html(message.replace(/\[r\](.+?)\[\/r\]/, '').trim())
                 
