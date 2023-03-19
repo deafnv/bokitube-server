@@ -738,3 +738,36 @@ textarea.form-control {
     background-color: var(--tertiarycolor) !important; 
     color: #ffffff; 
 }
+
+/* Reply styling */
+.reply {
+    background-color: var(--tertiarycolor);
+    padding: 0.5rem;
+    margin-bottom: 0.4rem;
+    border: gray 1px solid;
+    border-radius: 0.5rem;
+    width: 79%;
+    transition-property: background-color;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    transition-duration: 75ms;
+    cursor: pointer;
+}
+
+.reply:hover {
+    background-color: var(--secondarycolor);
+}
+
+.reply-msg {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#messagebuffer > div {
+    border-radius: 0.5rem;
+    padding: 0.2rem;
+}
