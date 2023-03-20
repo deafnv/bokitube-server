@@ -341,6 +341,10 @@ div.embed-responsive * {
     border-radius: 6px;
 }
 
+.label {
+    display: flex;
+}
+
 .username {
     display: flex;
 }
