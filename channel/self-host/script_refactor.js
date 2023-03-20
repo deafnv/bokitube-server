@@ -503,9 +503,8 @@ function processReplyMessage(text) {
 function scrollToReply(replyPseudoId) {
     const messages = getAllMessages()
     const reply = messages.filter((item) => item.pseudoId == replyPseudoId)
-    const secondaryColor = getComputedStyle(document.documentElement).getPropertyValue('--secondarycolor')
     $(reply[0].element)[0].scrollIntoView({ behavior: 'smooth' })
-    $(reply[0].element).delay(200).animate({backgroundColor: '#696969'}, 300).animate({backgroundColor: secondaryColor}, 300)
+    $(reply[0].element).delay(200).animate({backgroundColor: '#696969'}, 300).animate({backgroundColor: 'transparent'}, 300)
 }
 
 function getTimeString(unix) {
