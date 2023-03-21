@@ -488,10 +488,6 @@ socket.on("chatMsg", (message) => {
             }
         })
 
-        if (message.msg.replace(/\[r\](.+?)\[\/r\]/, '').trim() == '') { //If reply has no content, delete incoming message
-            $(element).remove()
-        }
-        
         if (!replyingTo[0]?.message) { //If chat is cleared and no message found, not working
             setTimeout(() => {
                 $(element).children().last().html(processReplyMessage(message.msg))
@@ -646,10 +642,6 @@ $(document).ready(() => {
                     default: return match;
                 }
             })
-
-            if (message.replace(/\[r\](.+?)\[\/r\]/, '').trim() == '') { //If reply message has no content, delete message
-                $(element).remove()
-            }
 
             if (!replyingTo[0]?.message) { //If chat is cleared and no message found, not working
                 $(element).children().last().html(processReplyMessage(message))
