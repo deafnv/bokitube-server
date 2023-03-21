@@ -376,16 +376,16 @@ function autocomplete(inp, arr) {
 
         // FIXME: Regex lookbehinds aren't supported on Safari, might have to find alternative
         // Regex searches for / character preceded by a space, matching all succeeding characters unless it is a whitespace.
-        var matched = document.getElementById("chatline").value.match(/(?<!\S)\/\S*$/gim).toString();
-        var matchedNoSlash = matched.substring(1, matched.length);
+        var matched = document.getElementById("chatline").value.match(/(?<!\S)\/\S*$/gim)?.toString();
+        var matchedNoSlash = matched?.substring(1, matched.length);
         currentInputVal = document.getElementById("chatline").value;
 
         for (i = 0; i < arr.length; i++) {
-            if (arr[i].name.substr(0, matched.length).toUpperCase() == matched.toUpperCase()) { // Handle direct match
+            if (arr[i].name.substr(0, matched?.length)?.toUpperCase() == matched?.toUpperCase()) { // Handle direct match
                 matchedlength = matched.length;
                 b = document.createElement("DIV");
-                b.innerHTML = "<strong>" + arr[i].name.substr(0, matched.length) + "</strong>";
-                b.innerHTML += arr[i].name.substr(matched.length);
+                b.innerHTML = "<strong>" + arr[i].name.substr(0, matched?.length) + "</strong>";
+                b.innerHTML += arr[i].name.substr(matched?.length);
                 b.innerHTML += "<input type='hidden' value='" + arr[i].name + "'>";
                 b.innerHTML += "<img id='autocomplete-image' src='" + arr[i].image + "'>";
                 b.addEventListener("click", function(e) {
@@ -399,7 +399,7 @@ function autocomplete(inp, arr) {
                 b.innerHTML = "<strong>/</strong>";
                 b.innerHTML += arr[i].name.substring(1, indexInArr);
                 b.innerHTML += "<strong>" + matchedNoSlash + "</strong>";
-                b.innerHTML += arr[i].name.substring((indexInArr + matchedNoSlash.length), arr[i].name.length);
+                b.innerHTML += arr[i].name.substring((indexInArr + matchedNoSlash?.length), arr[i].name.length);
                 b.innerHTML += "<input type='hidden' value='" + arr[i].name + "'>";
                 b.innerHTML += "<img id='autocomplete-image' src='" + arr[i].image + "'>";
                 b.addEventListener("click", function(e) {

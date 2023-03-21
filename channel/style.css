@@ -802,6 +802,7 @@ textarea.form-control {
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    font-size: small;
     color: white;
 }
 
