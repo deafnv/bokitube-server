@@ -327,7 +327,16 @@ div.embed-responsive * {
 }
 
 #messagebuffer > div {
+    position: relative;
+    border-radius: 0.5rem;
+    padding: 0.2rem;
     padding-bottom: 10px;
+    padding-right: 5rem;
+}
+
+#messagebuffer > div:last-child {
+    padding-bottom: 0;
+    margin-bottom: 1.25rem
 }
 
 /* Chat messages styling */
@@ -350,9 +359,11 @@ div.embed-responsive * {
 }
 
 .timestamp {
+    position: absolute;
+    top: 0.6rem;
+    right: 0;
     color: rgb(143, 143, 143);
-    float: right;
-    position: sticky;
+    visibility: visible;
 }
 
 .channel-emote {
@@ -754,7 +765,7 @@ textarea.form-control {
     border-radius: 1rem 1rem 1rem 0;
     overflow: hidden;
     max-height: 10rem;
-    width: 79%;
+    width: 98%;
     transition-property: background-color;
     transition-timing-function: cubic-bezier(.4,0,.2,1);
     transition-duration: 75ms;
@@ -794,7 +805,42 @@ textarea.form-control {
     color: white;
 }
 
-#messagebuffer > div {
-    border-radius: 0.5rem;
-    padding: 0.2rem;
+.reply-button {
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2.5rem;
+    width: 2.5rem;
+    background: transparent;
+    padding: 0;
+    border: none;
+    border-radius: 10000px;
+    transition-property: background-color;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    transition-duration: 75ms;
+}
+
+.reply-button:hover {
+    background-color: var(--tertiarycolor);
+}
+
+#messagebuffer > div:hover .reply-button {
+    visibility: visible;
+}
+
+#messagebuffer > div:not(:has(> .server-whisper)):hover .timestamp {
+    visibility: hidden;
+}
+ 
+.reply-icon {
+    display: block;
+    height: 2.5rem;
+    width: 2.5rem;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCI+PHBhdGggZD0iTTIwIDE4di04TDYgMjRsMTQgMTR2LTguMmMxMCAwIDE3IDMuMiAyMiAxMC4yLTItMTAtOC0yMC0yMi0yMnoiIGZpbGw9IiNjMmMyYzIiLz48cGF0aCBmaWxsPSJub25lIiBkPSJNMCAwaDQ4djQ4SDB6Ii8+PC9zdmc+);
+    background-size: 2.5rem 2.5rem;
+    pointer-events: none;
 }

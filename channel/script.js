@@ -495,6 +495,7 @@ socket.on("chatMsg", (message) => {
                     $('div#messagebuffer').children().last()
                         .find('span.timestamp')
                         .next()
+                        .next()
                         .after(`<div onclick="scrollToReply('${replyIdScroll}')" class="reply"><span class="reply-header"></span><span class="reply-msg"></span></div>`)
                 } else {
                     $('div#messagebuffer').children().last().find('span.timestamp').after(`<div onclick="scrollToReply('${replyIdScroll}')" class="reply"><span class="reply-header"></span><span class="reply-msg"></span></div>`)
@@ -506,8 +507,12 @@ socket.on("chatMsg", (message) => {
             
             setTimeout(() => $('#messagebuffer').animate({scrollTop: $('#messagebuffer').height() + 100000}, 'fast'), LOAD_IN_DELAY * 2)
         }
-
+        // insert reply button at reply messages
+        $('div#messagebuffer').children().last().find('.timestamp').after('<button onclick="replyToButton(event)" title="Reply" class="reply-button"><i class="reply-icon"></i></button>')
         $('span.timestamp').text(getTimeString(messagae.time)) //somehow this fixes the disappearing timestamp issue, this stops the function, might be whats solving the issue
+    } else if (message.username != '[server]') {
+        // insert reply button at any incoming message
+        $('div#messagebuffer').children().last().find('.timestamp').after('<button onclick="replyToButton(event)" title="Reply" class="reply-button"><i class="reply-icon"></i></button>')
     }
 })
 
@@ -604,6 +609,15 @@ function getSelectionText() {
     return text;
 }
 
+function replyToButton(e) {
+    const target = e.target
+    let message = $(target).siblings().length > 1 ? $(target).siblings().last().html() : $(target).siblings().html()
+    let username = target.parentNode.className?.split('-')[2]?.split(' ')[0]
+    let pseudoId = `${username}_${sanitizeMessageForPseudoID(message)}_${$(target).siblings('.timestamp').html().split(':').join('').replaceAll(/\[|\]/g, '').trim()}`
+
+    $('#chatline').val(`[r]${pseudoId.trim()}[/r] `).focus()
+}
+
 $(document).ready(() => {
     const messages = getAllMessages()
     $('div#messagebuffer').children().each((i, element) => {
@@ -645,6 +659,10 @@ $(document).ready(() => {
                 
                 setTimeout(() => $('#messagebuffer').animate({scrollTop: $('#messagebuffer').height() + 100000}, 'fast'), LOAD_IN_DELAY * 2)
             }
+        }
+        //add reply button to all chat messages
+        if ($(element).attr('class')?.includes('chat-msg-')) {
+            $(element).find('.timestamp').after('<button onclick="replyToButton(event)" title="Reply" class="reply-button"><i class="reply-icon"></i></button>')
         }
     })
 })

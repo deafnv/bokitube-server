@@ -473,6 +473,7 @@ function socketReceive(message) {
                     $('div#messagebuffer').children().last()
                         .find('span.timestamp')
                         .next()
+                        .next()
                         .after(`<div onclick="scrollToReply('${replyIdScroll}')" class="reply"><span class="reply-header"></span><span class="reply-msg"></span></div>`)
                 } else {
                     $('div#messagebuffer').children().last().find('span.timestamp').after(`<div onclick="scrollToReply('${replyIdScroll}')" class="reply"><span class="reply-header"></span><span class="reply-msg"></span></div>`)
@@ -484,8 +485,12 @@ function socketReceive(message) {
             
             setTimeout(() => $('#messagebuffer').animate({scrollTop: $('#messagebuffer').height() + 100000}, 'fast'), LOAD_IN_DELAY * 2)
         }
-
+        // insert reply button at reply messages
+        $('div#messagebuffer').children().last().find('.timestamp').after('<button onclick="replyToButton(event)" title="Reply" class="reply-button"><i class="reply-icon"></i></button>')
         $('span.timestamp').text(getTimeString(messagae.time)) //somehow this fixes the disappearing timestamp issue, this stops the function, might be whats solving the issue
+    } else if (message.username != '[server]') {
+        // insert reply button at any incoming message
+        $('div#messagebuffer').children().last().find('.timestamp').after('<button onclick="replyToButton(event)" title="Reply" class="reply-button"><i class="reply-icon"></i></button>')
     }
 }
 
@@ -582,51 +587,64 @@ function getSelectionText() {
     return text;
 }
 
+function replyToButton(e) {
+    const target = e.target
+    let message = $(target).siblings().length > 1 ? $(target).siblings().last().html() : $(target).siblings().html()
+    let username = target.parentNode.className?.split('-')[2]?.split(' ')[0]
+    let pseudoId = `${username}_${sanitizeMessageForPseudoID(message)}_${$(target).siblings('.timestamp').html().split(':').join('').replaceAll(/\[|\]/g, '').trim()}`
+
+    $('#chatline').val(`[r]${pseudoId.trim()}[/r] `).focus()
+}
+
 $(document).ready(() => {
     setTimeout(() => {
         socket.on("chatMsg", (message) => socketReceive(message))
 
         const messages = getAllMessages()
-    $('div#messagebuffer').children().each((i, element) => {
-        if (!$(element).attr('class')?.includes('chat-msg-') || $(element).attr('class')?.includes('server')) return
-        const message = $(element).find('span:not(.timestamp)').length > 1 ? $(element).find('span:not(.timestamp)').last().html() : $(element).find('span:not(.timestamp)').html()
-        if (/\[r\](.+?)\[\/r\]/g.exec(message)) {
-            const replyId = message.replace(/.*\[r\](.*?)\[\/r\].*/, '$1').replace(/&lt;/g, '<')
-                .replace(/&gt;/g, '>')
-                .replace(/&quot;/g, '"')
-                .replace(/&#39;/g, "'")
-                .replace(/&amp;/g, '&') //Bandage fix for chat sanitizer
-            const replyingTo = messages.filter((item) => item.pseudoId == replyId)
-            const replyIdScroll = replyId.replace(/[<>"'&]/g, (match) => {
-                switch (match) {
-                    case '<': return '&lt;';
-                    case '>': return '&gt;';
-                    case '"': return '&quot;';
-                    case "'": return '&#39;';
-                    case '&': return '&amp;';
-                    default: return match;
-                }
-            })
+        $('div#messagebuffer').children().each((i, element) => {
+            if (!$(element).attr('class')?.includes('chat-msg-') || $(element).attr('class')?.includes('server')) return
+            const message = $(element).find('span:not(.timestamp)').length > 1 ? $(element).find('span:not(.timestamp)').last().html() : $(element).find('span:not(.timestamp)').html()
+            if (/\[r\](.+?)\[\/r\]/g.exec(message)) {
+                const replyId = message.replace(/.*\[r\](.*?)\[\/r\].*/, '$1').replace(/&lt;/g, '<')
+                    .replace(/&gt;/g, '>')
+                    .replace(/&quot;/g, '"')
+                    .replace(/&#39;/g, "'")
+                    .replace(/&amp;/g, '&') //Bandage fix for chat sanitizer
+                const replyingTo = messages.filter((item) => item.pseudoId == replyId)
+                const replyIdScroll = replyId.replace(/[<>"'&]/g, (match) => {
+                    switch (match) {
+                        case '<': return '&lt;';
+                        case '>': return '&gt;';
+                        case '"': return '&quot;';
+                        case "'": return '&#39;';
+                        case '&': return '&amp;';
+                        default: return match;
+                    }
+                })
 
-            if (!replyingTo[0]?.message) { //If chat is cleared and no message found, not working
-                $(element).children().last().html(processReplyMessage(message))
-            } else {
-                if ($(element).find('.username').length != 0) {
-                    $(element)
-                        .find('span.timestamp')
-                        .next()
-                        .after(`<div onclick="scrollToReply('${replyIdScroll}')" class="reply"><span class="reply-header"></span><span class="reply-msg"></span></div>`)
-                } else {    
-                    $(element).find('span.timestamp').after(`<div onclick="scrollToReply('${replyIdScroll}')" class="reply"><span class="reply-header"></span><span class="reply-msg"></span></div>`)
+                if (!replyingTo[0]?.message) { //If chat is cleared and no message found, not working
+                    $(element).children().last().html(processReplyMessage(message))
+                } else {
+                    if ($(element).find('.username').length != 0) {
+                        $(element)
+                            .find('span.timestamp')
+                            .next()
+                            .after(`<div onclick="scrollToReply('${replyIdScroll}')" class="reply"><span class="reply-header"></span><span class="reply-msg"></span></div>`)
+                    } else {    
+                        $(element).find('span.timestamp').after(`<div onclick="scrollToReply('${replyIdScroll}')" class="reply"><span class="reply-header"></span><span class="reply-msg"></span></div>`)
+                    }
+                    
+                    $(element).find('span.reply-header').html(`Replying to ${replyingTo[0].username}:`)
+                    $(element).find('span.reply-msg').html(replyingTo[0].message.replace(/\[r\](.+?)\[\/r\]/, '').trim())
+                    $(element).children().last().html(message.replace(/\[r\](.+?)\[\/r\]/, '').trim())
+                    
+                    setTimeout(() => $('#messagebuffer').animate({scrollTop: $('#messagebuffer').height() + 100000}, 'fast'), LOAD_IN_DELAY * 2)
                 }
-                
-                $(element).find('span.reply-header').html(`Replying to ${replyingTo[0].username}:`)
-                $(element).find('span.reply-msg').html(replyingTo[0].message.replace(/\[r\](.+?)\[\/r\]/, '').trim())
-                $(element).children().last().html(message.replace(/\[r\](.+?)\[\/r\]/, '').trim())
-                
-                setTimeout(() => $('#messagebuffer').animate({scrollTop: $('#messagebuffer').height() + 100000}, 'fast'), LOAD_IN_DELAY * 2)
             }
-        }
-    })
+            //add reply button to all chat messages
+            if ($(element).attr('class')?.includes('chat-msg-')) {
+                $(element).find('.timestamp').after('<button onclick="replyToButton(event)" title="Reply" class="reply-button"><i class="reply-icon"></i></button>')
+            }
+        })
     }, 2500)
 })
