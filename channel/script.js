@@ -484,6 +484,10 @@ socket.on("chatMsg", (message) => {
               default: return match;
             }
         })
+
+        if (message.msg.replace(/\[r\](.+?)\[\/r\]/, '').trim() == '') { //If reply has no content, delete incoming message
+            setTimeout(() => $('div#messagebuffer').children().last().remove(), LOAD_IN_DELAY * 10) //! BANDAID FIX - MATCH MESSAGE SOON
+        }
         
         if (!replyingTo[0]?.message) { //If chat is cleared and no message found, not working
             setTimeout(() => {
@@ -640,6 +644,10 @@ $(document).ready(() => {
                     default: return match;
                 }
             })
+
+            if (message.replace(/\[r\](.+?)\[\/r\]/, '').trim() == '') { //If reply message has no content, delete message
+                $(element).remove()
+            }
 
             if (!replyingTo[0]?.message) { //If chat is cleared and no message found, not working
                 $(element).children().last().html(processReplyMessage(message))
