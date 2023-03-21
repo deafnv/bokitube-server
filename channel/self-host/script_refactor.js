@@ -488,7 +488,6 @@ function socketReceive(message) {
         }
         // insert reply button at reply messages
         $(element).find('.timestamp').after('<button onclick="replyToButton(event)" title="Reply" class="reply-button"><i class="reply-icon"></i></button>')
-        $('span.timestamp').text(getTimeString(messagae.time)) //somehow this fixes the disappearing timestamp issue, this stops the function, might be whats solving the issue
     } else if (message.username != '[server]') {
         // insert reply button at any incoming message
         $(element).find('.timestamp').after('<button onclick="replyToButton(event)" title="Reply" class="reply-button"><i class="reply-icon"></i></button>')

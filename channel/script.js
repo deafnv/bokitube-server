@@ -516,7 +516,6 @@ socket.on("chatMsg", (message) => {
         }
         // insert reply button at reply messages
         $(element).find('.timestamp').after('<button onclick="replyToButton(event)" title="Reply" class="reply-button"><i class="reply-icon"></i></button>')
-        $('span.timestamp').text(getTimeString(messagae.time)) //somehow this fixes the disappearing timestamp issue, this stops the function, might be whats solving the issue
     } else if (message.username != '[server]') {
         // insert reply button at any incoming message
         $(element).find('.timestamp').after('<button onclick="replyToButton(event)" title="Reply" class="reply-button"><i class="reply-icon"></i></button>')
@@ -627,7 +626,7 @@ function replyToButton(e) {
 
 $(document).ready(() => {
     const messages = getAllMessages()
-    $('div#messagebuffer').children().each((i, element) => {
+    $('div#messagebuffer').children().each((i, element) => { //TODO: cycle through getAllMessages instead
         if (!$(element).attr('class')?.includes('chat-msg-') || $(element).attr('class')?.includes('server')) return
         const message = $(element).find('span:not(.timestamp)').length > 1 ? $(element).find('span:not(.timestamp)').last().html() : $(element).find('span:not(.timestamp)').html()
         if (/\[r\](.+?)\[\/r\]/g.exec(message)) {
