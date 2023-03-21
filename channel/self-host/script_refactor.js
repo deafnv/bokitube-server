@@ -549,7 +549,8 @@ document.addEventListener("contextmenu", (e) => {
             pseudoId = `${username}_${sanitizeMessageForPseudoID(message)}_${$(target).find('span.timestamp').text().split(':').join('').replaceAll(/\[|\]/g, '').trim()}`
         }
 
-        $('#chatline').val(`[r]${pseudoId.trim()}[/r] `).focus()
+        if (sanitizeMessageForPseudoID(message) != '')
+            $('#chatline').val(`[r]${pseudoId.trim()}[/r] `).focus()
     }
 })
 
@@ -593,7 +594,8 @@ function replyToButton(e) {
     let username = target.parentNode.className?.split('-')[2]?.split(' ')[0]
     let pseudoId = `${username}_${sanitizeMessageForPseudoID(message)}_${$(target).siblings('.timestamp').html().split(':').join('').replaceAll(/\[|\]/g, '').trim()}`
 
-    $('#chatline').val(`[r]${pseudoId.trim()}[/r] `).focus()
+    if (sanitizeMessageForPseudoID(message) != '')
+        $('#chatline').val(`[r]${pseudoId.trim()}[/r] `).focus()
 }
 
 $(document).ready(() => {
