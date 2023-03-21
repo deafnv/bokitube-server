@@ -330,13 +330,13 @@ div.embed-responsive * {
     position: relative;
     border-radius: 0.5rem;
     padding: 0.2rem;
-    padding-bottom: 10px;
     padding-right: 5rem;
+    margin-bottom: 10px;
 }
 
 #messagebuffer > div:last-child {
     padding-bottom: 0;
-    margin-bottom: 1.25rem
+    margin-bottom: 1.25rem;
 }
 
 /* Chat messages styling */
