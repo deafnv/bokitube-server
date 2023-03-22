@@ -371,6 +371,7 @@ function autocomplete(inp, arr) {
         a = document.createElement("DIV");
         a.setAttribute("id", "autocomplete-list");
         a.setAttribute("class", "autocomplete-items");
+        a.style.bottom = `${$('#rightcontent > form').outerHeight() + $('#leftcontrols').outerHeight()}px`
         this.parentNode.appendChild(a);
         $("#autocomplete-list").insertBefore(document.querySelectorAll('form')[1]);
 
@@ -440,7 +441,7 @@ function autocomplete(inp, arr) {
         removeActive(x);
         if (currentFocus >= x.length) currentFocus = 0;
         if (currentFocus < 0) currentFocus = (x.length - 1);
-        x[currentFocus].classList.add("autocomplete-active");
+        x[currentFocus]?.classList.add("autocomplete-active");
     }
 
     function removeActive(x) {
