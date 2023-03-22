@@ -656,6 +656,20 @@ $(document).ready(() => {
     }, 2500)
 })
 
+$('#chatline').keydown((event) => {
+    if (event.keyCode == 13){
+        event.preventDefault()  
+        document.querySelector('#chatline').style.height = '3.6rem'
+    }
+})
+
+/* Better chatline */
+function resizeChatline(event) {
+    const chatline = document.querySelector('#chatline')
+    chatline.style.height = '3.6rem'
+	chatline.style.height = chatline.scrollHeight + 'px'
+}
+
 //  Formatted version of a popular md5 implementation
 //  Original copyright (c) Paul Johnston & Greg Holt.
 //  The function itself is now 42 lines long.
