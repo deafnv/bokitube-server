@@ -2,7 +2,7 @@
 
 ![Preview](https://raw.githubusercontent.com/deafnv/bokitube-server/master/images/ss.png)
 
-[Live demo](https://ilovesabrina.org/r/testchannel)
+[Live demo](https://cytu.be/r/testtheme)
 
 ## Description
 
@@ -22,14 +22,14 @@ Copy and paste the links below to the external javascript and CSS fields in your
 https://cdn.jsdelivr.net/gh/deafnv/bokitube-server@master/channel/style.min.css
 ```
 
-To customize the preset theme, paste the following into the CSS editor in the Channel Settings (not External CSS). Change these variables as necessary.
+To customize the preset theme, paste the following into the CSS editor in the Channel Settings (not External CSS). Customize these as you wish.
 
-```
+``` css
 :root {
     --leftcontentvw:  78.4vw;
-    --bannerimg: url("https://dl.dropboxusercontent.com/s/eyzfkmihwol6b69/banner%20%280-00-00-00%29.png");
-    --dialogbgimageurl: url("https://dl.dropboxusercontent.com/s/v59wycx9g8p05e5/astolfo_render__1__by_mrsterben_dbzfx5u.png");
-    --bgimageurl: url("https://wallpapercave.com/wp/wp2225973.jpg");
+    --bannerimg: url("INSERT YOUR IMAGE HERE"); /* Sliding banner image in MOTD */
+    --dialogbgimageurl: url("INSERT YOUR IMAGE HERE"); /* Modal background image */
+    --bgimageurl: url("INSERT YOUR IMAGE HERE"); /* Background channel image */
     --primarycolor: #000000;
     --secondarycolor: #2e2e2e;
     --tertiarycolor: #627b83;
@@ -44,7 +44,7 @@ https://cdn.jsdelivr.net/gh/deafnv/bokitube-server@master/channel/script.min.js
 
 To customize the theme from the default Cytube, paste the following into the JS editor in the Channel Settings (not External Javascript)
 
-```
+``` javascript
 var channelName = "<custom title here>";
 var faviconUrl = "<custom favicon URL here>";
 ```
@@ -55,7 +55,7 @@ If you are hosting your own server, you should have access to the template files
 
 #### Channel CSS
 
-```
+``` pug
 link(rel="stylesheet", href="https://cdn.jsdelivr.net/gh/deafnv/bokitube-server@master/channel/style.min.css")
 ```
 
@@ -63,7 +63,7 @@ Copy and paste the above line into the ```head.pug``` or the head of the ```chan
 
 #### Channel Javascript
 
-```
+``` pug
 script(defer, src="https://cdn.jsdelivr.net/gh/deafnv/bokitube-server@master/channel/script.min.js")
 ```
 
