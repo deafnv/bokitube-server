@@ -257,13 +257,18 @@ emotesPanel();
 /* Remove original emote button */
 $("#emotelistbtn").remove();
 
+/* Replace text with icons */
+$("#newpollbtn").html(`<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#FFFFFF" height="800px" width="800px" version="1.1" id="Capa_1" viewBox="0 0 490.4 490.4" xml:space="preserve"><path d="M17.2,251.55c-9.5,0-17.2,7.7-17.2,17.1v179.7c0,9.5,7.7,17.2,17.2,17.2h113c9.5,0,17.1-7.7,17.1-17.2v-179.7 c0-9.5-7.7-17.1-17.1-17.1L17.2,251.55L17.2,251.55z M113,431.25H34.3v-145.4H113V431.25z"/><path d="M490.4,448.45v-283.7c0-9.5-7.7-17.2-17.2-17.2h-113c-9.5,0-17.2,7.7-17.2,17.2v283.6c0,9.5,7.7,17.2,17.2,17.2h113 C482.7,465.55,490.4,457.85,490.4,448.45z M456.1,431.25h-78.7v-249.3h78.7L456.1,431.25L456.1,431.25z"/> <path d="M301.7,465.55c9.5,0,17.1-7.7,17.1-17.2V42.05c0-9.5-7.7-17.2-17.1-17.2h-113c-9.5,0-17.2,7.7-17.2,17.2v406.3 c0,9.5,7.7,17.2,17.2,17.2H301.7z M205.9,59.25h78.7v372h-78.7L205.9,59.25L205.9,59.25z"/></svg>`)
+
 /* Add custom emotes panel button */
-emotesbtn = $('<button id="emotes-btn" class="btn btn-sm btn-default" title="Display emotes panel">Emote List</button>')
+emotesbtn = $('<button id="emotes-btn" class="btn btn-sm btn-default" title="Display emotes panel"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#FFFFFF" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.507 13.941c-1.512 1.195-3.174 1.931-5.506 1.931-2.334 0-3.996-.736-5.508-1.931l-.493.493c1.127 1.72 3.2 3.566 6.001 3.566 2.8 0 4.872-1.846 5.999-3.566l-.493-.493zm-9.007-5.941c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5-.672-1.5-1.5-1.5zm7 0c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5-.672-1.5-1.5-1.5z"/></svg></button>')
     .prependTo("#leftcontrols")
     .on("click", function() {
         toggleDiv(emotespanel);
         localStorage.epIsOpen == 0 ? localStorage.epIsOpen = 1 : localStorage.epIsOpen = 0;
     });
+
+$("#emotes-btn").after($("#voteskip"))
 
 /* Switch emotes panel - fixed or floating */
 $('<li><a onclick="switchEp()" style="cursor: pointer;">Switch EP</a></li>').appendTo(".navbar-nav")
@@ -523,7 +528,7 @@ function getTimeString(unix) {
     return timeString
 }
 
-document.addEventListener("contextmenu", (e) => {
+/* document.addEventListener("contextmenu", (e) => {
     const target = e.target
     if (
         (target.className.includes('chat-msg-') || target.parentNode.className.includes('chat-msg-') || target.parentNode.parentNode.className.includes('chat-msg-')) 
@@ -554,7 +559,7 @@ document.addEventListener("contextmenu", (e) => {
         if (sanitizeMessageForPseudoID(message) != '')
             $('#chatline').val(`[r]${pseudoId.trim()}[/r] ${chatlineVal}`).focus()
     }
-})
+}) */
 
 function sanitizeMessageForPseudoID(message1) { 
     //This will generate generic <img for this portion of the id if the message begins with an emote

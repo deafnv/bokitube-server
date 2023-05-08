@@ -160,7 +160,7 @@ div#chanjs-allow-prompt {
     position: absolute;
     z-index: 1020;
     max-width: 30%;
-    background: rgba(0, 0, 0, 0.27);
+    background: rgba(0, 0, 0, 0.6);
     border: #bbbbbb;
     border-style: solid;
     border-width: thin;
@@ -443,6 +443,18 @@ div.embed-responsive * {
 
 #jump-btn {
     color: white;
+}
+
+#newpollbtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#emotes-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #afk-btn {
