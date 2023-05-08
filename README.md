@@ -1,8 +1,9 @@
 # Bokitube Cytube Server Theme
 
-![Preview](https://raw.githubusercontent.com/deafnv/bokitube-server/master/images/ss.png)
-
-![Preview](https://raw.githubusercontent.com/deafnv/bokitube-server/master/images/ss-mobile.png)
+<div style="display: flex;">
+    <img src="https://raw.githubusercontent.com/deafnv/bokitube-server/master/images/ss.png" width="900">
+    <img src="https://raw.githubusercontent.com/deafnv/bokitube-server/master/images/ss-mobile.png" width="400">
+</div>
 
 [Live demo](https://cytu.be/r/testtheme)
 
