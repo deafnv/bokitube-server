@@ -2,11 +2,20 @@
 
 ![Preview](https://raw.githubusercontent.com/deafnv/bokitube-server/master/images/ss.png)
 
+![Preview](https://raw.githubusercontent.com/deafnv/bokitube-server/master/images/ss-mobile.png)
+
 [Live demo](https://cytu.be/r/testtheme)
 
 ## Description
 
-JS and CSS for a cytube server theme, as well as similar resources for a self-hosted Cytube server.
+JS and CSS for a chat-focused theme for Cytube channels.
+
+- Mobile-friendly responsive design
+- Better emotes display
+- Switch from fixed, to draggable emotes panel with `Switch EP` button on navbar
+- Emotes autocomplete when using emotes with `/<emote-name>` format
+- Reply button to reply to individual messages
+- AFK on window unfocus
 
 &nbsp;
 
@@ -24,7 +33,7 @@ To customize the preset theme, paste the following into the CSS editor in the Ch
 
 ``` css
 :root {
-    --leftcontentvw:  78.4vw;
+    --leftcontentvw:  78.4vw; /* Width of video player section, chat will fill the rest */
     --bannerimg: url("INSERT YOUR IMAGE HERE"); /* Sliding banner image in MOTD */
     --dialogbgimageurl: url("INSERT YOUR IMAGE HERE"); /* Modal background image */
     --bgimageurl: url("INSERT YOUR IMAGE HERE"); /* Background channel image */
@@ -51,8 +60,8 @@ var faviconUrl = "<custom favicon URL here>";
 
 ## Credits
 
-Server design inspired by [BillTube theme](https://github.com/BillTube/BillTube2) with original and simplified implementation.
+Server design inspired by [BillTube theme](https://github.com/BillTube/BillTube2).
 
-Emotes panel design from [Cytube Plus](https://github.com/zimny-lech/CyTube-Plus).
+Basic emotes panel design from [Cytube Plus](https://github.com/zimny-lech/CyTube-Plus).
 
 Site source code from [Cytube sync repository](https://github.com/calzoneman/sync).
