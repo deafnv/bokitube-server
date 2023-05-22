@@ -1,4 +1,4 @@
-# Bokitube Cytube Server Theme
+# Bokitube Cytube Channel Theme
 
 <div style="display: flex;">
     <img src="https://raw.githubusercontent.com/deafnv/bokitube-server/master/images/ss.png" width="900">
