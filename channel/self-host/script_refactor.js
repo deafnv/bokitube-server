@@ -1,9 +1,4 @@
-/* 
-* This script is intended to be used only by administrators willing to refactor the channel pug template.
-* This script lacks the extra append prepend things.
-* Doing it this way results in faster loading time.
-*/
-
+//! Personal use
 /* Display none on container-fluid after accepting permissions */
 document.querySelector('.container-fluid').style.display = "none";
 
@@ -229,6 +224,10 @@ function emotesPanel() {
     if (len < 1) {
         emotespanel.addClass('row');
         makeAlert("No emotes available", "Ask channel administrator. This panel will update every second until an emote is found.").appendTo(emotespanel);
+
+        /* Channel password */
+        if (!document.querySelector('#content-wrap').contains(document.querySelector('#needpw')))
+            $("#needpw").appendTo($("#content-wrap"));
 
         console.log('No emotes found, reloading in 1 second')
         setTimeout(function() {emotesPanel()}, 1000);

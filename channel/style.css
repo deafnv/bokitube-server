@@ -1,23 +1,12 @@
-/* 
-* This file is intended for either the original cytu.be site or a self-hosted server
-*/
-
 /* Modify these variables as you wish */
 :root {
     --leftcontentvw:  78.4vw;
-    --bannerimg: url("https://dl.dropboxusercontent.com/s/eyzfkmihwol6b69/banner%20%280-00-00-00%29.png");
-    --dialogbgimageurl: url("https://dl.dropboxusercontent.com/s/v59wycx9g8p05e5/astolfo_render__1__by_mrsterben_dbzfx5u.png");
-    --bgimageurl: url("https://wallpapercave.com/wp/wp2225973.jpg");
+    --bannerimg: url("");
+    --dialogbgimageurl: url("");
+    --bgimageurl: url("");
     --primarycolor: #000000;
     --secondarycolor: #2e2e2e;
     --tertiarycolor: #627b83;
-}
-
-/* Hosted custom fonts, currently being hosted on the server itself */
-@font-face {
-    font-family: 'Futura';
-    font-style: normal;
-    src: url(https://cytubegce.ddns.net/css/font/Futura%20Light.ttf) format('truetype');
 }
 
 /* Global scrollbar styling */
@@ -461,6 +450,17 @@ div.embed-responsive * {
     margin-left: auto;
 }
 
+/* Channel password */
+#needpw {
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%);
+}
+
+#needpw input {
+    background-color: var(--secondarycolor) !important;
+}
+
 /* Footer  styling */
 .container .credit {
     margin: 10px 0;
@@ -611,7 +611,7 @@ textarea.form-control {
     font-size: 75%;
 }
 .videolist {
-    background-image: url(https://dl.dropboxusercontent.com/s/o0c936xljzu8nsr/thecouncil.png);
+    background-image: url();
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center bottom;

@@ -1,7 +1,3 @@
-/* 
-* This script is intended to be placed in the footer of the channel pug template with a defer tag, if self-hosting.
-*/
-
 /* Removes the buttons for resizing video and user list size toggle */
 const resizes = document.getElementById("resize-video-smaller");
 const resizel = document.getElementById("resize-video-larger");
@@ -15,7 +11,7 @@ document.querySelector('.container-fluid').style.display = "none";
 $("#motdwrap").prepend($('<div class="banner-slideshow"><div class="mover-1"></div></div>'));
 
 /* Theme credits */
-$(".credit").append($('<p class="text-muted credit">Theme by TomoLover, available on <a href="https://github.com/deafnv/bokitube-server" target="_blank" rel="noreferrer noopener">Github</a></p>'));
+$(".credit").append($('<p class="text-muted credit">Theme by deafnv, available on <a href="https://github.com/deafnv/bokitube-server" target="_blank" rel="noreferrer noopener">Github</a></p>'));
 
 /* Create basic two column layout */
 $("#mainpage").prepend($('<div id="content-wrap">'))
@@ -251,6 +247,9 @@ function emotesPanel() {
     if (len < 1) {
         emotespanel.addClass('row');
         makeAlert("No emotes available", "Ask channel administrator. This panel will update every second until an emote is found.").appendTo(emotespanel);
+
+        if (!document.querySelector('#content-wrap').contains(document.querySelector('#needpw')))
+            $("#needpw").appendTo($("#content-wrap"));
 
         console.log('No emotes found, reloading in 1 second')
         setTimeout(function() {emotesPanel()}, 1000);
