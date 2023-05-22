@@ -1,14 +1,3 @@
-/* Modify these variables as you wish */
-:root {
-    --leftcontentvw:  78.4vw;
-    --bannerimg: url("");
-    --dialogbgimageurl: url("");
-    --bgimageurl: url("");
-    --primarycolor: #000000;
-    --secondarycolor: #2e2e2e;
-    --tertiarycolor: #627b83;
-}
-
 /* Global scrollbar styling */
 ::-webkit-scrollbar {
     width: 8px;
