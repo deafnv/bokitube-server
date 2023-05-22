@@ -55,6 +55,7 @@ To customize the theme from the default Cytube, paste the following into the JS 
 ``` javascript
 var channelName = "<custom title here>";
 var faviconUrl = "<custom favicon URL here>";
+var scrollingBannerEnabled = false; //true or false
 ```
 
 &nbsp;
